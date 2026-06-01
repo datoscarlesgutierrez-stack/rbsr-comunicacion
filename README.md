@@ -1,9 +1,88 @@
 # 🌿 Portal de Comunicación RBSR
-### Reserva de la Biosfera Sierra del Rincón — Toolkit Digital para Técnicos
+**Reserva de la Biosfera Sierra del Rincón — Toolkit Digital para Técnicos**
 
-Portal web interactivo y sistema modular de recursos para la gestión de la comunicación de la **Reserva de la Biosfera Sierra del Rincón (RBSR)**, declarada por la UNESCO en 2005 bajo el programa MaB (Hombre y Biosfera).
+Portal web interactivo y sistema modular de recursos para la gestión de la comunicación de la **Reserva de la Biosfera Sierra del Rincón (RBSR)**, declarada por la UNESCO en 2005 bajo el programa MaB.
 
-🔗 **Versión en línea:** [https://datoscarlesgutierrez-stack.github.io/rbsr-comunicacion](https://datoscarlesgutierrez-stack.github.io/rbsr-comunicacion)
+🔗 **Portal online:** [datoscarlesgutierrez-stack.github.io/rbsr-comunicacion](https://datoscarlesgutierrez-stack.github.io/rbsr-comunicacion)
+📁 **Repositorio:** [github.com/datoscarlesgutierrez-stack/rbsr-comunicacion](https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion)
+
+---
+
+## ¿Qué contiene?
+
+| Sección del portal | Descripción |
+| :--- | :--- |
+| 🌸 **Esencia** | Propósito, visión, valores y tono de voz de la marca RBSR |
+| 🎨 **Manual Visual** | Paleta oficial de marca + 4 paletas estacionales Canva (clic para copiar HEX) y tipografías |
+| 📝 **Plantillas** | Guía del Excel de plantillas y protocolo estacional + estructuras por canal (IG, LinkedIn, WhatsApp) |
+| 📊 **Estrategia** | 7 ejes temáticos, secciones fijas (`#AgendaRBSR`, `#GenteDelBosque`) y checklist de calidad |
+| ⚙️ **Generador de Post** | Formulario que produce copys multicanal + prompt de IA + ALT TEXT en segundos |
+| 📋 **Instrucciones IA** | Bloques de texto copiables para GEM (Google Gemini), ChatGPT Custom GPT y Canva (Voz de Marca) |
+| ❓ **Q&A** | Base de conocimiento buscable con preguntas y respuestas validadas |
+| 🤖 **Modo Avanzado** | Panel oculto (robot en esquina inferior derecha): SKILL de Antigravity + acceso al repositorio |
+
+---
+
+## Identidad Visual (Resumen)
+
+**Paleta Oficial de Marca** (posters, infografías, papelería):
+
+| Color | HEX | Uso |
+| :--- | :--- | :--- |
+| Verde Brote | `#b8be3f` (Pantone 583C) | Acentos, CTA, iconos |
+| Olivo Oscuro | `#585615` (Pantone 581C) | Textos secundarios, contornos |
+| Verde Bosque | `#4d7c67` (Pantone 624C) | Cabeceras institucionales |
+| Crema Orgánico | `#f4f3ed` | Fondo principal |
+| Negro Pizarra | `#1c1e1a` | Texto principal |
+
+**Paletas Canva** (redes sociales y plantillas): Genérica · Primavera · Verano · Invierno  
+**Tipografía Canva**: `Montserrat Bold` (titulares) + `News Cycle Regular` (cuerpo)
+
+---
+
+## Cómo Actualizar el Portal
+
+1. Edita cualquier archivo `.md` en la carpeta `recursos/`
+2. Compila:
+   ```bash
+   python3 generar_portal.py
+   ```
+3. Publica en GitHub Pages:
+   ```bash
+   git add -A && git commit -m "Actualización" && git push
+   ```
+
+> El portal se regenera completamente como un único `index.html` autocontenido. GitHub Pages lo publica automáticamente al hacer push a `main`.
+
+---
+
+## Estructura del Repositorio
+
+```
+.
+├── index.html                            # Portal web (autogenerado — no editar a mano)
+├── generar_portal.py                     # Compilador Markdown → HTML
+├── skill_comunicacion_rbsr.md            # SKILL del agente Antigravity
+├── Instrucciones_GEM_ComunicaciónRBSR.md # Instrucciones completas para GEM
+├── README.md
+│
+└── recursos/                             # Módulos editables (fuente de verdad)
+    ├── 1_esencia_y_valores.md
+    ├── 2_sistema_visual.md               # Colores, tipografías, logotipo
+    ├── 3_canales_y_plantillas.md         # Guía Excel + directrices por canal
+    ├── 4_estrategia_y_planificacion.md
+    ├── 5_instrucciones_plataformas.md    # GEM, ChatGPT y Canva (voz de marca)
+    └── 6_qna.md                          # Base de conocimiento Q&A
+```
+
+---
+
+## Contacto
+
+**Reserva de la Biosfera Sierra del Rincón**  
+Calle Iglesia nº10, Prádena del Rincón — Madrid (28191), España  
+📧 reservabiosferasierradelrincon@gmail.com
+
 
 ---
 

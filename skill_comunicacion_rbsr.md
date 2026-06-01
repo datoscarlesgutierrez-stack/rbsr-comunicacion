@@ -1,6 +1,8 @@
-# Instrucciones del Agente / SKILL Raíz: Gestor de Comunicación RBSR
+# SKILL Antigravity: Agente de Comunicación RBSR
 
-Este archivo define el rol, contexto, protocolo de comportamiento y flujo de trabajo para el **Agente de Comunicación Inteligente de la Reserva de la Biosfera Sierra del Rincón (RBSR)**. Funciona como el prompt maestro de instrucciones del sistema para configurar un GEM o un SKILL en Gemini.
+> **⚠️ Este archivo es el SKILL de configuración para el agente Antigravity.** No es para GEM, ChatGPT ni Canva — esas instrucciones están en la sección **Instrucciones IA** del portal web.
+
+Este archivo define el rol, protocolo de comportamiento y flujo de trabajo del **Agente de Comunicación de la Reserva de la Biosfera Sierra del Rincón (RBSR)** cuando se ejecuta desde **Antigravity**. Funciona como el prompt de sistema (SKILL raíz) que le da contexto de trabajo, acceso a los recursos locales y protocolo de respuesta.
 
 ---
 

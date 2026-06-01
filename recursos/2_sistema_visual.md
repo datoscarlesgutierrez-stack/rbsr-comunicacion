@@ -20,13 +20,36 @@ El logotipo de la Reserva destaca el patrimonio natural y el desarrollo rural so
 
 ## 2. Tipografías Corporativas
 
+### A. Estándar Oficial de Marca (Cartelería, Papelería, Notas de Prensa)
+
 Para asegurar la legibilidad y mantener una estética limpia y atemporal:
 
 | Aplicación | Tipografía Oficial | Tipografía Web / Digital Recomendada |
 | :--- | :--- | :--- |
 | **Titulares Principales** | `Montserrat Bold` o `VSV Alergia Bold` | Montserrat (Google Fonts, Bold 700) |
-| **Subtítulos y Cifras** | `Montserrat SemiBold` / `VSV Alergia Regular` | Montserrat (Google Fonts, Medium 500) |
+| **Subtítulos y Cifras** | `Montserrat SemiBold` / `VSV Alergia Regular` | Montserrat (Google Fonts, SemiBold 600) |
 | **Texto de Lectura** | `Calibri Regular` / `Arial` | Calibri / Inter / System Sans (Regular 400) |
+
+> **Nota**: La fuente `VSV Alergia` es una tipografía corporativa exclusiva de la Reserva. **No está disponible en Canva**, por lo que en plantillas de redes sociales se sustituye siempre por `Montserrat Bold`.
+
+---
+
+### B. Tipografía Recomendada para Canva (Redes Sociales y Plantillas)
+
+Dado que `VSV Alergia` no está disponible en Canva, la combinación validada para plantillas de redes es la siguiente:
+
+| Jerarquía | Tipografía en Canva | Rol |
+| :--- | :--- | :--- |
+| **Titulares (H1)** | `Montserrat Bold` | Fuerza, claridad institucional y coherencia con la marca. |
+| **Subtítulos (H2/H3)** | `Montserrat SemiBold` | Jerarquía visual limpia y legible en móvil. |
+| **Cuerpo de texto** | `News Cycle Regular` | Calidez editorial, cercana a la tradición impresa del territorio. Legible y orgánica. |
+
+La combinación **Montserrat + News Cycle** ofrece el equilibrio correcto entre lo institucional (geométrico y limpio) y lo territorial (editorial y cálido). Ambas tipografías están disponibles de forma nativa en Canva como Google Fonts.
+
+**Reglas de uso en Canva**:
+*   No usar `News Cycle` como tipografía de titular principal — pierde impacto a distancia.
+*   No usar `News Cycle Bold` junto a `Montserrat Bold` en el mismo bloque — compiten en peso visual.
+*   Nunca combinar más de dos familias tipográficas en una misma pieza gráfica.
 
 ---
 

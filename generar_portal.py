@@ -191,6 +191,15 @@ def compile_portal():
     contents["chatgpt_raw_js"] = escape_for_js(chatgpt_raw)
     contents["canva_raw_js"] = escape_for_js(canva_raw)
 
+    # Read SKILL raw for the advanced Antigravity panel
+    skill_raw = ""
+    if os.path.exists(skill_path):
+        with open(skill_path, "r", encoding="utf-8") as f:
+            skill_raw = f.read()
+    else:
+        skill_raw = "(Archivo skill_comunicacion_rbsr.md no encontrado)"
+    contents["skill_raw_js"] = escape_for_js(skill_raw)
+
     # Read & parse QnA resource — split into individual Q&A blocks
     qna_path = os.path.join(recursos_path, "6_qna.md")
     qna_cards_html = ""
@@ -338,9 +347,6 @@ def compile_portal():
             </button>
             <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all flex items-center gap-1 bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100">
                 ❓ Q&amp;A
-            </button>
-            <button onclick="switchTab('skill')" id="btn-skill" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-stone-500 hover:text-reserve-forest hover:bg-stone-200/50 transition-all flex items-center gap-1">
-                🤖 SKILL Agente
             </button>
         </nav>
     </header>
@@ -720,14 +726,8 @@ def compile_portal():
                             📋 Copiar Todo al Portapapeles
                         </button>
                     </div>
-                    <details class="group">
-                        <summary class="cursor-pointer text-xs font-bold text-reserve-forest hover:text-reserve-olive transition-colors flex items-center gap-1">
-                            <span class="group-open:rotate-90 transition-transform">▶</span> Ver / ocultar contenido completo
-                        </summary>
-                        <div class="mt-3 bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-[500px] overflow-y-auto custom-scrollbar">
-                            <pre id="gem-content" class="text-xs text-stone-700 whitespace-pre-wrap font-sans leading-relaxed cursor-text"></pre>
-                        </div>
-                    </details>
+                    <!-- GEM textarea - full selectable/copyable -->
+                    <textarea id="gem-content" readonly class="w-full mt-3 bg-stone-50 p-4 rounded-xl border border-stone-200 text-xs text-stone-700 font-sans leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-reserve-forest custom-scrollbar" rows="14" style="field-sizing:content;max-height:420px;" spellcheck="false"></textarea>
                 </div>
 
                 <!-- ChatGPT Card -->
@@ -744,14 +744,8 @@ def compile_portal():
                             📋 Copiar Todo al Portapapeles
                         </button>
                     </div>
-                    <details class="group">
-                        <summary class="cursor-pointer text-xs font-bold text-stone-600 hover:text-stone-800 transition-colors flex items-center gap-1">
-                            <span class="group-open:rotate-90 transition-transform">▶</span> Ver / ocultar contenido completo
-                        </summary>
-                        <div class="mt-3 bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-[500px] overflow-y-auto custom-scrollbar">
-                            <pre id="chatgpt-content" class="text-xs text-stone-700 whitespace-pre-wrap font-sans leading-relaxed cursor-text"></pre>
-                        </div>
-                    </details>
+                    <!-- ChatGPT textarea - full selectable/copyable -->
+                    <textarea id="chatgpt-content" readonly class="w-full mt-3 bg-stone-50 p-4 rounded-xl border border-stone-200 text-xs text-stone-700 font-sans leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-stone-400 custom-scrollbar" rows="14" style="max-height:420px;" spellcheck="false"></textarea>
                 </div>
 
                 <!-- Canva Brand Voice Card -->
@@ -817,12 +811,50 @@ def compile_portal():
             </div>
         </div>
 
-        <!-- Tab 8: SKILL -->
-        <div id="tab-skill" class="tab-content space-y-6">
-            <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
-                {contents["skill"]}
+    <!-- 🤖 ADVANCED PANEL: Antigravity SKILL (hidden, triggered by robot button) -->
+    <div id="advanced-panel" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end justify-end p-6" onclick="if(event.target===this)closeAdvanced()">
+        <div class="bg-stone-900 text-stone-100 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden border border-stone-700">
+            <!-- Panel Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-stone-700 shrink-0">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">🤖</span>
+                    <div>
+                        <h3 class="font-title font-bold text-white text-base">MODO AVANZADO — SKILL Antigravity</h3>
+                        <p class="text-xs text-stone-500 mt-0.5">⚠️ Solo continúa si tienes conocimientos de Antigravity y del ecosistema de este proyecto.</p>
+                    </div>
+                </div>
+                <button onclick="closeAdvanced()" class="text-stone-500 hover:text-white transition-colors text-xl font-bold px-2" title="Cerrar">✕</button>
+            </div>
+
+            <!-- Repo link + instructions -->
+            <div class="px-6 py-4 border-b border-stone-800 space-y-3 shrink-0">
+                <p class="text-xs text-stone-400 leading-relaxed">Este SKILL define el comportamiento del agente cuando trabajas en <strong class="text-stone-200">Antigravity</strong>. Copia el contenido y úsalo como SKILL del proyecto en tu instancia de Antigravity. Para continuar trabajando o clonar el proyecto completo, accede al repositorio.</p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-700 hover:bg-stone-600 text-white text-xs font-bold transition-colors border border-stone-600">
+                        <span>📁</span> Ver Repositorio en GitHub
+                    </a>
+                    <a href="https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion/archive/refs/heads/main.zip" target="_blank" rel="noopener" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-stone-700 hover:bg-stone-600 text-white text-xs font-bold transition-colors border border-stone-600">
+                        <span>⬇️</span> Descargar ZIP
+                    </a>
+                </div>
+                <div class="bg-stone-800 rounded-lg px-4 py-2 font-mono text-xs text-stone-400 select-all">git clone https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion.git</div>
+            </div>
+
+            <!-- SKILL Textarea -->
+            <div class="flex items-center justify-between px-6 py-3 border-b border-stone-800 shrink-0">
+                <span class="text-xs font-bold text-stone-400 uppercase tracking-wider">SKILL Content — Selecciona todo y copia (Ctrl+A / Cmd+A)</span>
+                <button onclick="copyToClipboard(skillContent, 'SKILL Antigravity')" class="px-4 py-1.5 rounded-full bg-reserve-olive text-reserve-forest text-xs font-bold hover:opacity-80 transition-all flex items-center gap-1.5">📋 Copiar SKILL Completo</button>
+            </div>
+            <div class="flex-1 overflow-hidden px-6 py-4">
+                <textarea id="skill-textarea" readonly class="w-full h-full min-h-[300px] bg-stone-950 text-stone-300 font-mono text-xs p-4 rounded-xl border border-stone-700 resize-none focus:outline-none focus:ring-1 focus:ring-reserve-olive custom-scrollbar leading-relaxed" spellcheck="false"></textarea>
             </div>
         </div>
+    </div>
+
+    <!-- 🤖 Robot trigger button (bottom-right, hidden until hover) -->
+    <button id="robot-trigger" onclick="openAdvanced()" title="Modo Avanzado — SKILL Antigravity" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-stone-900/80 backdrop-blur-sm border border-stone-700 text-xl flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 hover:opacity-100 focus:opacity-100 hover:scale-110 hover:bg-stone-800">
+        🤖
+    </button>
 
     </main>
 
@@ -856,18 +888,31 @@ def compile_portal():
         const gemInstructions = `{contents["gem_raw_js"]}`;
         const chatgptInstructions = `{contents["chatgpt_raw_js"]}`;
         const canvaInstructions = `{contents["canva_raw_js"]}`;
+        const skillContent = `{contents["skill_raw_js"]}`;
 
         // Populate instruction panels on load
         document.addEventListener('DOMContentLoaded', () => {{
-            document.getElementById('gem-content').textContent = gemInstructions;
-            document.getElementById('chatgpt-content').textContent = chatgptInstructions;
+            document.getElementById('gem-content').value = gemInstructions;
+            document.getElementById('chatgpt-content').value = chatgptInstructions;
             document.getElementById('canva-content').textContent = canvaInstructions;
+            document.getElementById('skill-textarea').value = skillContent;
             const charCount = document.getElementById('canva-char-count');
             charCount.textContent = `${{canvaInstructions.length}}/500 chars`;
             charCount.className = canvaInstructions.length > 500
                 ? 'text-xs font-mono text-red-500 font-bold'
                 : 'text-xs font-mono text-emerald-600 font-bold';
         }});
+
+        // Advanced panel (robot button)
+        function openAdvanced() {{
+            document.getElementById('advanced-panel').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }}
+        function closeAdvanced() {{
+            document.getElementById('advanced-panel').classList.add('hidden');
+            document.body.style.overflow = '';
+        }}
+        document.addEventListener('keydown', e => {{ if (e.key === 'Escape') closeAdvanced(); }});
 
         // Q&A Accordion toggle
         function toggleQnA(btn) {{
