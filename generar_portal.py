@@ -68,8 +68,11 @@ def parse_markdown_to_html(md_text):
                     for row in rows:
                         table_html += '<tr class="hover:bg-stone-50/50 transition-colors">'
                         for col in row:
-                            # Parse bold in columns
-                            col_parsed = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', col)
+                            # Parse inline formatting in table cells
+                            col_parsed = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', lambda m: f'<a href="{m.group(2)}" target="_blank" rel="noopener" class="text-emerald-700 underline hover:text-emerald-900 font-medium">{m.group(1)}</a>', col)
+                            col_parsed = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', col_parsed)
+                            col_parsed = re.sub(r'`(.*?)`', r'<code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">\1</code>', col_parsed)
+                            col_parsed = re.sub(r'(?<!href=")(https?://[^\s<>"]+)', lambda m: f'<a href="{m.group(1)}" target="_blank" rel="noopener" class="text-emerald-700 underline text-xs break-all">{m.group(1)}</a>', col_parsed)
                             table_html += f'<td class="px-6 py-4 text-base border-b border-stone-100">{col_parsed}</td>'
                         table_html += '</tr>'
                     table_html += '</tbody></table></div>'
@@ -88,25 +91,65 @@ def parse_markdown_to_html(md_text):
     md_text = re.sub(r'^## (.*?)$', r'<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">\1</h2>', md_text, flags=re.M)
     md_text = re.sub(r'^# (.*?)$', r'<h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">\1</h1>', md_text, flags=re.M)
 
+    # Markdown links [text](url) — must run BEFORE bold, code, and auto-URL
+    def render_md_link(m):
+        label = m.group(1).strip()
+        href = m.group(2).strip()
+        return f'<a href="{href}" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">{label}</a>'
+    md_text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', render_md_link, md_text)
+
     # Bold
     md_text = re.sub(r'\*\*(.*?)\*\*', r'<strong class="font-bold text-stone-900">\1</strong>', md_text)
-    
+
+    # Italic (single asterisk or underscore, not preceded by another *)
+    md_text = re.sub(r'(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)', r'<em class="italic text-stone-700">\1</em>', md_text)
+
+    # Helper: apply all inline formatting (links already done above)
+    def inline_format(text):
+        # Markdown links [text](url) already done globally above
+        # Bold
+        text = re.sub(r'\*\*(.*?)\*\*', r'<strong class="font-bold text-stone-900">\1</strong>', text)
+        # Italic
+        text = re.sub(r'(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)', r'<em class="italic text-stone-700">\1</em>', text)
+        # Inline code
+        text = re.sub(r'`(.*?)`', lambda m: f'<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">{m.group(1)}</code>', text)
+        # Auto-link bare https:// URLs inside list items
+        text = re.sub(r'(?<!href=")(?<!src=")(https?://[^\s<>"]+)', lambda m: f'<a href="{m.group(1)}" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">{m.group(1)}</a>', text)
+        return text
+
     # Bullet Lists
     def render_list(match):
-        items = match.group(0).strip().split('\n')
+        items_raw = match.group(0).strip().split('\n')
         list_html = '<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed">'
-        for item in items:
+        for item in items_raw:
             cleaned = re.sub(r'^\s*[\*\-]\s*', '', item).strip()
-            # Replace inline formatting
-            cleaned = re.sub(r'`(.*?)`', r'<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">\1</code>', cleaned)
-            cleaned = re.sub(r'\*\*(.*?)\*\*', r'<strong class="font-bold text-stone-900">\1</strong>', cleaned)
+            if not cleaned:
+                continue
+            cleaned = inline_format(cleaned)
             list_html += f'<li class="text-base">{cleaned}</li>'
         list_html += '</ul>'
         return list_html
     md_text = re.sub(r'(?:^\s*[\*\-]\s+.*\n?)+', render_list, md_text, flags=re.M)
 
-    # Simple inline code block
-    md_text = re.sub(r'`(.*?)`', r'<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">\1</code>', md_text)
+    # Numbered / Ordered Lists
+    def render_ordered_list(match):
+        items_raw = match.group(0).strip().split('\n')
+        list_html = '<ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed">'
+        for item in items_raw:
+            cleaned = re.sub(r'^\s*\d+\.\s*', '', item).strip()
+            if not cleaned:
+                continue
+            cleaned = inline_format(cleaned)
+            list_html += f'<li class="text-base">{cleaned}</li>'
+        list_html += '</ol>'
+        return list_html
+    md_text = re.sub(r'(?:^\s*\d+\.\s+.*\n?)+', render_ordered_list, md_text, flags=re.M)
+
+    # Inline code (for any backticks not yet converted inside other blocks)
+    md_text = re.sub(r'`(.*?)`', lambda m: f'<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">{m.group(1)}</code>', md_text)
+
+    # Auto-link remaining bare https:// URLs (outside blocks already processed)
+    md_text = re.sub(r'(?<!href=")(?<!src=")(https?://[^\s<>"]+)', lambda m: f'<a href="{m.group(1)}" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">{m.group(1)}</a>', md_text)
 
     # Checklist checkboxes (optional)
     md_text = re.sub(r'- \[ \]\s+(.*?)$', r'<label class="flex items-start gap-3 my-3 p-3 bg-stone-50 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-100/50 transition-colors"><input type="checkbox" class="w-4 h-4 mt-1 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500"><span class="text-sm text-stone-700 leading-relaxed">\1</span></label>', md_text, flags=re.M)
