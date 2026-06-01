@@ -168,38 +168,165 @@ Este fragmento de texto debe incorporarse al final de todos los comunicados ofic
             <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
                 
                 <!-- Quick interactive color palettes -->
-                <h3 class="text-lg font-bold text-emerald-800 border-b border-stone-100 pb-1">Paletas Interactivas (Haz clic para copiar HEX)</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                        <div class="w-full h-24 rounded-xl bg-[#b8be3f] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-bold text-stone-800 text-sm">Verde Brote</h4>
-                                <p class="text-xs text-stone-500 mt-0.5">Pantone 583C</p>
+                <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                    <span>🎨</span> Paletas de Colores de la Reserva
+                </h3>
+                
+                <div class="space-y-8">
+                    <!-- A. Paleta Oficial -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-4 flex items-center gap-1.5">
+                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                            A. Paleta Oficial de la MARCA (Posters, Infografías y Papelería)
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Verde Brote -->
+                            <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
+                                <div class="w-full h-20 rounded-xl bg-[#b8be3f] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold text-stone-800 text-sm">Verde Brote</h4>
+                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 583C</p>
+                                    </div>
+                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#b8be3f</span>
+                                </div>
                             </div>
-                            <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#b8be3f</span>
+                            <!-- Olivo Oscuro -->
+                            <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
+                                <div class="w-full h-20 rounded-xl bg-[#585615] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold text-stone-800 text-sm">Olivo Oscuro</h4>
+                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 581C</p>
+                                    </div>
+                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#585615</span>
+                                </div>
+                            </div>
+                            <!-- Verde Bosque RERB -->
+                            <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
+                                <div class="w-full h-20 rounded-xl bg-[#4d7c67] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold text-stone-800 text-sm">Verde Bosque RERB</h4>
+                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 624C</p>
+                                    </div>
+                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#4d7c67</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                        <div class="w-full h-24 rounded-xl bg-[#585615] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-bold text-stone-800 text-sm">Olivo Oscuro</h4>
-                                <p class="text-xs text-stone-500 mt-0.5">Pantone 581C</p>
+                    <!-- B. Paletas Canva -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-4 flex items-center gap-1.5">
+                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-violet-600"></span>
+                            B. Paletas de Canva (Redes Sociales, Creatividades y Plantillas)
+                        </h4>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                            <!-- Paleta Genérica -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
+                                        <span>🔘</span> Paleta Genérica (Principal)
+                                    </h5>
+                                    <p class="text-[10px] text-stone-500 mt-1">Uso transversal y recordatorios.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div onclick="copyToClipboard('#88ab81', 'HEX Verde Musgo Canva')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#88ab81] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#88ab81</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#fefaed', 'HEX Crema Hueso Canva')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#fefaed] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#fefaed</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote Canva')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#92b115</span>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#585615</span>
-                        </div>
-                    </div>
 
-                    <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                        <div class="w-full h-24 rounded-xl bg-[#4d7c67] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-bold text-stone-800 text-sm">Verde Bosque RERB</h4>
-                                <p class="text-xs text-stone-500 mt-0.5">Pantone 624C</p>
+                            <!-- Paleta Primavera -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
+                                        <span>🌸</span> Paleta de Primavera
+                                    </h5>
+                                    <p class="text-[10px] text-stone-500 mt-1">Floración y renacer de la sierra.</p>
+                                </div>
+                                <div class="grid grid-cols-4 gap-1">
+                                    <div onclick="copyToClipboard('#ff8ac7', 'HEX Rosa Floración')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#ff8ac7] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#ff8ac7</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#f1efe2', 'HEX Crema Primavera')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#f1efe2] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#f1efe2</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#92b115</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#103f2b</span>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#4d7c67</span>
+
+                            <!-- Paleta Verano -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
+                                        <span>☀️</span> Paleta de Verano
+                                    </h5>
+                                    <p class="text-[10px] text-stone-500 mt-1">Sol, madurez y frescor del agua.</p>
+                                </div>
+                                <div class="grid grid-cols-4 gap-1">
+                                    <div onclick="copyToClipboard('#65b9f0', 'HEX Azul Río')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#65b9f0] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#65b9f0</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#e7b43f', 'HEX Amarillo Sol')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#e7b43f] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#e7b43f</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#d7bf99', 'HEX Arena')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#d7bf99] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#d7bf99</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#103f2b</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Paleta Invierno -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
+                                        <span>❄️</span> Paleta de Invierno
+                                    </h5>
+                                    <p class="text-[10px] text-stone-500 mt-1">Silencio y paisaje de nieve blanca.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div onclick="copyToClipboard('#006a3e', 'HEX Verde Acebo')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#006a3e] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#006a3e</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#9eb3c5', 'HEX Gris Ventisca')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#9eb3c5] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#9eb3c5</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#ffffff', 'HEX Blanco Nieve')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#ffffff] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#ffffff</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -216,13 +343,30 @@ Este fragmento de texto debe incorporarse al final de todos los comunicados ofic
 <p class="text-stone-800 leading-loose my-5 text-base">Para asegurar la legibilidad y mantener una estética limpia y atemporal:</p>
 <div class="overflow-x-auto my-6 rounded-lg border border-stone-200 shadow-sm"><table class="min-w-full divide-y divide-stone-200 text-left"><thead class="bg-stone-50 text-emerald-900 font-semibold"><tr><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Aplicación</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Tipografía Oficial</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Tipografía Web / Digital Recomendada</th></tr></thead><tbody class="bg-white divide-y divide-stone-100 text-stone-800"><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Titulares Principales</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">Montserrat Bold</code> o <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">VSV Alergia Bold</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Montserrat (Google Fonts, Bold 700)</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Subtítulos y Cifras</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">Montserrat SemiBold</code> / <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">VSV Alergia Regular</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Montserrat (Google Fonts, Medium 500)</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Texto de Lectura</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">Calibri Regular</code> / <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">Arial</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Calibri / Inter / System Sans (Regular 400)</td></tr></tbody></table></div>
 <p class="text-stone-800 leading-loose my-5 text-base">---</p>
-<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">3. Paleta de Colores Oficiales (Colorimetría de la Sierra)</h2>
-<p class="text-stone-800 leading-loose my-5 text-base">La paleta cromática oficial de la Reserva está inspirada directamente en sus musgos, hayedos y dehesas. Se compone de tonos terrosos y verdes profundos.</p>
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Colores Principales</h3>
-<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Verde Brote (Pantone 583C)</strong>:</li><li class="text-base">*HEX*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#b8be3f</code> (o <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#a7b50b</code> para mayor saturación)</li><li class="text-base">*RGB*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(184, 190, 63)</code> | *CMYK*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(23, 0, 100, 17)</code></li><li class="text-base">*Uso*: Acentos, iconos, llamadas a la acción (CTA) e iluminación de elementos gráficos.</li><li class="text-base"><strong class="font-bold text-stone-900">Verde Olivo Oscuro (Pantone 581C)</strong>:</li><li class="text-base">*HEX*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#585615</code></li><li class="text-base">*RGB*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(88, 86, 21)</code> | *CMYK*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(23, 0, 100, 57)</code></li><li class="text-base">*Uso*: Textos secundarios, contornos, fondo de tarjetas otoñales y estructura visual.</li><li class="text-base"><strong class="font-bold text-stone-900">Verde Bosque RERB (Pantone 624C - Estándar Nacional)</strong>:</li><li class="text-base">*HEX*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#4d7c67</code></li><li class="text-base">*RGB*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(77, 124, 103)</code> | *CMYK*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(62, 27, 47, 0)</code></li><li class="text-base">*Uso*: Color institucional de la Red Española de Reservas de la Biosfera. Ideal para cabeceras y bandas formales.</li></ul>
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Colores de Contraste</h3>
-<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Crema Orgánico (Fondo principal)</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#fcfbfa</code> o <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#f4f3ed</code> (Evitar fondos blancos puros fríos en el portal web o carteles).</li><li class="text-base"><strong class="font-bold text-stone-900">Negro Pizarra</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#1c1e1a</code> (Un tono oscuro de pizarra de la Sierra para textos generales, más natural que el negro puro).</li></ul>
+<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">3. Paleta de Colores (Colorimetría de la Sierra y Recursos de Redes)</h2>
+<p class="text-stone-800 leading-loose my-5 text-base">La colorimetría de la Sierra se organiza en dos grandes bloques: la <strong class="font-bold text-stone-900">Paleta Oficial de la Marca</strong> (para papelería formal, cartelería institucional, posters e infografías) y las <strong class="font-bold text-stone-900">Paletas de Colores de Canva</strong> (para plantillas rápidas de redes sociales y adaptaciones estacionales).</p>
+<p class="text-stone-800 leading-loose my-5 text-base">---</p>
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">A. Paleta Oficial de la MARCA Reserva de la Biosfera</h3>
+*Esta es la identidad cromática oficial e institucional. Debe usarse siempre para posters formales, infografías oficiales y elementos corporativos de marca.*
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Verde Brote (Pantone 583C)</strong>:</li><li class="text-base">*HEX*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#b8be3f</code> (o <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#a7b50b</code> para mayor saturación)</li><li class="text-base">*RGB*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(184, 190, 63)</code> | *CMYK*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(23, 0, 100, 17)</code></li><li class="text-base">*Uso*: Acentos, iconos, llamadas a la acción (CTA) e iluminación de elementos gráficos.</li><li class="text-base"><strong class="font-bold text-stone-900">Verde Olivo Oscuro (Pantone 581C)</strong>:</li><li class="text-base">*HEX*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#585615</code></li><li class="text-base">*RGB*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(88, 86, 21)</code> | *CMYK*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(23, 0, 100, 57)</code></li><li class="text-base">*Uso*: Textos secundarios, contornos, fondo de tarjetas y estructura visual.</li><li class="text-base"><strong class="font-bold text-stone-900">Verde Bosque RERB (Pantone 624C - Estándar Nacional)</strong>:</li><li class="text-base">*HEX*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#4d7c67</code></li><li class="text-base">*RGB*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(77, 124, 103)</code> | *CMYK*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">(62, 27, 47, 0)</code></li><li class="text-base">*Uso*: Color institucional de la Red Española de Reservas de la Biosfera. Ideal para cabeceras y bandas formales.</li><li class="text-base"><strong class="font-bold text-stone-900">Crema Orgánico (Fondo principal)</strong>:</li><li class="text-base">*HEX*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#f4f3ed</code></li><li class="text-base">*Uso*: Fondos principales en la web y carteles (evitar siempre el blanco puro frío).</li><li class="text-base"><strong class="font-bold text-stone-900">Negro Pizarra</strong>:</li><li class="text-base">*HEX*: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#1c1e1a</code></li><li class="text-base">*Uso*: Textos generales y lectura (un tono de pizarra natural y más suave que el negro puro).</li></ul>
 ---
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">B. Paletas de Canva (Para Plantillas y Redes Sociales)</h3>
+*Estas paletas han sido diseñadas específicamente para el ecosistema de plantillas de Canva. Sirven para dar dinamismo a las publicaciones, permitiendo un ritmo visual adaptado a cada estación y una base general unificada.*
+<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">🔘 Paleta Genérica (La principal configurada en Canva)</h4>
+*Se utiliza para mensajes de carácter general, institucionales, recordatorios permanentes y cualquier contenido no estacional.*
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">🟢 <strong class="font-bold text-stone-900">Verde Musgo Suave</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#88ab81</code></li><li class="text-base">🟡 <strong class="font-bold text-stone-900">Crema Hueso</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#fefaed</code></li><li class="text-base">🌱 <strong class="font-bold text-stone-900">Verde Brote Canva</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#92b115</code></li></ul>
+<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">🌸 Paleta de Primavera</h4>
+*Evoca el renacimiento, la floración y el despertar de los prados serranos.*
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">🌸 <strong class="font-bold text-stone-900">Rosa Cerezo / Floración</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#ff8ac7</code></li><li class="text-base">🍦 <strong class="font-bold text-stone-900">Crema Primavera</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#f1efe2</code></li><li class="text-base">🌱 <strong class="font-bold text-stone-900">Verde Brote</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#92b115</code></li><li class="text-base">🌲 <strong class="font-bold text-stone-900">Verde Pino Oscuro</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#103f2b</code></li></ul>
+<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">☀️ Paleta de Verano</h4>
+*Representa la calidez del sol, el trigo maduro y el frescor del agua de río en la montaña.*
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">💧 <strong class="font-bold text-stone-900">Azul Río / Frescor</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#65b9f0</code></li><li class="text-base">☀️ <strong class="font-bold text-stone-900">Amarillo Sol / Trigo</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#e7b43f</code></li><li class="text-base">🌾 <strong class="font-bold text-stone-900">Arena de Río / Crema</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#d7bf99</code></li><li class="text-base">🌲 <strong class="font-bold text-stone-900">Verde Pino Oscuro</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#103f2b</code></li></ul>
+<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">❄️ Paleta de Invierno</h4>
+*Inspirada en el silencio absoluto de las cumbres, el acebo brillante y el paisaje de nieve.*
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">🌲 <strong class="font-bold text-stone-900">Verde Acebo Oscuro</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#006a3e</code></li><li class="text-base">🏔️ <strong class="font-bold text-stone-900">Gris Ventisca / Pizarra</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#9eb3c5</code></li><li class="text-base">⚪ <strong class="font-bold text-stone-900">Blanco Nieve</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#ffffff</code></li></ul>
+<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">🍁 Paleta de Otoño (Sugerida / Pendiente)</h4>
+*Actualmente pendiente de asignación definitiva en Canva. Se sugiere utilizar tonos ocres, anaranjados y rojizos inspirados en el Hayedo de Montejo en esta época, o recurrir a la <strong class="font-bold text-stone-900">Paleta Genérica</strong> combinada con fondos de textura natural.*
+<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">4. Guía de Estética de Imagen y Generación con IA</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">La autenticidad es nuestra mayor herramienta de conservación. <strong class="font-bold text-stone-900">Nunca se deben utilizar imágenes de stock genéricas</strong> con modelos de estudio o paisajes artificiales ajenos a la Sierra de Madrid.</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Reglas Estéticas para Fotografías e Ilustraciones</h3>
@@ -254,6 +398,30 @@ Si necesitas generar una imagen representativa para acompañar un post o cartel 
                 <div class="prose max-w-none text-stone-700">
                     <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Directrices de Redacción y Plantillas de Texto: Canales RBSR</h1>
 <p class="text-stone-800 leading-loose my-5 text-base">Este documento establece las estructuras, longitudes recomendadas y plantillas de redacción adaptadas para cada uno de los canales de comunicación de la <strong class="font-bold text-stone-900">Reserva de la Biosfera Sierra del Rincón (RBSR)</strong>.</p>
+<p class="text-stone-800 leading-loose my-5 text-base">---</p>
+<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">📁 Guía del Excel de Plantillas y Protocolo Estacional</h2>
+<p class="text-stone-800 leading-loose my-5 text-base">Disponemos de una <strong class="font-bold text-stone-900">Matriz de Mensajes en Excel</strong> que sirve como guía unificada de acceso a las plantillas de redes y Canva, y como protocolo para redactar textos adaptados al ritmo y tono de la Sierra.</p>
+<div class="border-l-4 p-4 my-6 rounded-r-lg bg-emerald-50 border-emerald-600 text-emerald-800"><p class="font-bold flex items-center gap-2 mb-1"><span>🌿</span> IMPORTANT</p><p class="text-sm leading-relaxed">🔗 <strong class="font-bold text-stone-900">[ACCEDER AL EXCEL DE PLANTILLAS Y PROTOCOLO DE LA RESERVA](https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507)</strong>
+*(Nota: El documento se encuentra en modo Comentador. Si necesitas permisos de edición directa para tu área, solicita el acceso a través del propio enlace de Google Drive).*</p></div>
+---
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">🗺️ Paso a Paso para Crear Nuevos Contenidos</h3>
+Cuando necesites comunicar una actividad, un evento o una noticia, <strong class="font-bold text-stone-900">no empieces desde cero</strong>. Sigue este sencillo protocolo de 5 pasos para garantizar la coherencia visual y el espíritu de la Reserva:
+<p class="text-stone-800 leading-loose my-5 text-base">1. <strong class="font-bold text-stone-900">Seleccionar la pestaña adecuada</strong>: Entra en el Excel y elige la pestaña correspondiente a la estación actual (🌸 Primavera, ☀️ Verano, 🍁 Otoño, ❄️ Invierno) o la pestaña <strong class="font-bold text-stone-900">Genérico</strong> si el mensaje no depende del clima.
+2. <strong class="font-bold text-stone-900">Duplicar una sección base</strong>: Busca el bloque temático que más se parezca a tu objetivo (ej. dar la bienvenida, proponer una ruta o invitar a un taller) y cópialo.
+3. <strong class="font-bold text-stone-900">Adaptar el Titular</strong>: Modifica el titular de forma sugerente para capturar la atención, manteniendo la brevedad.
+4. <strong class="font-bold text-stone-900">Redactar la Descripción y el Texto Largo</strong>: Ajusta los campos al contenido concreto de tu actividad. <strong class="font-bold text-stone-900">Respeta los límites de caracteres</strong> indicados en el Excel para evitar que se corten en el feed.
+5. <strong class="font-bold text-stone-900">Aplicar la Estética Visual</strong>: Accede al <strong class="font-bold text-stone-900">enlace de Canva</strong> asociado a ese bloque de mensaje (en las columnas derechas del Excel) para maquetar la pieza visual con la paleta de colores de esa estación.</p>
+<p class="text-stone-800 leading-loose my-5 text-base">---</p>
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">🗂️ ¿Cómo está Organizado el Excel?</h3>
+<p class="text-stone-800 leading-loose my-5 text-base">El documento se divide en pestañas estacionales y una pestaña transversal:
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Primavera / Verano / Otoño / Invierno</strong>: Mensajes que respiran el cambio de la naturaleza, adaptados a la temperatura, los colores del bosque y los sentimientos de cada época.</li><li class="text-base"><strong class="font-bold text-stone-900">Pestaña "Genérico"</strong>: Mensajes institucionales, recordatorios permanentes de buenas prácticas en el medio natural, invitaciones generales y comunicaciones sobre los valores, el cuidado y el respeto por el territorio.</li></ul>
+<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">Estructura de Cada Sección</h4>
+Dentro de cada pestaña, cada bloque de comunicación se compone estrictamente de tres partes:
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Titular</strong>: Frase corta que resume y define el propósito del mensaje de forma directa.</li><li class="text-base"><strong class="font-bold text-stone-900">Descripción</strong>: Breve texto de 1 o 2 frases que acompaña, contextualiza y añade valor.</li><li class="text-base"><strong class="font-bold text-stone-900">Texto Largo (Caption)</strong>: El mensaje principal del post, pensado para comunicar con calma, claridad y profundidad.</li></ul>
+---</p>
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">🌿 El Tono de Voz que debemos Cuidar Siempre</h3>
+Cada mensaje es una pequeña puerta de entrada a la Sierra del Rincón. No comunicamos simplemente folletos de actividades; <strong class="font-bold text-stone-900">comunicamos una forma respetuosa de habitar el territorio</strong>. Todo texto debe ser:
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Cercano y humano</strong>: Hablar de tú a tú, conectando con las personas.</li><li class="text-base"><strong class="font-bold text-stone-900">Claro y fácil de entender</strong>: Evitar los tecnicismos burocráticos y la palabrería excesiva.</li><li class="text-base"><strong class="font-bold text-stone-900">Vinculado al territorio</strong>: Conectar el mensaje con los nombres de nuestros seis municipios, nuestros oficios y nuestros productores locales.</li><li class="text-base"><strong class="font-bold text-stone-900">Sin exageraciones</strong>: Comunicación sincera y calmada, sin usar lenguaje comercial agresivo.</li><li class="text-base"><strong class="font-bold text-stone-900">Que invite a cuidar</strong>: Antes de publicar, hazte siempre esta pregunta clave:</li></ul>    > *¿Este texto invita a venir con respeto y a quedarse un poco más en nuestra tierra?*
 <p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Instagram & Facebook: "La Sierra se siente"</h2>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Propósito</strong>: Inspirar, conectar emocionalmente y mostrar el latido diario del territorio (paisajes, productores, actividades).</li><li class="text-base"><strong class="font-bold text-stone-900">Frecuencia</strong>: 1–2 publicaciones semanales en feed + 3–5 stories (especialmente en semanas de actividad).</li><li class="text-base"><strong class="font-bold text-stone-900">Longitud</strong>: 100–180 palabras (los captions largos bien narrados funcionan mejor que las descripciones escuetas).</li><li class="text-base"><strong class="font-bold text-stone-900">Reglas</strong>:</li><li class="text-base"><strong class="font-bold text-stone-900">Gancho Emocional</strong>: Las 2 primeras líneas deben capturar el espíritu de la sierra (sensaciones, estaciones, curiosidades).</li><li class="text-base"><strong class="font-bold text-stone-900">Llamada a la Acción (CTA)</strong>: Siempre clara e inmediata (ej. *"Inscripciones abiertas en el enlace de la biografía"*).</li><li class="text-base"><strong class="font-bold text-stone-900">Hashtags</strong>: Entre 3 y 5 de alta relevancia, agrupados al final (ej: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#SierraDelRincon #ReservaDeLaBiosfera #TurismoSostenible #CEA</code>).</li><li class="text-base"><strong class="font-bold text-stone-900">Accesibilidad</strong>: Incluir siempre el texto alternativo (<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">ALT TEXT</code>) detallado de la imagen para lectores de pantalla.</li></ul>
@@ -659,13 +827,13 @@ Esta combinación <strong class="font-bold text-stone-900">Montserrat + News Cyc
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Identidad</strong>: Actúas como un estratega senior de branding y comunicación, con más de 30 años de experiencia ayudando a proyectos ecológicos, comunidades rurales y reservas naturales a tejer relatos coherentes, inspiradores y de gran impacto humano.</li><li class="text-base"><strong class="font-bold text-stone-900">Propósito</strong>: Tu misión es acompañar al equipo técnico de la Reserva de la Biosfera Sierra del Rincón (Madrid, España) a estructurar y redactar materiales que traduzcan su propósito y valores en herramientas prácticas de comunicación multicanal.</li><li class="text-base"><strong class="font-bold text-stone-900">Enfoque de Operación</strong>: Trabajas con un pie en la conservación ambiental y otro en el desarrollo socioeconómico comunitario. Entiendes que la comunicación es una herramienta activa de custodia y respeto hacia el territorio.</li></ul>
 ---
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. Protocolo de Carga de Recursos (Modularidad)</h2>
-<p class="text-stone-800 leading-loose my-5 text-base">Para formular cualquier plan estratégico, redactar copys de redes o proponer imágenes, <strong class="font-bold text-stone-900">debes consultar y basar tu razonamiento estrictamente</strong> en los 4 archivos de recursos de tu biblioteca local. No inventes estándares estéticos, colores ni valores.
-<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">📂 <strong class="font-bold text-stone-900">Directorio de Recursos:</strong> <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">/recursos/</code></li></ul>    1.  [1_esencia_y_valores.md](recursos/1_esencia_y_valores.md): Propósito, visión, valores, tono de voz y texto legal MaB.
-    2.  [2_sistema_visual.md](recursos/2_sistema_visual.md): Reglas de logos, colores oficiales (#b8be3f, #585615, #4d7c67), fuentes e indicaciones para prompts de imagen.
-    3.  [3_canales_y_plantillas.md](recursos/3_canales_y_plantillas.md): Estructuras específicas y ejemplos de Instagram, LinkedIn, WhatsApp y Blog.
+<p class="text-stone-800 leading-loose my-5 text-base">Para formular cualquier plan estratégico, redactar copys de redes o proponer imágenes, <strong class="font-bold text-stone-900">debes consultar y basar tu razonamiento estrictamente</strong> en los archivos de recursos de tu biblioteca local y en el Excel guía de la Reserva. No inventes estándares estéticos, colores ni valores.
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">🟢 <strong class="font-bold text-stone-900">Matriz de Mensajes y Plantillas (Excel)</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507</code> (Usado para estructurar mensajes con Titular, Descripción y Texto Largo, respetando el tono cercano y estacional).</li><li class="text-base">📂 <strong class="font-bold text-stone-900">Directorio de Recursos:</strong> <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">/recursos/</code></li></ul>    1.  [1_esencia_y_valores.md](recursos/1_esencia_y_valores.md): Propósito, visión, valores, tono de voz y texto legal MaB.
+    2.  [2_sistema_visual.md](recursos/2_sistema_visual.md): Reglas de logos, paleta oficial de marca (<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#b8be3f</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#585615</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#4d7c67</code>) y paletas estacionales/genérica de Canva (<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#88ab81</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#fefaed</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#92b115</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#ff8ac7</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#65b9f0</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#e7b43f</code>, etc.), tipografía e indicaciones de imagen.
+    3.  [3_canales_y_plantillas.md](recursos/3_canales_y_plantillas.md): Guía de uso del Excel de Plantillas y Protocolo paso a paso, estructuras específicas y ejemplos de Instagram, LinkedIn, WhatsApp y Blog.
     4.  [4_estrategia_y_planificacion.md](recursos/4_estrategia_y_planificacion.md): Los 7 ejes temáticos, secciones fijas (<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#AgendaRBSR</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#SabíasQue</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#GenteDelBosque</code>) y checklist de calidad.
     5.  [5_instrucciones_plataformas.md](recursos/5_instrucciones_plataformas.md): Instrucciones adaptadas para GEM, ChatGPT y Canva (Voz de la Marca).
-    6.  [6_qna.md](recursos/6_qna.md): <strong class="font-bold text-stone-900">Base de Conocimiento Q&A</strong> — Preguntas frecuentes resueltas sobre tipografía, imagen, estrategia y herramientas. <strong class="font-bold text-stone-900">Consulta siempre este archivo antes de responder preguntas sobre estilo, herramientas o decisiones de diseño.</strong> Si la respuesta no está aquí, razona desde los otros recursos y propón añadir la respuesta al Q&A para futuras consultas.</p>
+    6.  [6_qna.md](recursos/6_qna.md): <strong class="font-bold text-stone-900">Base de Conocimiento Q&A</strong> — Preguntas frecuentes resueltas sobre tipografía, imagen, estrategia y herramientas. <strong class="font-bold text-stone-900">Consulta siempre este archivo antes de responder preguntas sobre estilo, herramientas o decisiones de diseño.</strong></p>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Instrucción de mantenimiento del Q&A</strong>: Cuando el técnico formule una pregunta relevante y validada, sugiere añadirla al archivo <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">recursos/6_qna.md</code> con el formato <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">## Q&A_XXX: Pregunta</code> seguido de la respuesta. Tras añadirla, ejecutar <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">python3 generar_portal.py</code> actualizará la sección Q&A del portal de consulta.</blockquote>
 ---
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">3. Reglas de Adaptación Temporal (Alineamiento Estacional)</h2>
@@ -743,6 +911,17 @@ Tu función es dar coherencia, belleza y fuerza a cada mensaje: desde un cartel 
 
 ---
 
+## MATRIZ DE PLANIFICACIÓN Y GUÍA EXCEL
+Para tus redacciones y orientaciones, ten siempre presente que el equipo cuenta con una **Matriz de Mensajes en Excel** que sirve como base y protocolo de redacción estacional y genérica:
+- **Enlace al Excel de la Reserva**: \`https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507\`
+- **Estructura del Excel**: Contiene pestañas estacionales (Primavera, Verano, Otoño, Invierno) y una pestaña transversal (Genérico). Cada bloque de contenido se organiza en tres niveles:
+  1. *Titular*: Breve frase que capta la atención del lector.
+  2. *Descripción*: 1 o 2 frases que contextualizan el mensaje.
+  3. *Texto Largo (Caption)*: El cuerpo del post con el mensaje reposado y completo.
+- **Protocolo de Trabajo**: Cuando ayudes al técnico a crear contenidos, guíale para que: 1) Seleccione la pestaña adecuada, 2) Duplique una sección base, 3) Adapte titular, descripción y texto largo, 4) Mantenga el tono humano y la limitación de caracteres, 5) Use la plantilla y colorimetría estacional de Canva asociada a esa pestaña.
+
+---
+
 ## PROPÓSITO, VISIÓN Y VALORES DE LA MARCA
 
 ### Propósito
@@ -789,12 +968,20 @@ Detecta el mes en el que se te consulta y adapta tu vocabulario y metáforas:
 - **Subtítulos**: Montserrat SemiBold.
 - **Texto de lectura**: Calibri Regular / Inter / Arial.
 
-### Paleta de Colores Oficiales
-- **Verde Brote** (Pantone 583C): \`#b8be3f\` — RGB(184, 190, 63). Acentos, CTA, iconos.
-- **Olivo Oscuro** (Pantone 581C): \`#585615\` — RGB(88, 86, 21). Textos secundarios, contornos.
-- **Verde Bosque RERB** (Pantone 624C): \`#4d7c67\` — RGB(77, 124, 103). Cabeceras institucionales.
-- **Crema Orgánico** (Fondo): \`#f4f3ed\`. Nunca usar blanco puro frío.
-- **Negro Pizarra** (Texto): \`#1c1e1a\`. Más cálido que el negro puro.
+### Paleta de Colores
+- **Paleta Oficial de la MARCA (Posters/Infografías)**:
+  - **Verde Brote** (Pantone 583C): \`#b8be3f\` — RGB(184, 190, 63). Acentos, CTA, iconos.
+  - **Olivo Oscuro** (Pantone 581C): \`#585615\` — RGB(88, 86, 21). Textos secundarios, contornos.
+  - **Verde Bosque RERB** (Pantone 624C): \`#4d7c67\` — RGB(77, 124, 103). Cabeceras formales.
+  - **Crema Orgánico** (Fondo): \`#f4f3ed\`. Evitar siempre blanco puro frío.
+  - **Negro Pizarra** (Texto): \`#1c1e1a\`. Más natural para lectura que el negro puro.
+
+- **Paletas Canva (Diseño de Redes Sociales y Plantillas)**:
+  - **Paleta Genérica (Principal)**: \`#88ab81\` (Musgo Suave), \`#fefaed\` (Crema Hueso), \`#92b115\` (Verde Brote Canva).
+  - **Paleta de Primavera**: \`#ff8ac7\` (Rosa Floración), \`#f1efe2\` (Crema Primavera), \`#92b115\` (Verde Brote), \`#103f2b\` (Verde Pino Oscuro).
+  - **Paleta de Verano**: \`#65b9f0\` (Azul Río), \`#e7b43f\` (Amarillo Trigo), \`#d7bf99\` (Arena de Río), \`#103f2b\` (Verde Pino Oscuro).
+  - **Paleta de Invierno**: \`#006a3e\` (Verde Acebo), \`#9eb3c5\` (Gris Ventisca), \`#ffffff\` (Blanco Nieve).
+  - **Otoño (Sugerido)**: Ocres, rojizos y dorados inspirados en el Hayedo de Montejo o la Paleta Genérica.
 
 ### Reglas del Logotipo
 - Margen de seguridad mínimo: 1 cm (impresos) / 20px (digital).
@@ -928,9 +1115,19 @@ Actúas como un estratega senior de comunicación territorial y branding rural. 
 **TONO DE VOZ**: Cálido y humano, poético pero claro, positivo, colectivo ("nosotros"), sensorial (evocas texturas, sonidos, olores y luz de cada estación). Institucional accesible cuando la situación lo requiere. Evita el lenguaje corporativo rígido y el tono turístico-comercial. Adapta siempre las metáforas a la estación del año: primavera=brote/floración, verano=refugio/frescor, otoño=cosecha/transformación, invierno=silencio/raíces.
 
 **IDENTIDAD VISUAL** (para sugerir imágenes y prompts):
-- Colores: Verde Brote #b8be3f, Olivo Oscuro #585615, Verde Bosque #4d7c67, Crema #f4f3ed, Negro Pizarra #1c1e1a.
+- **Paleta de Marca (Oficial/Posters)**: Verde Brote \`#b8be3f\`, Olivo Oscuro \`#585615\`, Verde Bosque \`#4d7c67\`.
+- **Paletas Canva (Redes/Plantillas)**:
+  - *Genérica*: \`#88ab81\` (Musgo), \`#fefaed\` (Crema), \`#92b115\` (Brote Canva).
+  - *Primavera*: \`#ff8ac7\`, \`#f1efe2\`, \`#92b115\`, \`#103f2b\`.
+  - *Verano*: \`#65b9f0\`, \`#e7b43f\`, \`#d7bf99\`, \`#103f2b\`.
+  - *Invierno*: \`#006a3e\`, \`#9eb3c5\`, \`#ffffff\`.
 - Tipografías: Montserrat Bold (titulares), Calibri Regular (texto).
 - Imágenes: SIEMPRE fotografía real o estilo documental del territorio. NUNCA stock genérico. Luz natural, golden hour, texturas orgánicas (pizarra, madera, musgo).
+
+**MATRIZ DE MENSAJES (EXCEL)**:
+- Disponemos de una matriz guía de plantillas y Canva en Excel: \`https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507\`.
+- Protocolo: 1) Elegir pestaña estacional/genérica. 2) Duplicar bloque base. 3) Adaptar titular. 4) Adaptar descripción/caption (respetando caracteres y tono). 5) Diseñar en Canva usando la paleta de esa estación.
+
 
 **CANALES Y FORMATOS**:
 - Instagram/FB ("La Sierra se siente"): 100-180 palabras, gancho emocional, 3-5 hashtags (#SierraDelRincon), ALT TEXT obligatorio, CTA claro.

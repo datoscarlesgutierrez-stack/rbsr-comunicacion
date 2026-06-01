@@ -10,7 +10,7 @@ def parse_markdown_to_html(md_text):
     # Render Alerts
     def render_alert(match):
         alert_type = match.group(1).upper()
-        content = match.group(2)
+        content = re.sub(r'^>\s*', '', match.group(2), flags=re.M).strip()
         classes = "border-l-4 p-4 my-6 rounded-r-lg "
         icon = ""
         if alert_type == "IMPORTANT":
@@ -25,7 +25,7 @@ def parse_markdown_to_html(md_text):
         return f'<div class="{classes}"><p class="font-bold flex items-center gap-2 mb-1"><span>{icon}</span> {alert_type}</p><p class="text-sm leading-relaxed">{content}</p></div>'
 
     md_text = re.sub(r'>\s*\[!(IMPORTANT|WARNING|NOTE)\]\n((?:>\s*.*\n?)+)', 
-                     lambda m: render_alert(re.match(r'^(IMPORTANT|WARNING|NOTE)$', m.group(1)), re.sub(r'^>\s*', '', m.group(2), flags=re.M)), 
+                     render_alert, 
                      md_text)
     
     # Inline alerts simpler match
@@ -381,38 +381,165 @@ def compile_portal():
             <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
                 
                 <!-- Quick interactive color palettes -->
-                <h3 class="text-lg font-bold text-emerald-800 border-b border-stone-100 pb-1">Paletas Interactivas (Haz clic para copiar HEX)</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                        <div class="w-full h-24 rounded-xl bg-[#b8be3f] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-bold text-stone-800 text-sm">Verde Brote</h4>
-                                <p class="text-xs text-stone-500 mt-0.5">Pantone 583C</p>
+                <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                    <span>🎨</span> Paletas de Colores de la Reserva
+                </h3>
+                
+                <div class="space-y-8">
+                    <!-- A. Paleta Oficial -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-4 flex items-center gap-1.5">
+                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                            A. Paleta Oficial de la MARCA (Posters, Infografías y Papelería)
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Verde Brote -->
+                            <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
+                                <div class="w-full h-20 rounded-xl bg-[#b8be3f] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold text-stone-800 text-sm">Verde Brote</h4>
+                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 583C</p>
+                                    </div>
+                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#b8be3f</span>
+                                </div>
                             </div>
-                            <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#b8be3f</span>
+                            <!-- Olivo Oscuro -->
+                            <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
+                                <div class="w-full h-20 rounded-xl bg-[#585615] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold text-stone-800 text-sm">Olivo Oscuro</h4>
+                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 581C</p>
+                                    </div>
+                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#585615</span>
+                                </div>
+                            </div>
+                            <!-- Verde Bosque RERB -->
+                            <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
+                                <div class="w-full h-20 rounded-xl bg-[#4d7c67] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold text-stone-800 text-sm">Verde Bosque RERB</h4>
+                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 624C</p>
+                                    </div>
+                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#4d7c67</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                        <div class="w-full h-24 rounded-xl bg-[#585615] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-bold text-stone-800 text-sm">Olivo Oscuro</h4>
-                                <p class="text-xs text-stone-500 mt-0.5">Pantone 581C</p>
+                    <!-- B. Paletas Canva -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-4 flex items-center gap-1.5">
+                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-violet-600"></span>
+                            B. Paletas de Canva (Redes Sociales, Creatividades y Plantillas)
+                        </h4>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                            <!-- Paleta Genérica -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
+                                        <span>🔘</span> Paleta Genérica (Principal)
+                                    </h5>
+                                    <p class="text-[10px] text-stone-500 mt-1">Uso transversal y recordatorios.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div onclick="copyToClipboard('#88ab81', 'HEX Verde Musgo Canva')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#88ab81] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#88ab81</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#fefaed', 'HEX Crema Hueso Canva')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#fefaed] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#fefaed</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote Canva')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#92b115</span>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#585615</span>
-                        </div>
-                    </div>
 
-                    <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                        <div class="w-full h-24 rounded-xl bg-[#4d7c67] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h4 class="font-bold text-stone-800 text-sm">Verde Bosque RERB</h4>
-                                <p class="text-xs text-stone-500 mt-0.5">Pantone 624C</p>
+                            <!-- Paleta Primavera -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
+                                        <span>🌸</span> Paleta de Primavera
+                                    </h5>
+                                    <p class="text-[10px] text-stone-500 mt-1">Floración y renacer de la sierra.</p>
+                                </div>
+                                <div class="grid grid-cols-4 gap-1">
+                                    <div onclick="copyToClipboard('#ff8ac7', 'HEX Rosa Floración')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#ff8ac7] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#ff8ac7</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#f1efe2', 'HEX Crema Primavera')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#f1efe2] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#f1efe2</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#92b115</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#103f2b</span>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#4d7c67</span>
+
+                            <!-- Paleta Verano -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
+                                        <span>☀️</span> Paleta de Verano
+                                    </h5>
+                                    <p class="text-[10px] text-stone-500 mt-1">Sol, madurez y frescor del agua.</p>
+                                </div>
+                                <div class="grid grid-cols-4 gap-1">
+                                    <div onclick="copyToClipboard('#65b9f0', 'HEX Azul Río')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#65b9f0] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#65b9f0</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#e7b43f', 'HEX Amarillo Sol')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#e7b43f] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#e7b43f</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#d7bf99', 'HEX Arena')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#d7bf99] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#d7bf99</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-10 rounded-lg bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#103f2b</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Paleta Invierno -->
+                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
+                                        <span>❄️</span> Paleta de Invierno
+                                    </h5>
+                                    <p class="text-[10px] text-stone-500 mt-1">Silencio y paisaje de nieve blanca.</p>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div onclick="copyToClipboard('#006a3e', 'HEX Verde Acebo')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#006a3e] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#006a3e</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#9eb3c5', 'HEX Gris Ventisca')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#9eb3c5] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#9eb3c5</span>
+                                    </div>
+                                    <div onclick="copyToClipboard('#ffffff', 'HEX Blanco Nieve')" class="group cursor-pointer text-center">
+                                        <div class="w-full h-12 rounded-lg bg-[#ffffff] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#ffffff</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

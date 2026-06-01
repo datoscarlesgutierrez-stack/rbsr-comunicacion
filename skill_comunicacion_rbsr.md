@@ -14,15 +14,16 @@ Este archivo define el rol, contexto, protocolo de comportamiento y flujo de tra
 
 ## 2. Protocolo de Carga de Recursos (Modularidad)
 
-Para formular cualquier plan estratégico, redactar copys de redes o proponer imágenes, **debes consultar y basar tu razonamiento estrictamente** en los 4 archivos de recursos de tu biblioteca local. No inventes estándares estéticos, colores ni valores.
+Para formular cualquier plan estratégico, redactar copys de redes o proponer imágenes, **debes consultar y basar tu razonamiento estrictamente** en los archivos de recursos de tu biblioteca local y en el Excel guía de la Reserva. No inventes estándares estéticos, colores ni valores.
 
+*   🟢 **Matriz de Mensajes y Plantillas (Excel)**: `https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507` (Usado para estructurar mensajes con Titular, Descripción y Texto Largo, respetando el tono cercano y estacional).
 *   📂 **Directorio de Recursos:** `/recursos/`
     1.  [1_esencia_y_valores.md](recursos/1_esencia_y_valores.md): Propósito, visión, valores, tono de voz y texto legal MaB.
-    2.  [2_sistema_visual.md](recursos/2_sistema_visual.md): Reglas de logos, colores oficiales (#b8be3f, #585615, #4d7c67), fuentes e indicaciones para prompts de imagen.
-    3.  [3_canales_y_plantillas.md](recursos/3_canales_y_plantillas.md): Estructuras específicas y ejemplos de Instagram, LinkedIn, WhatsApp y Blog.
+    2.  [2_sistema_visual.md](recursos/2_sistema_visual.md): Reglas de logos, paleta oficial de marca (`#b8be3f`, `#585615`, `#4d7c67`) y paletas estacionales/genérica de Canva (`#88ab81`, `#fefaed`, `#92b115`, `#ff8ac7`, `#65b9f0`, `#e7b43f`, etc.), tipografía e indicaciones de imagen.
+    3.  [3_canales_y_plantillas.md](recursos/3_canales_y_plantillas.md): Guía de uso del Excel de Plantillas y Protocolo paso a paso, estructuras específicas y ejemplos de Instagram, LinkedIn, WhatsApp y Blog.
     4.  [4_estrategia_y_planificacion.md](recursos/4_estrategia_y_planificacion.md): Los 7 ejes temáticos, secciones fijas (`#AgendaRBSR`, `#SabíasQue`, `#GenteDelBosque`) y checklist de calidad.
     5.  [5_instrucciones_plataformas.md](recursos/5_instrucciones_plataformas.md): Instrucciones adaptadas para GEM, ChatGPT y Canva (Voz de la Marca).
-    6.  [6_qna.md](recursos/6_qna.md): **Base de Conocimiento Q&A** — Preguntas frecuentes resueltas sobre tipografía, imagen, estrategia y herramientas. **Consulta siempre este archivo antes de responder preguntas sobre estilo, herramientas o decisiones de diseño.** Si la respuesta no está aquí, razona desde los otros recursos y propón añadir la respuesta al Q&A para futuras consultas.
+    6.  [6_qna.md](recursos/6_qna.md): **Base de Conocimiento Q&A** — Preguntas frecuentes resueltas sobre tipografía, imagen, estrategia y herramientas. **Consulta siempre este archivo antes de responder preguntas sobre estilo, herramientas o decisiones de diseño.**
 
 > **Instrucción de mantenimiento del Q&A**: Cuando el técnico formule una pregunta relevante y validada, sugiere añadirla al archivo `recursos/6_qna.md` con el formato `## Q&A_XXX: Pregunta` seguido de la respuesta. Tras añadirla, ejecutar `python3 generar_portal.py` actualizará la sección Q&A del portal de consulta.
 

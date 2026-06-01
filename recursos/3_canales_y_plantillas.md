@@ -4,6 +4,53 @@ Este documento establece las estructuras, longitudes recomendadas y plantillas d
 
 ---
 
+## 📁 Guía del Excel de Plantillas y Protocolo Estacional
+
+Disponemos de una **Matriz de Mensajes en Excel** que sirve como guía unificada de acceso a las plantillas de redes y Canva, y como protocolo para redactar textos adaptados al ritmo y tono de la Sierra.
+
+> [!IMPORTANT]
+> 🔗 **[ACCEDER AL EXCEL DE PLANTILLAS Y PROTOCOLO DE LA RESERVA](https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507)**
+> *(Nota: El documento se encuentra en modo Comentador. Si necesitas permisos de edición directa para tu área, solicita el acceso a través del propio enlace de Google Drive).*
+
+---
+
+### 🗺️ Paso a Paso para Crear Nuevos Contenidos
+Cuando necesites comunicar una actividad, un evento o una noticia, **no empieces desde cero**. Sigue este sencillo protocolo de 5 pasos para garantizar la coherencia visual y el espíritu de la Reserva:
+
+1. **Seleccionar la pestaña adecuada**: Entra en el Excel y elige la pestaña correspondiente a la estación actual (🌸 Primavera, ☀️ Verano, 🍁 Otoño, ❄️ Invierno) o la pestaña **Genérico** si el mensaje no depende del clima.
+2. **Duplicar una sección base**: Busca el bloque temático que más se parezca a tu objetivo (ej. dar la bienvenida, proponer una ruta o invitar a un taller) y cópialo.
+3. **Adaptar el Titular**: Modifica el titular de forma sugerente para capturar la atención, manteniendo la brevedad.
+4. **Redactar la Descripción y el Texto Largo**: Ajusta los campos al contenido concreto de tu actividad. **Respeta los límites de caracteres** indicados en el Excel para evitar que se corten en el feed.
+5. **Aplicar la Estética Visual**: Accede al **enlace de Canva** asociado a ese bloque de mensaje (en las columnas derechas del Excel) para maquetar la pieza visual con la paleta de colores de esa estación.
+
+---
+
+### 🗂️ ¿Cómo está Organizado el Excel?
+
+El documento se divide en pestañas estacionales y una pestaña transversal:
+*   **Primavera / Verano / Otoño / Invierno**: Mensajes que respiran el cambio de la naturaleza, adaptados a la temperatura, los colores del bosque y los sentimientos de cada época.
+*   **Pestaña "Genérico"**: Mensajes institucionales, recordatorios permanentes de buenas prácticas en el medio natural, invitaciones generales y comunicaciones sobre los valores, el cuidado y el respeto por el territorio.
+
+#### Estructura de Cada Sección
+Dentro de cada pestaña, cada bloque de comunicación se compone estrictamente de tres partes:
+*   **Titular**: Frase corta que resume y define el propósito del mensaje de forma directa.
+*   **Descripción**: Breve texto de 1 o 2 frases que acompaña, contextualiza y añade valor.
+*   **Texto Largo (Caption)**: El mensaje principal del post, pensado para comunicar con calma, claridad y profundidad.
+
+---
+
+### 🌿 El Tono de Voz que debemos Cuidar Siempre
+Cada mensaje es una pequeña puerta de entrada a la Sierra del Rincón. No comunicamos simplemente folletos de actividades; **comunicamos una forma respetuosa de habitar el territorio**. Todo texto debe ser:
+
+*   **Cercano y humano**: Hablar de tú a tú, conectando con las personas.
+*   **Claro y fácil de entender**: Evitar los tecnicismos burocráticos y la palabrería excesiva.
+*   **Vinculado al territorio**: Conectar el mensaje con los nombres de nuestros seis municipios, nuestros oficios y nuestros productores locales.
+*   **Sin exageraciones**: Comunicación sincera y calmada, sin usar lenguaje comercial agresivo.
+*   **Que invite a cuidar**: Antes de publicar, hazte siempre esta pregunta clave:
+    > *¿Este texto invita a venir con respeto y a quedarse un poco más en nuestra tierra?*
+
+---
+
 ## 1. Instagram & Facebook: "La Sierra se siente"
 
 *   **Propósito**: Inspirar, conectar emocionalmente y mostrar el latido diario del territorio (paisajes, productores, actividades).

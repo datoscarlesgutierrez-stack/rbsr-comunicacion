@@ -30,11 +30,15 @@ Para asegurar la legibilidad y mantener una estética limpia y atemporal:
 
 ---
 
-## 3. Paleta de Colores Oficiales (Colorimetría de la Sierra)
+## 3. Paleta de Colores (Colorimetría de la Sierra y Recursos de Redes)
 
-La paleta cromática oficial de la Reserva está inspirada directamente en sus musgos, hayedos y dehesas. Se compone de tonos terrosos y verdes profundos.
+La colorimetría de la Sierra se organiza en dos grandes bloques: la **Paleta Oficial de la Marca** (para papelería formal, cartelería institucional, posters e infografías) y las **Paletas de Colores de Canva** (para plantillas rápidas de redes sociales y adaptaciones estacionales).
 
-### Colores Principales
+---
+
+### A. Paleta Oficial de la MARCA Reserva de la Biosfera
+*Esta es la identidad cromática oficial e institucional. Debe usarse siempre para posters formales, infografías oficiales y elementos corporativos de marca.*
+
 *   **Verde Brote (Pantone 583C)**:
     *   *HEX*: `#b8be3f` (o `#a7b50b` para mayor saturación)
     *   *RGB*: `(184, 190, 63)` | *CMYK*: `(23, 0, 100, 17)`
@@ -42,15 +46,51 @@ La paleta cromática oficial de la Reserva está inspirada directamente en sus m
 *   **Verde Olivo Oscuro (Pantone 581C)**:
     *   *HEX*: `#585615`
     *   *RGB*: `(88, 86, 21)` | *CMYK*: `(23, 0, 100, 57)`
-    *   *Uso*: Textos secundarios, contornos, fondo de tarjetas otoñales y estructura visual.
+    *   *Uso*: Textos secundarios, contornos, fondo de tarjetas y estructura visual.
 *   **Verde Bosque RERB (Pantone 624C - Estándar Nacional)**:
     *   *HEX*: `#4d7c67`
     *   *RGB*: `(77, 124, 103)` | *CMYK*: `(62, 27, 47, 0)`
     *   *Uso*: Color institucional de la Red Española de Reservas de la Biosfera. Ideal para cabeceras y bandas formales.
+*   **Crema Orgánico (Fondo principal)**:
+    *   *HEX*: `#f4f3ed`
+    *   *Uso*: Fondos principales en la web y carteles (evitar siempre el blanco puro frío).
+*   **Negro Pizarra**:
+    *   *HEX*: `#1c1e1a`
+    *   *Uso*: Textos generales y lectura (un tono de pizarra natural y más suave que el negro puro).
 
-### Colores de Contraste
-*   **Crema Orgánico (Fondo principal)**: `#fcfbfa` o `#f4f3ed` (Evitar fondos blancos puros fríos en el portal web o carteles).
-*   **Negro Pizarra**: `#1c1e1a` (Un tono oscuro de pizarra de la Sierra para textos generales, más natural que el negro puro).
+---
+
+### B. Paletas de Canva (Para Plantillas y Redes Sociales)
+*Estas paletas han sido diseñadas específicamente para el ecosistema de plantillas de Canva. Sirven para dar dinamismo a las publicaciones, permitiendo un ritmo visual adaptado a cada estación y una base general unificada.*
+
+#### 🔘 Paleta Genérica (La principal configurada en Canva)
+*Se utiliza para mensajes de carácter general, institucionales, recordatorios permanentes y cualquier contenido no estacional.*
+*   🟢 **Verde Musgo Suave**: `#88ab81`
+*   🟡 **Crema Hueso**: `#fefaed`
+*   🌱 **Verde Brote Canva**: `#92b115`
+
+#### 🌸 Paleta de Primavera
+*Evoca el renacimiento, la floración y el despertar de los prados serranos.*
+*   🌸 **Rosa Cerezo / Floración**: `#ff8ac7`
+*   🍦 **Crema Primavera**: `#f1efe2`
+*   🌱 **Verde Brote**: `#92b115`
+*   🌲 **Verde Pino Oscuro**: `#103f2b`
+
+#### ☀️ Paleta de Verano
+*Representa la calidez del sol, el trigo maduro y el frescor del agua de río en la montaña.*
+*   💧 **Azul Río / Frescor**: `#65b9f0`
+*   ☀️ **Amarillo Sol / Trigo**: `#e7b43f`
+*   🌾 **Arena de Río / Crema**: `#d7bf99`
+*   🌲 **Verde Pino Oscuro**: `#103f2b`
+
+#### ❄️ Paleta de Invierno
+*Inspirada en el silencio absoluto de las cumbres, el acebo brillante y el paisaje de nieve.*
+*   🌲 **Verde Acebo Oscuro**: `#006a3e`
+*   🏔️ **Gris Ventisca / Pizarra**: `#9eb3c5`
+*   ⚪ **Blanco Nieve**: `#ffffff`
+
+#### 🍁 Paleta de Otoño (Sugerida / Pendiente)
+*Actualmente pendiente de asignación definitiva en Canva. Se sugiere utilizar tonos ocres, anaranjados y rojizos inspirados en el Hayedo de Montejo en esta época, o recurrir a la **Paleta Genérica** combinada con fondos de textura natural.*
 
 ---
 
