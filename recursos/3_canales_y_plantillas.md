@@ -8,9 +8,26 @@ Este documento establece las estructuras, longitudes recomendadas y plantillas d
 
 Disponemos de una **Matriz de Mensajes en Excel** que sirve como guía unificada de acceso a las plantillas de redes y Canva, y como protocolo para redactar textos adaptados al ritmo y tono de la Sierra.
 
+
 > [!IMPORTANT]
 > 🔗 **[ACCEDER AL EXCEL DE PLANTILLAS Y PROTOCOLO DE LA RESERVA](https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507)**
 > *(Nota: El documento se encuentra en modo Comentador. Si necesitas permisos de edición directa para tu área, solicita el acceso a través del propio enlace de Google Drive).*
+
+---
+
+### 🎨 Enlaces a las Plantillas de Diseño en Canva
+*Puedes editar estos enlaces directamente en esta documentación si cambian de ubicación. El generador de post los leerá automáticamente.*
+
+*   **Genérica (Post)**: `https://www.canva.com/design/DAF-generica-post-rbsr/view`
+*   **Genérica (Story)**: `https://www.canva.com/design/DAF-generica-story-rbsr/view`
+*   **Primavera (Post)**: `https://www.canva.com/design/DAF-primavera-post-rbsr/view`
+*   **Primavera (Story)**: `https://www.canva.com/design/DAF-primavera-story-rbsr/view`
+*   **Verano (Post)**: `https://www.canva.com/design/DAF-verano-post-rbsr/view`
+*   **Verano (Story)**: `https://www.canva.com/design/DAF-verano-story-rbsr/view`
+*   **Otoño (Post)**: `https://www.canva.com/design/DAF-otono-post-rbsr/view`
+*   **Otoño (Story)**: `https://www.canva.com/design/DAF-otono-story-rbsr/view`
+*   **Invierno (Post)**: `https://www.canva.com/design/DAF-invierno-post-rbsr/view`
+*   **Invierno (Story)**: `https://www.canva.com/design/DAF-invierno-story-rbsr/view`
 
 ---
 

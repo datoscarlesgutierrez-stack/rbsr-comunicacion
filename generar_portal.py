@@ -1,5 +1,6 @@
 import os
 import re
+import json
 
 def parse_markdown_to_html(md_text):
     # Renders markdown headings, bold text, lists, and tables into beautiful HTML.
@@ -242,6 +243,44 @@ def compile_portal():
     else:
         skill_raw = "(Archivo skill_comunicacion_rbsr.md no encontrado)"
     contents["skill_raw_js"] = escape_for_js(skill_raw)
+
+    # Extract Canva templates dynamically from 3_canales_y_plantillas.md
+    canva_links = {}
+    def normalize_key(s):
+        s = s.lower().strip()
+        s = s.replace("é", "e").replace("í", "i").replace("ó", "o").replace("á", "a").replace("ú", "u")
+        s = s.replace("ñ", "n").replace("ü", "u")
+        return s
+
+    plantillas_file = os.path.join(recursos_path, "3_canales_y_plantillas.md")
+    if os.path.exists(plantillas_file):
+        with open(plantillas_file, "r", encoding="utf-8") as f:
+            plantillas_text = f.read()
+        # Find: *   **Key (Format)**: `url`
+        matches = re.findall(r'\*\*\s*([^(\n]+?)\s*\((Post|Story)\)\s*\*\*\s*:\s*`(https?://[^\s`<>"]+)`', plantillas_text, re.IGNORECASE)
+        for key, fmt, url in matches:
+            norm_key = f"{normalize_key(key)}_{normalize_key(fmt)}"
+            canva_links[norm_key] = url.strip()
+
+    # Fallbacks in case formatting is broken or lines are missing
+    defaults = {
+        "generica_post": "https://www.canva.com/design/DAF-generica-post-rbsr/view",
+        "generica_story": "https://www.canva.com/design/DAF-generica-story-rbsr/view",
+        "primavera_post": "https://www.canva.com/design/DAF-primavera-post-rbsr/view",
+        "primavera_story": "https://www.canva.com/design/DAF-primavera-story-rbsr/view",
+        "verano_post": "https://www.canva.com/design/DAF-verano-post-rbsr/view",
+        "verano_story": "https://www.canva.com/design/DAF-verano-story-rbsr/view",
+        "otono_post": "https://www.canva.com/design/DAF-otono-post-rbsr/view",
+        "otono_story": "https://www.canva.com/design/DAF-otono-story-rbsr/view",
+        "invierno_post": "https://www.canva.com/design/DAF-invierno-post-rbsr/view",
+        "invierno_story": "https://www.canva.com/design/DAF-invierno-story-rbsr/view"
+    }
+    for k, v in defaults.items():
+        if k not in canva_links:
+            canva_links[k] = v
+
+    contents["canva_links_json"] = json.dumps(canva_links)
+
 
     # Read & parse QnA resource — split into individual Q&A blocks
     qna_path = os.path.join(recursos_path, "6_qna.md")
@@ -606,6 +645,74 @@ def compile_portal():
                     <p class="text-xs mt-1">Haz clic en los bloques de texto o plantillas a continuación para copiarlos instantáneamente al portapapeles y editarlos directamente en tus redes o chats.</p>
                 </div>
 
+                <!-- Canva Templates Manager (Browser storage editable presets) -->
+                <details class="bg-stone-50 border border-stone-200 rounded-2xl p-6 group">
+                    <summary class="font-title font-bold text-sm text-reserve-forest cursor-pointer hover:text-reserve-olive transition-colors flex items-center justify-between">
+                        <span class="flex items-center gap-2">🔧 Configuración de Enlaces Canva (Guardado en Navegador)</span>
+                        <span class="text-xs text-stone-400 group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 pt-4 border-t border-stone-200/60 space-y-4">
+                        <p class="text-xs text-stone-500">Puedes modificar los enlaces de Canva aquí abajo. Se guardarán en el almacenamiento local de tu navegador para futuras sesiones sin alterar los archivos de origen.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Generica -->
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-stone-500 uppercase tracking-wider">Plantilla Genérica Post</label>
+                                <input type="text" id="canva-edit-generica_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-stone-500 uppercase tracking-wider">Plantilla Genérica Story</label>
+                                <input type="text" id="canva-edit-generica_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <!-- Primavera -->
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-pink-600 uppercase tracking-wider">🌸 Primavera Post</label>
+                                <input type="text" id="canva-edit-primavera_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-pink-600 uppercase tracking-wider">🌸 Primavera Story</label>
+                                <input type="text" id="canva-edit-primavera_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <!-- Verano -->
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-amber-600 uppercase tracking-wider">☀️ Verano Post</label>
+                                <input type="text" id="canva-edit-verano_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-amber-600 uppercase tracking-wider">☀️ Verano Story</label>
+                                <input type="text" id="canva-edit-verano_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <!-- Otoño -->
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-orange-600 uppercase tracking-wider">🍁 Otoño Post</label>
+                                <input type="text" id="canva-edit-otono_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-orange-600 uppercase tracking-wider">🍁 Otoño Story</label>
+                                <input type="text" id="canva-edit-otono_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <!-- Invierno -->
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-sky-600 uppercase tracking-wider">❄️ Invierno Post</label>
+                                <input type="text" id="canva-edit-invierno_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-3xs font-bold text-sky-600 uppercase tracking-wider">❄️ Invierno Story</label>
+                                <input type="text" id="canva-edit-invierno_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-2">
+                            <button onclick="resetCanvaTemplates()" class="px-4 py-2 rounded-xl border border-stone-300 text-xs font-bold text-stone-600 hover:bg-stone-100 transition-colors">
+                                🔄 Restaurar Originales
+                            </button>
+                            <button onclick="saveCanvaTemplates()" class="px-5 py-2 rounded-xl bg-reserve-forest text-white text-xs font-bold hover:bg-stone-800 transition-all">
+                                💾 Guardar Enlaces
+                            </button>
+                        </div>
+                    </div>
+                </details>
+
                 <!-- Parse plantillas but also add inline interactive widgets to copy -->
                 <div class="prose max-w-none text-stone-700">
                     {contents["plantillas"]}
@@ -685,19 +792,35 @@ def compile_portal():
 
                 <!-- Output Display Areas -->
                 <div id="gen-results" class="hidden space-y-6">
-                    <div class="border-t border-stone-200 my-4"></div>
-                    <h3 class="text-xl font-bold font-title text-reserve-forest mb-4">Materiales Generados</h3>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         
                         <!-- Instagram Result Card -->
                         <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col justify-between shadow-sm">
                             <div>
                                 <div class="flex justify-between items-center mb-3">
-                                    <span class="text-xs font-bold uppercase tracking-widest text-pink-600 bg-pink-50 px-2.5 py-1 rounded">📸 Instagram / FB</span>
-                                    <button onclick="copyToClipboard(document.getElementById('out-ig').innerText, 'Instagram Copy')" class="text-xs font-bold text-reserve-forest hover:text-reserve-olive flex items-center gap-1">📋 Copiar</button>
+                                    <span class="text-xs font-bold uppercase tracking-widest text-pink-600 bg-pink-50 px-2.5 py-1 rounded">📸 Instagram / FB Post</span>
+                                    <button onclick="copyToClipboard(document.getElementById('out-ig').innerText, 'Instagram Copy')" class="text-xs font-bold text-reserve-forest hover:text-reserve-olive flex items-center gap-1">📋 Copiar Copy</button>
                                 </div>
                                 <div id="out-ig" class="text-xs text-stone-700 leading-relaxed whitespace-pre-wrap select-all font-sans bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-96 overflow-y-auto custom-scrollbar"></div>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-2xs text-stone-400">
+                                <span>Canva: <a id="link-canva-post-ig" href="#" target="_blank" class="text-pink-600 underline font-semibold hover:text-pink-800 transition-colors">Plantilla de Post</a></span>
+                                <span class="font-mono text-3xs">Montserrat + News Cycle</span>
+                            </div>
+                        </div>
+
+                        <!-- Stories Result Card -->
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 flex flex-col justify-between shadow-sm">
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-violet-600 bg-violet-50 px-2.5 py-1 rounded">📱 Stories (IG / WA)</span>
+                                    <button onclick="copyToClipboard(document.getElementById('out-story').innerText, 'Stories Copy')" class="text-xs font-bold text-reserve-forest hover:text-reserve-olive flex items-center gap-1">📋 Copiar Guión</button>
+                                </div>
+                                <div id="out-story" class="text-xs text-stone-700 leading-relaxed whitespace-pre-wrap select-all font-sans bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-96 overflow-y-auto custom-scrollbar"></div>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-2xs text-stone-400">
+                                <span>Canva: <a id="link-canva-story-ig" href="#" target="_blank" class="text-violet-600 underline font-semibold hover:text-violet-800 transition-colors">Plantilla de Story</a></span>
+                                <span class="font-mono text-3xs">Páginas según longitud</span>
                             </div>
                         </div>
 
@@ -710,6 +833,9 @@ def compile_portal():
                                 </div>
                                 <div id="out-wa" class="text-xs text-stone-700 leading-relaxed whitespace-pre-wrap select-all font-sans bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-96 overflow-y-auto custom-scrollbar"></div>
                             </div>
+                            <div class="mt-4 pt-3 border-t border-stone-100 text-2xs text-stone-400">
+                                <span>Enlace limpio + Estructura fija directa</span>
+                            </div>
                         </div>
 
                         <!-- LinkedIn Result Card -->
@@ -721,8 +847,22 @@ def compile_portal():
                                 </div>
                                 <div id="out-li" class="text-xs text-stone-700 leading-relaxed whitespace-pre-wrap select-all font-sans bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-96 overflow-y-auto custom-scrollbar"></div>
                             </div>
+                            <div class="mt-4 pt-3 border-t border-stone-100 text-2xs text-stone-400">
+                                <span>Tono profesional, desarrollo y gobernanza rural</span>
+                            </div>
                         </div>
+                    </div>
 
+                    <!-- Prompt de Redacción de Textos con IA Card -->
+                    <div class="bg-violet-50/50 p-6 rounded-2xl border-2 border-violet-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b border-violet-100 pb-2">
+                            <h4 class="font-title font-bold text-violet-800 text-sm flex items-center gap-1.5">🤖 Prompt de Redacción para cualquier IA (Gemini / ChatGPT / Claude)</h4>
+                            <button onclick="copyToClipboard(document.getElementById('out-text-prompt').innerText, 'Prompt de Redacción')" class="px-4 py-2 rounded-full bg-violet-600 text-white text-xs font-bold hover:bg-violet-700 transition-all shadow-sm flex items-center gap-1.5">
+                                📋 Copiar Prompt
+                            </button>
+                        </div>
+                        <p class="text-xs text-stone-600">Copia y pega este bloque en tu modelo de lenguaje favorito para generar variaciones de tono, captions y textos alternativos refinados.</p>
+                        <div id="out-text-prompt" class="text-xs text-stone-700 bg-white p-4 rounded-xl border border-stone-200/60 leading-relaxed select-all max-h-96 overflow-y-auto custom-scrollbar whitespace-pre-wrap"></div>
                     </div>
 
                     <!-- Visual Prompt & Alt Result Card -->
@@ -944,6 +1084,21 @@ def compile_portal():
             charCount.className = canvaInstructions.length > 500
                 ? 'text-xs font-mono text-red-500 font-bold'
                 : 'text-xs font-mono text-emerald-600 font-bold';
+            // Load custom Canva editor presets
+            populateCanvaEditorInputs();
+
+            // Load form field presets
+            const formPresets = ['gen-type', 'gen-title', 'gen-datetime', 'gen-location', 'gen-description', 'gen-link', 'gen-season'];
+            formPresets.forEach(id => {{
+                const saved = localStorage.getItem('rbsr_preset_' + id);
+                if (saved !== null) {{
+                    const elem = document.getElementById(id);
+                    if (elem) elem.value = saved;
+                }}
+            }});
+            if (typeof toggleFormInputs === 'function') {{
+                toggleFormInputs();
+            }}
         }});
 
         // Advanced panel (robot button)
@@ -977,6 +1132,52 @@ def compile_portal():
                 if (show) visible++;
             }});
             document.getElementById('qna-empty').classList.toggle('hidden', visible > 0);
+        }}
+
+        // Canva templates config parsed from documentation
+        const canvaTemplates = {contents["canva_links_json"]};
+
+        // Load custom templates from localStorage or fallback to defaults
+        const customTemplates = localStorage.getItem('rbsr_canva_custom_links');
+        if (customTemplates) {{
+            try {{
+                const parsed = JSON.parse(customTemplates);
+                Object.keys(parsed).forEach(k => {{
+                    canvaTemplates[k] = parsed[k];
+                }});
+            }} catch(e) {{
+                console.error("Error parsing custom links", e);
+            }}
+        }}
+
+        function populateCanvaEditorInputs() {{
+            Object.keys(canvaTemplates).forEach(k => {{
+                const input = document.getElementById(`canva-edit-${{k}}`);
+                if (input) input.value = canvaTemplates[k];
+            }});
+        }}
+
+        function saveCanvaTemplates() {{
+            Object.keys(canvaTemplates).forEach(k => {{
+                const input = document.getElementById(`canva-edit-${{k}}`);
+                if (input) {{
+                    canvaTemplates[k] = input.value.trim();
+                }}
+            }});
+            localStorage.setItem('rbsr_canva_custom_links', JSON.stringify(canvaTemplates));
+            copyToClipboard('', 'Enlaces de plantillas actualizados y guardados en tu navegador.');
+            // Re-generate if results are already visible
+            if (!document.getElementById('gen-results').classList.contains('hidden')) {{
+                generatePosts();
+            }}
+        }}
+
+        function resetCanvaTemplates() {{
+            localStorage.removeItem('rbsr_canva_custom_links');
+            copyToClipboard('', 'Restaurando enlaces predeterminados...');
+            setTimeout(() => {{
+                location.reload();
+            }}, 1000);
         }}
 
         // Season Detection
@@ -1054,14 +1255,11 @@ def compile_portal():
         // Copy-to-Clipboard Utility
         function copyToClipboard(text, message = 'Texto copiado') {{
             navigator.clipboard.writeText(text).then(() => {{
-                // Create temporary notification bubble
                 const bubble = document.createElement('div');
                 bubble.innerText = `✔️ ${{message}} con éxito`;
-                bubble.className = "fixed bottom-5 right-5 bg-reserve-forest text-white px-5 py-3 rounded-xl shadow-lg border border-reserve-olive/30 text-sm font-semibold z-50 animate-bounce transition-all";
+                bubble.className = 'fixed bottom-5 right-5 bg-reserve-forest text-white px-5 py-3 rounded-xl shadow-lg border border-reserve-olive/30 text-sm font-semibold z-50 animate-bounce transition-all';
                 document.body.appendChild(bubble);
-                setTimeout(() => {{
-                    bubble.remove();
-                }}, 3000);
+                setTimeout(() => {{ bubble.remove(); }}, 3000);
             }}).catch(err => {{
                 console.error('Error al copiar: ', err);
             }});
@@ -1076,6 +1274,10 @@ def compile_portal():
             const description = document.getElementById('gen-description').value.trim() || 'Una propuesta para conectar con nuestro entorno y descubrir la magia del paisaje serrano en un taller guiado por personas expertas.';
             const link = document.getElementById('gen-link').value.trim() || 'www.sierradelrincon.org';
             const season = document.getElementById('gen-season').value;
+
+            // Save form presets to localStorage
+            const presetMap = {{ 'gen-type': type, 'gen-title': title, 'gen-datetime': datetime, 'gen-location': location, 'gen-description': description, 'gen-link': link, 'gen-season': season }};
+            Object.keys(presetMap).forEach(k => localStorage.setItem('rbsr_preset_' + k, presetMap[k]));
 
             // Seasonal sensory details
             const seasonData = {{
@@ -1109,8 +1311,27 @@ def compile_portal():
             let igCopy = '';
             let waCopy = '';
             let liCopy = '';
+            let storyCopy = '';
             let promptText = '';
             let altText = '';
+            let textPrompt = '';
+
+            // Canva links resolution
+            const postKey = `${{season}}_post`;
+            const storyKey = `${{season}}_story`;
+            const postUrl = canvaTemplates[postKey] || canvaTemplates['generica_post'];
+            const storyUrl = canvaTemplates[storyKey] || canvaTemplates['generica_story'];
+
+            document.getElementById('link-canva-post-ig').href = postUrl;
+            document.getElementById('link-canva-post-ig').innerText = `Plantilla de Post (${{season.toUpperCase()}})`;
+            document.getElementById('link-canva-story-ig').href = storyUrl;
+            document.getElementById('link-canva-story-ig').innerText = `Plantilla de Story (${{season.toUpperCase()}})`;
+
+            // Calculate Story length dynamics
+            const descLength = description.length;
+            let numSlides = 2;
+            if (descLength > 150) numSlides = 3;
+            if (descLength > 280) numSlides = 4;
 
             if (type === 'actividad') {{
                 // INTERNAL ACTIVITY COPIES
@@ -1123,6 +1344,17 @@ def compile_portal():
                 promptText = `A candid, high-resolution lifestyle photograph showing participants engaged in a "${{title}}" workshop inside a rustic stone hall with slate walls in ${{location}}, Madrid. Natural ${{seasonData.promptStyle}} Shot on 35mm lens, atmospheric depth, documentary photography style, cinematic grading, natural colors. No generic actors.`;
                 
                 altText = `Fotografía documental de un grupo de personas de distintas edades participando activamente en el taller "${{title}}" en el municipio de ${{location}}, rodeados de elementos naturales y guiados por un formador local en una dehesa de la Sierra.`;
+
+                // Stories Copy Dynamic Construction
+                storyCopy = `📌 GUION DE STORY (${{numSlides}} Diapositivas)\\n[Usa la plantilla Story de Canva para ${{season.toUpperCase()}}]\\n\\n`;
+                if (numSlides === 2) {{
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Foto del taller con fondo natural de la Sierra.\\n  Texto principal: ¿Te apetece conectar con la Sierra? 🌿\\n  Detalles: Taller "${{title}}" en ${{location}}.\\n\\n• Página 2 (Detalle & Registro)\\n  Visual: Cuadro de texto limpio e iconos estacionales.\\n  Texto principal: 📅 ${{datetime}}\\n  Detalles: ${{description.substring(0, 120)}}...\\n  👉 ¡Reserva tu plaza gratuita! Enlace en la bio.`;
+                }} else if (numSlides === 3) {{
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Imagen sugerente de la flora/paisaje con logo RBSR.\\n  Texto principal: NUEVA ACTIVIDAD 🌿\\n  Detalles: ${{title}} | En ${{location}}.\\n\\n• Página 2 (Qué Viviremos)\\n  Visual: Listado limpio con la paleta de color de la estación.\\n  Texto principal: Experiencia guiada:\\n  Detalles: ${{description.substring(0, 160)}}...\\n  📅 ${{datetime}}\\n\\n• Página 3 (Llamada a la Acción)\\n  Visual: Botón y enlace destacado.\\n  Texto principal: Plazas gratuitas y limitadas. 🎒\\n  Detalles: Regístrate ya en el enlace directo de nuestra biografía.`;
+                }} else {{
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Tipografía Montserrat grande sobre fondo rústico.\\n  Texto principal: ${{title}} 🌲\\n  Detalles: Siente el latido y la calma de la Sierra del Rincón.\\n\\n• Página 2 (Inspiración y Tono)\\n  Visual: Foto evocativa del bosque serrano.\\n  Texto principal: "${{seasonData.metaphor}}"\\n\\n• Página 3 (Detalles de la Cita)\\n  Visual: Bloques informativos ordenados.\\n  Texto principal: 📅 ${{datetime}}\\n  Detalles: ${{location}}\\n  Info: ${{description.substring(0, 165)}}...\\n\\n• Página 4 (CTA Final)\\n  Visual: Sticker de enlace o botón en Canva.\\n  Texto principal: Plazas limitadas. 📢\\n  Detalles: No te quedes sin tu plaza. Haz clic en el enlace de la bio para reservar.`;
+                }}
+
             }} else {{
                 // EXTERNAL REVERBERATION COPIES ("Gente del Bosque")
                 igCopy = `📢 **HISTORIAS DEL BOSQUE: ${{title.toUpperCase()}}**\\n\\nLa Sierra del Rincón no solo es paisaje; es la gente que la habita, la trabaja y la protege día a día. Hoy queremos compartir el admirable trabajo realizado con la iniciativa "${{title}}" en el municipio de ${{location}}.\\n\\n${{description}}\\n\\nEste tipo de proyectos locales demuestra que la innovación brota de la tradición, logrando que el patrimonio agroalimentario y cultural continúe vivo y con impacto positivo en nuestra comarca.\\n\\nNos enorgullece ser un altavoz de la sabiduría y empuje de nuestros vecinos serranos.\\n\\n👉 Conoce toda la historia de este y otros productores rurales en la sección de relatos de nuestra web o en el enlace: ${{link}}\\n\\n---\\n#GenteDelBosque #SierraDelRincon #DesarrolloRural #Cercania ${{seasonData.hashtags}}`;
@@ -1134,14 +1366,55 @@ def compile_portal():
                 promptText = `A warm, authentic close-up portrait of a local producer representing "${{title}}" in ${{location}}, Madrid. Natural ${{seasonData.promptStyle}} Focus on authentic expressions, rich details, 85mm portrait, highly detailed skin textures, rustic organic grading.`;
                 
                 altText = `Retrato cercano y sumamente expresivo de un habitante artesano o productor local sonriendo en ${{location}}, que simboliza el esfuerzo comunitario detrás de la iniciativa "${{title}}".`;
+
+                // Stories Copy Dynamic Construction
+                storyCopy = `📌 GUION DE STORY (${{numSlides}} Diapositivas)\\n[Usa la plantilla Story de Canva para ${{season.toUpperCase()}}]\\n\\n`;
+                if (numSlides === 2) {{
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Retrato cálido del productor artesano de la Sierra.\\n  Texto principal: HISTORIAS DEL BOSQUE 📢\\n  Detalles: Conoce el empuje de "${{title}}" en ${{location}}.\\n\\n• Página 2 (La Esencia & Enlace)\\n  Visual: Diseño minimalista con textura rústica.\\n  Texto principal: ${{description.substring(0, 120)}}...\\n  👉 Lee la historia completa en el enlace de la bio.`;
+                }} else if (numSlides === 3) {{
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Foto de detalle de producto o labor tradicional.\\n  Texto principal: GENTE DEL BOSQUE 📢\\n  Detalles: Iniciativa: ${{title}} | ${{location}}.\\n\\n• Página 2 (El Oficio)\\n  Visual: Bloque de texto destacado sobre fondo estacional.\\n  Texto principal: Tradición y relevo rural:\\n  Detalles: ${{description.substring(0, 160)}}...\\n\\n• Página 3 (CTA)\\n  Visual: Logotipo MaB de la UNESCO con botón de enlace.\\n  Texto principal: Valoramos el comercio local. 💚\\n  Detalles: Visita nuestra web y conoce su historia (enlace en bio).`;
+                }} else {{
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Retrato con luz natural y logo de la Reserva.\\n  Texto principal: Historias con Raíces: ${{title}} 📢\\n  Detalles: Tradición viva en el municipio de ${{location}}.\\n\\n• Página 2 (La Filosofía)\\n  Visual: Frase del productor en Canva con fuentes News Cycle.\\n  Texto principal: "Cuando la innovación brota de la tradición, nuestro patrimonio sigue vivo."\\n\\n• Página 3 (Impacto Local)\\n  Visual: Detalles visuales del proyecto rural.\\n  Texto principal: Proyecto de cercanía:\\n  Detalles: ${{description.substring(0, 165)}}...\\n\\n• Página 4 (CTA Final)\\n  Visual: Sticker interactivo de encuesta o enlace.\\n  Texto principal: Conoce su trayectoria. 🌿\\n  Detalles: Reportaje completo disponible en nuestra web (enlace en bio).`;
+                }}
             }}
+
+            // Generate AI Redaction Prompt with brand rules and exploratory questions
+            textPrompt = `Actúa como especialista en Redacción de Contenidos y Social Media Manager para la Reserva de la Biosfera Sierra del Rincón (RBSR). Redacta contenidos adaptados que capten la esencia natural y humana del territorio.
+
+---
+REGLAS DE MARCA & TONO:
+- Tono: Conectado con la naturaleza, local, riguroso, pero sumamente acogedor e inspirador.
+- Palabras clave estacionales a integrar o emular: "${{seasonData.metaphor}}".
+- Evita el turismo masivo (ej: No uses frases sobre "escapadas de fin de semana para huir de la gran ciudad" o que centren todo el interés solo en visitar el Hayedo masificado). Fomenta descubrir los pueblos, artesanos y el patrimonio natural del resto de los municipios de la reserva.
+- Fuentes de Inspiración: Estrategias del Plan Estratégico (conservación de la biodiversidad, cohesión social, desarrollo rural sostenible y desestacionalización).
+
+---
+DATOS DEL POST:
+- Tipo: ${{type === 'actividad' ? 'Taller / Actividad de Educación Ambiental' : 'Historia Local / Productor ("Gente del Bosque")'}}
+- Título: ${{title}}
+- Ubicación: ${{location}}
+- Fecha / Hora: ${{datetime}}
+- Enlace de referencia: ${{link}}
+- Descripción base: ${{description}}
+
+---
+TAREA DE REDACCIÓN:
+1. Redacta 3 propuestas creativas alternativas de "Copy" para un post de Instagram (una de enfoque emocional, otra de carácter informativo y otra muy directa y corta con emojis).
+2. Redacta 1 copy directo y estructurado para WhatsApp.
+3. Redacta 1 copy formal de gobernanza para LinkedIn, enfocado en el valor institucional del programa MaB de la UNESCO y la Mancomunidad.
+
+---
+PREGUNTAS EXPLORATORIAS:
+Para afinar aún más este texto, sugiéreme 2 preguntas exploratorias al final de tu respuesta (por ejemplo, si hay algún productor/artesano local involucrado por su nombre, o si hay que recordar a la gente llevar calzado específico o transporte compartido).`;
 
             // Inject to HTML elements
             document.getElementById('out-ig').innerText = igCopy;
+            document.getElementById('out-story').innerText = storyCopy;
             document.getElementById('out-wa').innerText = waCopy;
             document.getElementById('out-li').innerText = liCopy;
             document.getElementById('out-prompt').innerText = promptText;
             document.getElementById('out-alt').innerText = altText;
+            document.getElementById('out-text-prompt').innerText = textPrompt;
 
             // Show results container
             document.getElementById('gen-results').classList.remove('hidden');
