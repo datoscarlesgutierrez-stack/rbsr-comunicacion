@@ -23,7 +23,28 @@ Portal web interactivo y sistema modular de recursos para la gestión de la comu
 
 ---
 
-## Identidad Visual (Resumen)
+## Guía Rápida de Uso
+
+### 🌿 Flujo de trabajo habitual para publicar
+
+1. **Consulta la estación** — El banner de inicio muestra la estación activa. Eso determina el tono y la paleta que debes usar.
+2. **Abre el Excel de plantillas** — En la pestaña **Plantillas** encontrarás el enlace al Google Sheet con los textos base estacionales. Sigue el paso a paso descrito ahí.
+3. **Usa el Generador de Post** — Rellena el formulario con los datos de tu actividad o noticia y pulsa **Generar**. En segundos obtienes copys para Instagram, WhatsApp y LinkedIn, más un prompt de imagen y un ALT TEXT de accesibilidad.
+4. **Copia las instrucciones de IA** — Desde la pestaña **Instrucciones IA** puedes copiar de un clic el bloque de instrucciones completo para usarlo en GEM (Google Gemini), ChatGPT o Canva.
+5. **Consulta el Q&A** — Si tienes una duda sobre tipografía, colores, hashtags o herramientas, búscala en el buscador de la pestaña Q&A.
+
+### ⚙️ ¿El Generador de Post usa IA?
+
+**No.** El generador es una herramienta de **combinación de plantillas** que funciona 100% en tu navegador sin conexión a ningún servidor ni API de IA. Toma los datos del formulario (título, lugar, fecha, descripción, estación) y los inserta en estructuras de texto predefinidas y alineadas con el tono de la Reserva.
+
+**Flujo recomendado**:
+> Rellena el formulario → Genera → Revisa el borrador → Si quieres más profundidad, cópialo en tu GEM de la Reserva y pídele que lo pula manteniendo el tono de la Sierra.
+
+Los textos generados son borradores listos para publicar o para usarse como punto de partida con cualquier asistente de IA.
+
+---
+
+
 
 **Paleta Oficial de Marca** (posters, infografías, papelería):
 

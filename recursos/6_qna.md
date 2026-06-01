@@ -99,4 +99,44 @@ El manual de la Reserva establece entre **3 y 5 hashtags** por publicación (má
 
 ---
 
+## Q&A_005: ¿El Generador de Post usa inteligencia artificial para escribir los textos?
+
+**Fecha:** Junio 2026
+
+### Respuesta
+
+**No.** El Generador de Post es una herramienta de **combinación de plantillas**, no un modelo de lenguaje. Funciona completamente en el navegador, sin conexión a ninguna API de IA ni servidor externo.
+
+### ¿Cómo funciona realmente?
+
+Cuando rellenas el formulario y pulsas **"Generar"**, el sistema toma los datos que has introducido (título, fecha, lugar, descripción, enlace y estación del año) y los inserta en una estructura de texto base predefinida diferente según el tipo de contenido elegido:
+
+- **Actividad / Taller Directo** → Genera copys de convocatoria con la logística estructurada en viñetas (fecha, lugar, inscripción) y un tono emocional evocador.
+- **Reverberación / Noticia Externa** → Genera copys en estilo "Gente del Bosque": pone en valor la iniciativa local con un tono cercano y comunitario.
+
+A cada tipo se le añaden automáticamente los **metadatos estacionales** elegidos (metáfora literaria de la estación, hashtags correspondientes y estilo visual para el prompt de imagen).
+
+### ¿Qué genera en concreto?
+
+| Salida | Descripción |
+| :--- | :--- |
+| `Instagram / FB` | Texto largo evocador con emoji, logística, CTA y hashtags de marca |
+| `WhatsApp` | Versión corta y escaneable con los datos esenciales |
+| `LinkedIn` | Versión institucional y extensa con lenguaje de impacto social |
+| `Prompt de IA` | Descripción visual en inglés lista para usar en Midjourney, DALL·E o Gemini |
+| `ALT TEXT` | Texto alternativo de accesibilidad para la imagen |
+
+### ¿Para qué sirve entonces?
+
+El generador produce un **borrador estructurado y alineado con la identidad de la Reserva** en cuestión de segundos. Los textos resultantes:
+1. **Se pueden publicar directamente** si el contenido encaja bien con los datos introducidos.
+2. **Se pueden copiar y pegar en GEM, ChatGPT o similar** como base para que la IA los refine, personalice o amplíe con más detalle.
+
+> **Flujo recomendado**: Genera → Revisa el resultado → Si quieres más profundidad, cópialo en tu GEM de la Reserva y pídele que lo mejore manteniendo el tono y la identidad de la Sierra.
+
+> [!IMPORTANT]
+> 📋 Instrucciones para Copiando el texto en el QnA: El generador NO accede a Internet, NO usa ningún modelo de IA externo y NO envía ningún dato a ningún servidor. Todo el procesamiento ocurre localmente en tu propio navegador.
+
+---
+
 > *¿Tienes una nueva pregunta? Añádela en este archivo con el formato `## Q&A_XXX: Pregunta` y ejecuta `python3 generar_portal.py` para que aparezca automáticamente en el portal.*
