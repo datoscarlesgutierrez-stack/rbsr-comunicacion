@@ -200,4 +200,4 @@ Calle Iglesia nº10, Prádena del Rincón — Madrid (28191), España
 
 ---
 
-*Desarrollado como toolkit digital de comunicación territorial. Declarada Reserva de la Biosfera por la UNESCO el 26 de junio de 2005.*
+*Co-desarrollado por [Carles Gutiérrez Vallès](https://carlesgutierrez.github.io/consultoria-digital/) con la ayuda de Nicolas Serna (Marketing Digital) como toolkit digital de comunicación territorial. Declarada Reserva de la Biosfera por la UNESCO el 26 de junio de 2005.*

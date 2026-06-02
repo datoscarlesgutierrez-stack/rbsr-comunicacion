@@ -102,49 +102,151 @@ def parse_markdown_to_html(md_text):
     # Bold
     md_text = re.sub(r'\*\*(.*?)\*\*', r'<strong class="font-bold text-stone-900">\1</strong>', md_text)
 
-    # Italic (single asterisk or underscore, not preceded by another *)
-    md_text = re.sub(r'(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)', r'<em class="italic text-stone-700">\1</em>', md_text)
+    # Italic (single asterisk, not preceded by * and followed by non-whitespace to avoid matching bullet markers)
+    md_text = re.sub(r'(?<!\*)\*(?![\*\s])(.*?)(?<!\*)\*(?!\*)', r'<em class="italic text-stone-700">\1</em>', md_text)
 
     # Helper: apply all inline formatting (links already done above)
     def inline_format(text):
         # Markdown links [text](url) already done globally above
         # Bold
         text = re.sub(r'\*\*(.*?)\*\*', r'<strong class="font-bold text-stone-900">\1</strong>', text)
-        # Italic
-        text = re.sub(r'(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)', r'<em class="italic text-stone-700">\1</em>', text)
+        # Italic (non-whitespace after opening * to avoid matching bullet markers)
+        text = re.sub(r'(?<!\*)\*(?![\*\s])(.*?)(?<!\*)\*(?!\*)', r'<em class="italic text-stone-700">\1</em>', text)
         # Inline code
         text = re.sub(r'`(.*?)`', lambda m: f'<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">{m.group(1)}</code>', text)
         # Auto-link bare https:// URLs inside list items
         text = re.sub(r'(?<!href=")(?<!src=")(https?://[^\s<>"]+)', lambda m: f'<a href="{m.group(1)}" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">{m.group(1)}</a>', text)
         return text
 
-    # Bullet Lists
-    def render_list(match):
-        items_raw = match.group(0).strip().split('\n')
-        list_html = '<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed">'
-        for item in items_raw:
-            cleaned = re.sub(r'^\s*[\*\-]\s*', '', item).strip()
-            if not cleaned:
-                continue
-            cleaned = inline_format(cleaned)
-            list_html += f'<li class="text-base">{cleaned}</li>'
-        list_html += '</ul>'
-        return list_html
-    md_text = re.sub(r'(?:^\s*[\*\-]\s+.*\n?)+', render_list, md_text, flags=re.M)
-
-    # Numbered / Ordered Lists
-    def render_ordered_list(match):
-        items_raw = match.group(0).strip().split('\n')
+    # Numbered / Ordered Lists — Processed FIRST to keep their sub-content together
+    def render_ordered_list_block(lines_block):
         list_html = '<ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed">'
-        for item in items_raw:
-            cleaned = re.sub(r'^\s*\d+\.\s*', '', item).strip()
-            if not cleaned:
-                continue
-            cleaned = inline_format(cleaned)
-            list_html += f'<li class="text-base">{cleaned}</li>'
+        current_item_lines = []
+
+        def flush_item(item_lines):
+            if not item_lines:
+                return ''
+            first = re.sub(r'^\s*\d+\.\s*', '', item_lines[0]).strip()
+            first_html = inline_format(first)
+            sub_lines = [l.strip() for l in item_lines[1:] if l.strip()]
+            if sub_lines:
+                # Check if sub-lines are bullet points
+                is_bullet_sub = all(re.match(r'^[\*\-]\s', l) or l.startswith(('*', '-')) for l in sub_lines)
+                if is_bullet_sub:
+                    sub_html = '<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm">'
+                    for sl in sub_lines:
+                        sc = re.sub(r'^[\*\-]\s*', '', sl).strip()
+                        sub_html += '<li>' + inline_format(sc) + '</li>'
+                    sub_html += '</ul>'
+                else:
+                    sub_html = ''.join('<p class="mt-1 text-sm text-stone-600">' + inline_format(sl) + '</p>' for sl in sub_lines)
+                inner = first_html + sub_html
+            else:
+                inner = first_html
+            return '<li class="text-base">' + inner + '</li>'
+
+        for line in lines_block:
+            if re.match(r'^\s*\d+\.', line):
+                if current_item_lines:
+                    list_html += flush_item(current_item_lines)
+                current_item_lines = [line]
+            elif current_item_lines and (line.startswith('    ') or line.startswith('\t') or re.match(r'^\s+[\*\-]', line)):
+                current_item_lines.append(line)
+            else:
+                if current_item_lines:
+                    list_html += flush_item(current_item_lines)
+                    current_item_lines = []
+
+        if current_item_lines:
+            list_html += flush_item(current_item_lines)
+
         list_html += '</ol>'
         return list_html
-    md_text = re.sub(r'(?:^\s*\d+\.\s+.*\n?)+', render_ordered_list, md_text, flags=re.M)
+
+    # Split text into lines, group ordered list blocks, render them
+    ol_lines = md_text.split('\n')
+    ol_output = []
+    ol_block = []
+    in_ol = False
+
+    for line in ol_lines:
+        is_num = bool(re.match(r'^\s*\d+\.', line))
+        is_sub = bool(in_ol and (line.startswith('    ') or line.startswith('\t') or re.match(r'^\s{2,}[\*\-]', line)))
+        if is_num or is_sub:
+            in_ol = True
+            ol_block.append(line)
+        else:
+            if in_ol:
+                ol_output.append(render_ordered_list_block(ol_block))
+                ol_block = []
+                in_ol = False
+            ol_output.append(line)
+
+    if ol_block:
+        ol_output.append(render_ordered_list_block(ol_block))
+
+    md_text = '\n'.join(ol_output)
+
+    # Bullet / Unordered Lists — Processed SECOND
+    def render_bullet_block(lines_block):
+        list_html = '<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed">'
+        current_item_lines = []
+
+        def flush_bullet(item_lines):
+            if not item_lines:
+                return ''
+            first = re.sub(r'^\s*[\*\-]\s*', '', item_lines[0]).strip()
+            first_html = inline_format(first)
+            sub_lines = item_lines[1:]
+            if sub_lines:
+                sub_paras = ''.join('<p class="text-sm text-stone-600">' + inline_format(l.strip().lstrip('*').lstrip('-').strip()) + '</p>' for l in sub_lines if l.strip())
+                inner = first_html + ('<div class="mt-1">' + sub_paras + '</div>' if sub_paras else '')
+            else:
+                inner = first_html
+            return '<li class="text-base">' + inner + '</li>'
+
+        for line in lines_block:
+            is_bullet = bool(re.match(r'^\s*[\*\-]\s', line))
+            is_sub = bool(current_item_lines and (line.startswith('    ') or line.startswith('\t')))
+            if is_bullet:
+                if current_item_lines:
+                    list_html += flush_bullet(current_item_lines)
+                current_item_lines = [line]
+            elif is_sub:
+                current_item_lines.append(line)
+            else:
+                if current_item_lines:
+                    list_html += flush_bullet(current_item_lines)
+                    current_item_lines = []
+
+        if current_item_lines:
+            list_html += flush_bullet(current_item_lines)
+
+        list_html += '</ul>'
+        return list_html
+
+    ul_lines = md_text.split('\n')
+    ul_output = []
+    ul_block = []
+    in_ul = False
+
+    for line in ul_lines:
+        is_bullet = bool(re.match(r'^\s*[\*\-]\s', line))
+        is_sub = bool(in_ul and (line.startswith('    ') or line.startswith('\t')))
+        if is_bullet or is_sub:
+            in_ul = True
+            ul_block.append(line)
+        else:
+            if in_ul:
+                ul_output.append(render_bullet_block(ul_block))
+                ul_block = []
+                in_ul = False
+            ul_output.append(line)
+
+    if ul_block:
+        ul_output.append(render_bullet_block(ul_block))
+
+    md_text = '\n'.join(ul_output)
 
     # Inline code (for any backticks not yet converted inside other blocks)
     md_text = re.sub(r'`(.*?)`', lambda m: f'<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">{m.group(1)}</code>', md_text)
@@ -162,7 +264,7 @@ def parse_markdown_to_html(md_text):
         block = block.strip()
         if not block:
             continue
-        if block.startswith('<h') or block.startswith('<div') or block.startswith('<ul') or block.startswith('<table') or block.startswith('<block') or block.startswith('<label') or block.startswith('<thead') or block.startswith('<tbody'):
+        if block.startswith('<h') or block.startswith('<div') or block.startswith('<ul') or block.startswith('<ol') or block.startswith('<table') or block.startswith('<block') or block.startswith('<label') or block.startswith('<thead') or block.startswith('<tbody'):
             processed_blocks.append(block)
         else:
             # Body paragraphs: base size, high contrast, generous line-height
@@ -473,158 +575,133 @@ def compile_portal():
                     <span>🎨</span> Paletas de Colores de la Reserva
                 </h3>
                 
-                <div class="space-y-8">
-                    <!-- A. Paleta Oficial -->
-                    <div>
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-4 flex items-center gap-1.5">
-                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
-                            A. Paleta Oficial de la MARCA (Posters, Infografías y Papelería)
+                <div class="space-y-6">
+                    <!-- A. Paleta Oficial de la MARCA -->
+                    <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3 flex items-center gap-1.5">
+                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-600"></span>
+                            A. Paleta Oficial de Marca (Institucional)
                         </h4>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <p class="text-xs text-stone-500 mb-4">Identidad cromática oficial para publicaciones formales, cartelería institucional y papelería corporativa.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <!-- Verde Brote -->
-                            <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                                <div class="w-full h-20 rounded-xl bg-[#b8be3f] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <h4 class="font-bold text-stone-800 text-sm">Verde Brote</h4>
-                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 583C</p>
-                                    </div>
-                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#b8be3f</span>
+                            <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" title="Verde Brote (#b8be3f) - Pantone 583C. Uso: Acentos, iconos y llamadas a la acción." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-10 h-10 rounded-lg bg-[#b8be3f] shadow-inner"></div>
+                                <div class="text-left">
+                                    <p class="text-xs font-bold text-stone-800 leading-none">Verde Brote</p>
+                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#b8be3f</span>
+                                    <span class="text-[9px] text-stone-400">Pantone 583C</span>
                                 </div>
                             </div>
                             <!-- Olivo Oscuro -->
-                            <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                                <div class="w-full h-20 rounded-xl bg-[#585615] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <h4 class="font-bold text-stone-800 text-sm">Olivo Oscuro</h4>
-                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 581C</p>
-                                    </div>
-                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#585615</span>
+                            <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" title="Olivo Oscuro (#585615) - Pantone 581C. Uso: Textos secundarios, contornos y fondos estructurados." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-10 h-10 rounded-lg bg-[#585615] shadow-inner"></div>
+                                <div class="text-left">
+                                    <p class="text-xs font-bold text-stone-800 leading-none">Olivo Oscuro</p>
+                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#585615</span>
+                                    <span class="text-[9px] text-stone-400">Pantone 581C</span>
                                 </div>
                             </div>
                             <!-- Verde Bosque RERB -->
-                            <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" class="group cursor-pointer bg-white p-4 rounded-2xl border border-stone-200 hover:border-reserve-olive/60 shadow-sm transition-all hover:-translate-y-1">
-                                <div class="w-full h-20 rounded-xl bg-[#4d7c67] shadow-inner mb-3 transition-transform group-hover:scale-98"></div>
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <h4 class="font-bold text-stone-800 text-sm">Verde Bosque RERB</h4>
-                                        <p class="text-[10px] text-stone-500 mt-0.5">Pantone 624C</p>
-                                    </div>
-                                    <span class="text-xs font-mono bg-stone-100 px-2 py-1 rounded text-stone-600 font-bold">#4d7c67</span>
+                            <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" title="Verde Bosque RERB (#4d7c67) - Pantone 624C. Identidad de la Red Española de Reservas de la Biosfera." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-10 h-10 rounded-lg bg-[#4d7c67] shadow-inner"></div>
+                                <div class="text-left">
+                                    <p class="text-xs font-bold text-stone-800 leading-none">Verde Bosque</p>
+                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#4d7c67</span>
+                                    <span class="text-[9px] text-stone-400">Pantone 624C</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- B. Paletas Canva -->
-                    <div>
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-4 flex items-center gap-1.5">
-                            <span class="inline-block w-2.5 h-2.5 rounded-full bg-violet-600"></span>
-                            B. Paletas de Canva (Redes Sociales, Creatividades y Plantillas)
+                    <!-- B. Paletas Canva (Redes Sociales y Estacionalidad) -->
+                    <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3 flex items-center gap-1.5">
+                            <span class="inline-block w-2 h-2 rounded-full bg-violet-600"></span>
+                            B. Paletas Canva (Redes Sociales y Estacionalidad)
                         </h4>
+                        <p class="text-xs text-stone-500 mb-4">Combinaciones estacionales optimizadas para las plantillas de Canva. Haz clic sobre cualquier color para copiar su código HEX.</p>
                         
-                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             <!-- Paleta Genérica -->
-                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
-                                <div>
-                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
-                                        <span>🔘</span> Paleta Genérica (Principal)
-                                    </h5>
-                                    <p class="text-[10px] text-stone-500 mt-1">Uso transversal y recordatorios.</p>
-                                </div>
+                            <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-3">
+                                <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">🔘 Genérica (Principal)</span>
                                 <div class="grid grid-cols-3 gap-2">
-                                    <div onclick="copyToClipboard('#88ab81', 'HEX Verde Musgo Canva')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#88ab81', 'HEX Verde Musgo Canva')" title="Verde Musgo Suave (#88ab81) - Transversal y recordatorios permanentes." class="group cursor-pointer text-center">
                                         <div class="w-full h-12 rounded-lg bg-[#88ab81] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#88ab81</span>
+                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#88ab81</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#fefaed', 'HEX Crema Hueso Canva')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#fefaed', 'HEX Crema Hueso Canva')" title="Crema Hueso (#fefaed) - Fondo general para publicaciones limpias." class="group cursor-pointer text-center">
                                         <div class="w-full h-12 rounded-lg bg-[#fefaed] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#fefaed</span>
+                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#fefaed</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote Canva')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote Canva')" title="Verde Brote Canva (#92b115) - Acentuación y llamadas a la acción." class="group cursor-pointer text-center">
                                         <div class="w-full h-12 rounded-lg bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#92b115</span>
+                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#92b115</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Paleta Primavera -->
-                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
-                                <div>
-                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
-                                        <span>🌸</span> Paleta de Primavera
-                                    </h5>
-                                    <p class="text-[10px] text-stone-500 mt-1">Floración y renacer de la sierra.</p>
-                                </div>
-                                <div class="grid grid-cols-4 gap-1">
-                                    <div onclick="copyToClipboard('#ff8ac7', 'HEX Rosa Floración')" class="group cursor-pointer text-center">
+                            <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-3">
+                                <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">🌸 Primavera</span>
+                                <div class="grid grid-cols-4 gap-1.5">
+                                    <div onclick="copyToClipboard('#ff8ac7', 'HEX Rosa Floración')" title="Rosa Cerezo / Floración (#ff8ac7) - Tono estacional primaveral." class="group cursor-pointer text-center">
                                         <div class="w-full h-10 rounded-lg bg-[#ff8ac7] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#ff8ac7</span>
+                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#ff8ac7</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#f1efe2', 'HEX Crema Primavera')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#f1efe2', 'HEX Crema Primavera')" title="Crema Primavera (#f1efe2) - Fondo suave estacional." class="group cursor-pointer text-center">
                                         <div class="w-full h-10 rounded-lg bg-[#f1efe2] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#f1efe2</span>
+                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#f1efe2</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote')" title="Verde Brote (#92b115) - Evoca el renacimiento silvestre." class="group cursor-pointer text-center">
                                         <div class="w-full h-10 rounded-lg bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#92b115</span>
+                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#92b115</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" title="Verde Pino Oscuro (#103f2b) - Estructura y fondo oscuro." class="group cursor-pointer text-center">
                                         <div class="w-full h-10 rounded-lg bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#103f2b</span>
+                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#103f2b</span>
                                     </div>
                                 </div>
                             </div>
-
                             <!-- Paleta Verano -->
-                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
-                                <div>
-                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
-                                        <span>☀️</span> Paleta de Verano
-                                    </h5>
-                                    <p class="text-[10px] text-stone-500 mt-1">Sol, madurez y frescor del agua.</p>
-                                </div>
-                                <div class="grid grid-cols-4 gap-1">
-                                    <div onclick="copyToClipboard('#65b9f0', 'HEX Azul Río')" class="group cursor-pointer text-center">
+                            <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-3">
+                                <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">☀️ Verano</span>
+                                <div class="grid grid-cols-4 gap-1.5">
+                                    <div onclick="copyToClipboard('#65b9f0', 'HEX Azul Río')" title="Azul Río / Frescor (#65b9f0) - Agua y cielo estival." class="group cursor-pointer text-center">
                                         <div class="w-full h-10 rounded-lg bg-[#65b9f0] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#65b9f0</span>
+                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#65b9f0</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#e7b43f', 'HEX Amarillo Sol')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#e7b43f', 'HEX Amarillo Sol')" title="Amarillo Sol / Trigo (#e7b43f) - Luz y madurez." class="group cursor-pointer text-center">
                                         <div class="w-full h-10 rounded-lg bg-[#e7b43f] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#e7b43f</span>
+                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#e7b43f</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#d7bf99', 'HEX Arena')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#d7bf99', 'HEX Arena')" title="Arena de Río (#d7bf99) - Fondo y texturas terrosas." class="group cursor-pointer text-center">
                                         <div class="w-full h-10 rounded-lg bg-[#d7bf99] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#d7bf99</span>
+                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#d7bf99</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" title="Verde Pino Oscuro (#103f2b) - Estructura y legibilidad." class="group cursor-pointer text-center">
                                         <div class="w-full h-10 rounded-lg bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-500 block mt-1">#103f2b</span>
+                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#103f2b</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Paleta Invierno -->
-                            <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
-                                <div>
-                                    <h5 class="font-bold text-stone-800 text-sm flex items-center gap-1">
-                                        <span>❄️</span> Paleta de Invierno
-                                    </h5>
-                                    <p class="text-[10px] text-stone-500 mt-1">Silencio y paisaje de nieve blanca.</p>
-                                </div>
+                            <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-3">
+                                <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">❄️ Invierno</span>
                                 <div class="grid grid-cols-3 gap-2">
-                                    <div onclick="copyToClipboard('#006a3e', 'HEX Verde Acebo')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#006a3e', 'HEX Verde Acebo')" title="Verde Acebo Oscuro (#006a3e) - Follaje invernal y acebos." class="group cursor-pointer text-center">
                                         <div class="w-full h-12 rounded-lg bg-[#006a3e] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#006a3e</span>
+                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#006a3e</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#9eb3c5', 'HEX Gris Ventisca')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#9eb3c5', 'HEX Gris Ventisca')" title="Gris Ventisca / Pizarra (#9eb3c5) - Cumbres y roca fría." class="group cursor-pointer text-center">
                                         <div class="w-full h-12 rounded-lg bg-[#9eb3c5] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#9eb3c5</span>
+                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#9eb3c5</span>
                                     </div>
-                                    <div onclick="copyToClipboard('#ffffff', 'HEX Blanco Nieve')" class="group cursor-pointer text-center">
+                                    <div onclick="copyToClipboard('#ffffff', 'HEX Blanco Nieve')" title="Blanco Nieve (#ffffff) - Claridad y nieve de las cumbres." class="group cursor-pointer text-center">
                                         <div class="w-full h-12 rounded-lg bg-[#ffffff] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-600 block mt-1">#ffffff</span>
+                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#ffffff</span>
                                     </div>
                                 </div>
                             </div>
@@ -1060,6 +1137,9 @@ def compile_portal():
                 </span>
                 <p class="text-xs text-stone-600 text-left md:text-right">
                     © 2026 RBSR. Todos los derechos reservados. Diseñado para técnicos locales.
+                </p>
+                <p class="text-xs text-stone-500 text-left md:text-right mt-1">
+                    Co-desarrollado por <a href="https://carlesgutierrez.github.io/consultoria-digital/" target="_blank" rel="noopener" class="text-stone-400 hover:text-white underline underline-offset-2 transition-colors font-medium">Carles Gutiérrez Vallès</a> con la ayuda de Nicolas Serna (Marketing Digital).
                 </p>
             </div>
         </div>
