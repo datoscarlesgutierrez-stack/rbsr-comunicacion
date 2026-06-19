@@ -348,34 +348,30 @@ def compile_portal():
 
     # Extract Canva templates dynamically from 3_canales_y_plantillas.md
     canva_links = {}
-    def normalize_key(s):
-        s = s.lower().strip()
-        s = s.replace("é", "e").replace("í", "i").replace("ó", "o").replace("á", "a").replace("ú", "u")
-        s = s.replace("ñ", "n").replace("ü", "u")
-        return s
 
     plantillas_file = os.path.join(recursos_path, "3_canales_y_plantillas.md")
     if os.path.exists(plantillas_file):
         with open(plantillas_file, "r", encoding="utf-8") as f:
             plantillas_text = f.read()
-        # Find: *   **Key (Format)**: `url`
-        matches = re.findall(r'\*\*\s*([^(\n]+?)\s*\((Post|Story)\)\s*\*\*\s*:\s*`(https?://[^\s`<>"]+)`', plantillas_text, re.IGNORECASE)
-        for key, fmt, url in matches:
-            norm_key = f"{normalize_key(key)}_{normalize_key(fmt)}"
-            canva_links[norm_key] = url.strip()
+        # Find: *   **Key**: `url`
+        matches = re.findall(r'\*\*\s*([^:\n]+?)\s*\*\*\s*:\s*`(https?://[^\s`<>"]+)`', plantillas_text, re.IGNORECASE)
+        for key, url in matches:
+            k = key.lower()
+            if "1:1" in k or "meta" in k:
+                canva_links["template_1_1"] = url.strip()
+            elif "4:5" in k:
+                canva_links["template_4_5"] = url.strip()
+            elif "16:9" in k:
+                canva_links["template_16_9"] = url.strip()
+            elif "9:16" in k or "story" in k:
+                canva_links["template_9_16"] = url.strip()
 
     # Fallbacks in case formatting is broken or lines are missing
     defaults = {
-        "generica_post": "https://www.canva.com/design/DAF-generica-post-rbsr/view",
-        "generica_story": "https://www.canva.com/design/DAF-generica-story-rbsr/view",
-        "primavera_post": "https://www.canva.com/design/DAF-primavera-post-rbsr/view",
-        "primavera_story": "https://www.canva.com/design/DAF-primavera-story-rbsr/view",
-        "verano_post": "https://www.canva.com/design/DAF-verano-post-rbsr/view",
-        "verano_story": "https://www.canva.com/design/DAF-verano-story-rbsr/view",
-        "otono_post": "https://www.canva.com/design/DAF-otono-post-rbsr/view",
-        "otono_story": "https://www.canva.com/design/DAF-otono-story-rbsr/view",
-        "invierno_post": "https://www.canva.com/design/DAF-invierno-post-rbsr/view",
-        "invierno_story": "https://www.canva.com/design/DAF-invierno-story-rbsr/view"
+        "template_1_1": "https://canva.link/metarsrb",
+        "template_4_5": "https://canva.link/933xncglzshcqxy",
+        "template_16_9": "https://canva.link/fgesdrt0q2oji1v",
+        "template_9_16": "https://www.canva.com/brand/brand-templates/EAHM51TADAc"
     }
     for k, v in defaults.items():
         if k not in canva_links:
@@ -433,7 +429,7 @@ def compile_portal():
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=News+Cycle:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- TailwindCSS CDN (Premium UI development standard) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -441,8 +437,8 @@ def compile_portal():
             theme: {{
                 extend: {{
                     fontFamily: {{
-                        sans: ['Outfit', 'sans-serif'],
-                        title: ['Montserrat', 'sans-serif'],
+                        sans: ['News Cycle', 'sans-serif'],
+                        title: ['News Cycle', 'Montserrat', 'sans-serif'],
                     }},
                     colors: {{
                         reserve: {{
@@ -460,6 +456,19 @@ def compile_portal():
         }}
     </script>
     <style>
+        /* ─── Tipografía global forzada: News Cycle ─────────────────────────── */
+        *, *::before, *::after {{
+            font-family: 'News Cycle', Arial, sans-serif;
+        }}
+        h1, h2, h3, h4, h5, h6,
+        .font-title,
+        button, .tab-btn, nav {{
+            font-family: 'News Cycle', Arial, sans-serif;
+        }}
+        code, pre, .font-mono {{
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }}
+        /* ─────────────────────────────────────────────────────────────────────── */
         .custom-scrollbar::-webkit-scrollbar {{
             width: 6px;
             height: 6px;
@@ -522,6 +531,9 @@ def compile_portal():
             </button>
             <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 📊 Estrategia
+            </button>
+            <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all flex items-center gap-1 bg-sky-100/60 text-sky-700 border border-sky-200 hover:bg-sky-100">
+                🎥 Tutoriales
             </button>
             <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all bg-reserve-olive/20 text-reserve-olivedark border border-reserve-olive/40 hover:bg-reserve-olive/30 flex items-center gap-1">
                 ⚙️ Generador de Post
@@ -843,20 +855,9 @@ def compile_portal():
                             <label class="block text-xs font-bold text-stone-600 uppercase tracking-wider mb-1.5">Descripción de lo que se va a Vivir / Hacer</label>
                             <textarea id="gen-description" rows="3" placeholder="Ej: Aprenderemos las técnicas tradicionales para tejer mimbre, tocando las texturas, guiados por expertos cesteros de la Sierra del Rincón." class="w-full px-4 py-2 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-reserve-forest text-sm"></textarea>
                         </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div id="input-link-container">
-                                <label class="block text-xs font-bold text-stone-600 uppercase tracking-wider mb-1.5">Enlace de Inscripción / Info</label>
-                                <input type="text" id="gen-link" placeholder="Ej: www.sierradelrincon.org/agenda.html" class="w-full px-4 py-2.5 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-reserve-forest text-sm">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-stone-600 uppercase tracking-wider mb-1.5">Estación Estética</label>
-                                <select id="gen-season" class="w-full px-4 py-2.5 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-reserve-forest text-sm font-semibold">
-                                    <option value="primavera">🌸 Primavera</option>
-                                    <option value="verano">☀️ Verano</option>
-                                    <option value="otono">🍁 Otoño</option>
-                                    <option value="invierno">❄️ Invierno</option>
-                                </select>
-                            </div>
+                        <div id="input-link-container">
+                            <label class="block text-xs font-bold text-stone-600 uppercase tracking-wider mb-1.5">Enlace de Inscripción / Info</label>
+                            <input type="text" id="gen-link" placeholder="Ej: www.sierradelrincon.org/agenda.html" class="w-full px-4 py-2.5 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-reserve-forest text-sm">
                         </div>
                     </div>
                 </div>
@@ -880,9 +881,14 @@ def compile_portal():
                                 </div>
                                 <div id="out-ig" class="text-xs text-stone-700 leading-relaxed whitespace-pre-wrap select-all font-sans bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-96 overflow-y-auto custom-scrollbar"></div>
                             </div>
-                            <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-2xs text-stone-400">
-                                <span>Canva: <a id="link-canva-post-ig" href="#" target="_blank" class="text-pink-600 underline font-semibold hover:text-pink-800 transition-colors">Plantilla de Post</a></span>
-                                <span class="font-mono text-3xs">Montserrat + News Cycle</span>
+                            <div class="mt-4 pt-3 border-t border-stone-100 flex flex-wrap gap-2 items-center justify-between text-2xs text-stone-400">
+                                <div class="flex flex-wrap gap-1.5 items-center">
+                                    <span>Canva:</span>
+                                    <a id="link-canva-1-1" href="#" target="_blank" class="text-pink-600 underline font-semibold hover:text-pink-800 transition-colors">Plantilla 1:1 (Meta)</a>
+                                    <span class="text-stone-300">|</span>
+                                    <a id="link-canva-4-5" href="#" target="_blank" class="text-pink-600 underline font-semibold hover:text-pink-800 transition-colors">Plantilla 4:5</a>
+                                </div>
+                                <span class="font-mono text-3xs">News Cycle / Montserrat</span>
                             </div>
                         </div>
 
@@ -896,7 +902,7 @@ def compile_portal():
                                 <div id="out-story" class="text-xs text-stone-700 leading-relaxed whitespace-pre-wrap select-all font-sans bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-96 overflow-y-auto custom-scrollbar"></div>
                             </div>
                             <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-2xs text-stone-400">
-                                <span>Canva: <a id="link-canva-story-ig" href="#" target="_blank" class="text-violet-600 underline font-semibold hover:text-violet-800 transition-colors">Plantilla de Story</a></span>
+                                <span>Canva: <a id="link-canva-9-16" href="#" target="_blank" class="text-violet-600 underline font-semibold hover:text-violet-800 transition-colors">Plantilla 9:16 (Story)</a></span>
                                 <span class="font-mono text-3xs">Páginas según longitud</span>
                             </div>
                         </div>
@@ -910,8 +916,9 @@ def compile_portal():
                                 </div>
                                 <div id="out-wa" class="text-xs text-stone-700 leading-relaxed whitespace-pre-wrap select-all font-sans bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-96 overflow-y-auto custom-scrollbar"></div>
                             </div>
-                            <div class="mt-4 pt-3 border-t border-stone-100 text-2xs text-stone-400">
-                                <span>Enlace limpio + Estructura fija directa</span>
+                            <div class="mt-4 pt-3 border-t border-stone-100 flex flex-col gap-1 text-2xs text-stone-400">
+                                <span>Canva: <a id="link-canva-wa-1-1" href="#" target="_blank" class="text-emerald-600 underline font-semibold hover:text-emerald-800 transition-colors">Plantilla 1:1 (Meta)</a></span>
+                                <span class="text-stone-300">Enlace limpio + Estructura fija directa</span>
                             </div>
                         </div>
 
@@ -924,7 +931,8 @@ def compile_portal():
                                 </div>
                                 <div id="out-li" class="text-xs text-stone-700 leading-relaxed whitespace-pre-wrap select-all font-sans bg-stone-50 p-4 rounded-xl border border-stone-200/50 max-h-96 overflow-y-auto custom-scrollbar"></div>
                             </div>
-                            <div class="mt-4 pt-3 border-t border-stone-100 text-2xs text-stone-400">
+                            <div class="mt-4 pt-3 border-t border-stone-100 flex flex-col gap-1 text-2xs text-stone-400">
+                                <span>Canva: <a id="link-canva-16-9" href="#" target="_blank" class="text-blue-600 underline font-semibold hover:text-blue-800 transition-colors">Plantilla 16:9</a></span>
                                 <span>Tono profesional, desarrollo y gobernanza rural</span>
                             </div>
                         </div>
@@ -1071,6 +1079,87 @@ def compile_portal():
             </div>
         </div>
 
+        <!-- Tab 8: Video Tutoriales e Inducción -->
+        <div id="tab-tutoriales" class="tab-content space-y-6">
+            <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
+                <div>
+                    <h2 class="text-2xl font-bold font-title text-reserve-forest">🎥 Centro de Formación y Video Tutoriales</h2>
+                    <p class="text-sm text-stone-500 mt-1 max-w-3xl">Vídeos explicativos paso a paso y recursos formativos para asimilar el uso de la identidad visual de la Reserva de la Biosfera Sierra del Rincón y agilizar el flujo de trabajo diario.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Loom 1: Plantilla Canva -->
+                    <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded">Canva / Diseño</span>
+                                <span class="text-xs text-stone-400">Duración: ~5 min</span>
+                            </div>
+                            <h3 class="font-title font-bold text-stone-800 text-lg group-hover:text-reserve-forest transition-colors">Elegir y guardar una plantilla para comunicación</h3>
+                            <p class="text-xs text-stone-500 leading-relaxed">Aprende a acceder a las nuevas plantillas unificadas de Canva (4:5, 16:9, 1:1, 9:16) y guardarlas correctamente en tu espacio de trabajo para edición recurrente.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex justify-between items-center">
+                            <span class="text-stone-400 text-xs">🎥 Vídeo en Loom</span>
+                            <a href="https://www.loom.com/share/25fd2d8b8feb4dc3969bbacbe9052c7b" target="_blank" rel="noopener" class="px-4 py-2 bg-reserve-forest hover:bg-stone-800 text-white rounded-lg text-xs font-bold transition-all shadow-sm">Ver Tutorial</a>
+                        </div>
+                    </div>
+
+                    <!-- Slides: Matriz de Mensajes -->
+                    <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xs font-bold uppercase tracking-widest text-amber-600 bg-amber-50 px-2.5 py-1 rounded">Estrategia / Mensaje</span>
+                                <span class="text-xs text-stone-400">Presentación Oficial</span>
+                            </div>
+                            <h3 class="font-title font-bold text-stone-800 text-lg group-hover:text-reserve-forest transition-colors">Matriz de Mensajes de la RBSR</h3>
+                            <p class="text-xs text-stone-500 leading-relaxed">Presentación conceptual completa sobre la matriz de comunicación de la Reserva: los 7 ejes de contenido, las secciones fijas y las pautas estratégicas del programa.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex justify-between items-center">
+                            <span class="text-stone-400 text-xs">📊 Diapositivas</span>
+                            <a href="https://docs.google.com/presentation/d/1G6qysB5xTwcyReyiHJ7HnxBQECbucpSCnHlLozRybAA/edit?usp=sharing" target="_blank" rel="noopener" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold transition-all shadow-sm">Ver Presentación</a>
+                        </div>
+                    </div>
+
+                    <!-- Loom 2: Publicar Parte 1 -->
+                    <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xs font-bold uppercase tracking-widest text-sky-600 bg-sky-50 px-2.5 py-1 rounded">Edición / Redes</span>
+                                <span class="text-xs text-stone-400">Duración: ~8 min</span>
+                            </div>
+                            <h3 class="font-title font-bold text-stone-800 text-lg group-hover:text-reserve-forest transition-colors">Cómo hacer una publicación (Parte 1)</h3>
+                            <p class="text-xs text-stone-500 leading-relaxed">Guía práctica que cubre la selección de imágenes del territorio, la redacción de los copys multicanal adaptados y la edición de textos en Canva.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex justify-between items-center">
+                            <span class="text-stone-400 text-xs">🎥 Vídeo en Loom</span>
+                            <a href="https://www.loom.com/share/b118740a435a4f028474da3212ebf607" target="_blank" rel="noopener" class="px-4 py-2 bg-reserve-forest hover:bg-stone-800 text-white rounded-lg text-xs font-bold transition-all shadow-sm">Ver Tutorial</a>
+                        </div>
+                    </div>
+
+                    <!-- Loom 3: Publicar Parte 2 -->
+                    <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-2xs font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded">Automatización / Sheets</span>
+                                <span class="text-xs text-stone-400">Duración: ~7 min</span>
+                            </div>
+                            <h3 class="font-title font-bold text-stone-800 text-lg group-hover:text-reserve-forest transition-colors">Cómo hacer una publicación (Parte 2)</h3>
+                            <p class="text-xs text-stone-500 leading-relaxed">Flujo de trabajo avanzado utilizando el generador automático de posts, la carga de datos de Google Sheets y la exportación final en Canva.</p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-stone-100 flex justify-between items-center">
+                            <span class="text-stone-400 text-xs">🎥 Vídeo en Loom</span>
+                            <a href="https://www.loom.com/share/a5719f254b5a44248b286fdee2fe161c" target="_blank" rel="noopener" class="px-4 py-2 bg-reserve-forest hover:bg-stone-800 text-white rounded-lg text-xs font-bold transition-all shadow-sm">Ver Tutorial</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-l-4 border-sky-500 bg-sky-50/50 p-4 rounded-r-lg text-sky-800">
+                    <p class="font-bold text-sm">💡 ¿Quieres sugerir un nuevo videotutorial?</p>
+                    <p class="text-xs mt-1">Si detectas dudas recurrentes o quieres grabar una inducción sobre un nuevo proceso, ponte en contacto con la coordinación para añadirlo aquí.</p>
+                </div>
+            </div>
+        </div>
+
     <!-- 🤖 ADVANCED PANEL: Antigravity SKILL (hidden, triggered by robot button) -->
     <div id="advanced-panel" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end justify-end p-6" onclick="if(event.target===this)closeAdvanced()">
         <div class="bg-stone-900 text-stone-100 rounded-2xl shadow-2xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden border border-stone-700">
@@ -1168,7 +1257,7 @@ def compile_portal():
             populateCanvaEditorInputs();
 
             // Load form field presets
-            const formPresets = ['gen-type', 'gen-title', 'gen-datetime', 'gen-location', 'gen-description', 'gen-link', 'gen-season'];
+            const formPresets = ['gen-type', 'gen-title', 'gen-datetime', 'gen-location', 'gen-description', 'gen-link'];
             formPresets.forEach(id => {{
                 const saved = localStorage.getItem('rbsr_preset_' + id);
                 if (saved !== null) {{
@@ -1282,9 +1371,6 @@ def compile_portal():
         badgeElem.innerText = `${{seasonInfo.emoji}} ${{seasonInfo.text}}`;
         badgeElem.className = `font-title font-black text-sm uppercase px-3 py-1.5 rounded-full bg-white/10 text-white border border-white/20`;
 
-        // Set default generator season dropdown to current season
-        document.getElementById('gen-season').value = activeSeason;
-
         // Navigation Tabs switching
         function switchTab(tabId) {{
             // Hide all tabs
@@ -1304,7 +1390,7 @@ def compile_portal():
             }});
             
             const activeBtn = document.getElementById(`btn-${{tabId}}`);
-            if (tabId === 'generador') {{
+            if (['generador', 'instrucciones', 'qna', 'tutoriales'].includes(tabId)) {{
                 activeBtn.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full bg-reserve-forest text-white shadow-sm flex items-center gap-1";
             }} else {{
                 activeBtn.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full bg-reserve-forest text-white shadow-sm";
@@ -1353,10 +1439,10 @@ def compile_portal():
             const location = document.getElementById('gen-location').value.trim() || 'Municipio de la Sierra';
             const description = document.getElementById('gen-description').value.trim() || 'Una propuesta para conectar con nuestro entorno y descubrir la magia del paisaje serrano en un taller guiado por personas expertas.';
             const link = document.getElementById('gen-link').value.trim() || 'www.sierradelrincon.org';
-            const season = document.getElementById('gen-season').value;
+            const season = getSeason();
 
             // Save form presets to localStorage
-            const presetMap = {{ 'gen-type': type, 'gen-title': title, 'gen-datetime': datetime, 'gen-location': location, 'gen-description': description, 'gen-link': link, 'gen-season': season }};
+            const presetMap = {{ 'gen-type': type, 'gen-title': title, 'gen-datetime': datetime, 'gen-location': location, 'gen-description': description, 'gen-link': link }};
             Object.keys(presetMap).forEach(k => localStorage.setItem('rbsr_preset_' + k, presetMap[k]));
 
             // Seasonal sensory details
@@ -1397,15 +1483,11 @@ def compile_portal():
             let textPrompt = '';
 
             // Canva links resolution
-            const postKey = `${{season}}_post`;
-            const storyKey = `${{season}}_story`;
-            const postUrl = canvaTemplates[postKey] || canvaTemplates['generica_post'];
-            const storyUrl = canvaTemplates[storyKey] || canvaTemplates['generica_story'];
-
-            document.getElementById('link-canva-post-ig').href = postUrl;
-            document.getElementById('link-canva-post-ig').innerText = `Plantilla de Post (${{season.toUpperCase()}})`;
-            document.getElementById('link-canva-story-ig').href = storyUrl;
-            document.getElementById('link-canva-story-ig').innerText = `Plantilla de Story (${{season.toUpperCase()}})`;
+            document.getElementById('link-canva-1-1').href = canvaTemplates['template_1_1'];
+            document.getElementById('link-canva-4-5').href = canvaTemplates['template_4_5'];
+            document.getElementById('link-canva-9-16').href = canvaTemplates['template_9_16'];
+            document.getElementById('link-canva-16-9').href = canvaTemplates['template_16_9'];
+            document.getElementById('link-canva-wa-1-1').href = canvaTemplates['template_1_1'];
 
             // Calculate Story length dynamics
             const descLength = description.length;

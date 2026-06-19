@@ -46,10 +46,3 @@ El tono de voz de la Reserva no es el de una corporación lejana ni el de una of
     *   *Ejemplo*: "Sentir el crujir de las hojas secas en otoño, el olor a tierra húmeda en primavera o el silencio del invierno serrano."
 *   **Institucional Accesible**: Cuando hay que comunicar normas, subvenciones o actas oficiales, lo hacemos con rigor absoluto pero con un lenguaje limpio, directo y libre de tecnicismos estériles.
 
----
-
-## 5. Cláusula Oficial de la Marca (Incorporación Obligatoria)
-Este fragmento de texto debe incorporarse al final de todos los comunicados oficiales, folletos, memorias y pies de páginas de la web en un formato de fuente secundario e inferior para mantener el alineamiento institucional:
-
-> **Texto Oficial:**
-> *"Entidad perteneciente a la comarca de la Sierra del Rincón, declarada Reserva de la Biosfera por la UNESCO el 26 de junio de 2005. Esta declaración supone la puesta en práctica de los valores del Programa MaB (Hombre y Biosfera), que promueve la armonización de un desarrollo socioeconómico sostenible con la conservación del patrimonio natural y cultural. De este modo, se contribuye a la investigación y conocimiento del medio ambiente, incluyendo el ámbito social, así como el compromiso con el desarrollo de políticas relativas a la utilización racional de los recursos naturales y culturales."*

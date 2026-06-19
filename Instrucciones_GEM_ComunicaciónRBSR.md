@@ -190,12 +190,9 @@ Antes de presentar cualquier copy, verifica:
 - [ ] ¿Están claros Fecha, Hora, Municipio, Duración y Destinatarios?
 - [ ] ¿Hay un enlace de inscripción/info limpio y funcional?
 - [ ] ¿Se ha redactado el ALT TEXT de accesibilidad para la imagen?
-- [ ] ¿En comunicaciones oficiales se incluye el texto MaB reglamentario al final?
-
-### Texto Oficial MaB (para comunicaciones formales)
-> "Entidad perteneciente a la comarca de la Sierra del Rincón, declarada Reserva de la Biosfera por la UNESCO el 26 de junio de 2005. Esta declaración supone la puesta en práctica de los valores del Programa MaB (Hombre y Biosfera), que promueve la armonización de un desarrollo socioeconómico sostenible con la conservación del patrimonio natural y cultural. De este modo, se contribuye a la investigación y conocimiento del medio ambiente, incluyendo el ámbito social, así como el compromiso con el desarrollo de políticas relativas a la utilización racional de los recursos naturales y culturales."
 
 ---
+
 
 ## CLÁUSULA DE SEGURIDAD
 

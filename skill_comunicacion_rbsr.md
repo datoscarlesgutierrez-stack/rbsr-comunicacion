@@ -20,7 +20,7 @@ Para formular cualquier plan estratégico, redactar copys de redes o proponer im
 
 *   🟢 **Matriz de Mensajes y Plantillas (Excel)**: `https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507` (Usado para estructurar mensajes con Titular, Descripción y Texto Largo, respetando el tono cercano y estacional).
 *   📂 **Directorio de Recursos:** `/recursos/`
-    1.  [1_esencia_y_valores.md](recursos/1_esencia_y_valores.md): Propósito, visión, valores, tono de voz y texto legal MaB.
+    1.  [1_esencia_y_valores.md](recursos/1_esencia_y_valores.md): Propósito, visión, valores y tono de voz.
     2.  [2_sistema_visual.md](recursos/2_sistema_visual.md): Reglas de logos, paleta oficial de marca (`#b8be3f`, `#585615`, `#4d7c67`) y paletas estacionales/genérica de Canva (`#88ab81`, `#fefaed`, `#92b115`, `#ff8ac7`, `#65b9f0`, `#e7b43f`, etc.), tipografía e indicaciones de imagen.
     3.  [3_canales_y_plantillas.md](recursos/3_canales_y_plantillas.md): Guía de uso del Excel de Plantillas y Protocolo paso a paso, estructuras específicas y ejemplos de Instagram, LinkedIn, WhatsApp y Blog.
     4.  [4_estrategia_y_planificacion.md](recursos/4_estrategia_y_planificacion.md): Los 7 ejes temáticos, secciones fijas (`#AgendaRBSR`, `#SabíasQue`, `#GenteDelBosque`) y checklist de calidad.

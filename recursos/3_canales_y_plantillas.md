@@ -15,19 +15,13 @@ Disponemos de una **Matriz de Mensajes en Excel** que sirve como guía unificada
 
 ---
 
-### 🎨 Enlaces a las Plantillas de Diseño en Canva
+### 🎨 Enlaces a las Plantillas de Diseño en Canva (Resoluciones)
 *Puedes editar estos enlaces directamente en esta documentación si cambian de ubicación. El generador de post los leerá automáticamente.*
 
-*   **Genérica (Post)**: `https://www.canva.com/design/DAF-generica-post-rbsr/view`
-*   **Genérica (Story)**: `https://www.canva.com/design/DAF-generica-story-rbsr/view`
-*   **Primavera (Post)**: `https://www.canva.com/design/DAF-primavera-post-rbsr/view`
-*   **Primavera (Story)**: `https://www.canva.com/design/DAF-primavera-story-rbsr/view`
-*   **Verano (Post)**: `https://www.canva.com/design/DAF-verano-post-rbsr/view`
-*   **Verano (Story)**: `https://www.canva.com/design/DAF-verano-story-rbsr/view`
-*   **Otoño (Post)**: `https://www.canva.com/design/DAF-otono-post-rbsr/view`
-*   **Otoño (Story)**: `https://www.canva.com/design/DAF-otono-story-rbsr/view`
-*   **Invierno (Post)**: `https://www.canva.com/design/DAF-invierno-post-rbsr/view`
-*   **Invierno (Story)**: `https://www.canva.com/design/DAF-invierno-story-rbsr/view`
+*   **Plantilla 1:1 (Meta)**: `https://canva.link/metarsrb`
+*   **Plantilla 4:5**: `https://canva.link/933xncglzshcqxy`
+*   **Plantilla 16:9**: `https://canva.link/fgesdrt0q2oji1v`
+*   **Plantilla 9:16 (Story)**: `https://www.canva.com/brand/brand-templates/EAHM51TADAc`
 
 ---
 
@@ -155,9 +149,20 @@ Cada mensaje es una pequeña puerta de entrada a la Sierra del Rincón. No comun
     2.  **Entrada Estratégica**: Párrafo de 3-4 líneas resumiendo el valor conceptual de lo que se va a narrar.
     3.  **Bloques Modulares**: Subtítulos descriptivos con párrafos cortos (máx. 5 líneas por párrafo) combinando curiosidades de naturaleza con el impacto de la comunidad local.
     4.  **Cierre con Alma**: Una reflexión vinculada al territorio, la custodia y el futuro.
-    5.  **Anexo del Lector**: Ficha de datos prácticos y el texto institucional MaB reglamentario.
+    5.  **Anexo del Lector**: Ficha de datos prácticos.
 
 ### Plantilla de SEO para Entradas de Blog
 *   **Título SEO**: `[Tema del Artículo] | Reserva Biosfera Sierra del Rincón` (Máx. 60 caracteres).
 *   **Meta Descripción**: Un resumen cautivador de 140-155 caracteres que contenga llamada a la acción y palabras clave como "sostenibilidad", "senderismo responsable" o "Sierra del Rincón".
 *   **Encabezados (H1, H2, H3)**: Un solo H1 por página (el título del post), y secciones separadas por H2 con títulos sugerentes.
+
+---
+
+## 🎥 Video Tutoriales y Formación
+Para asimilar el uso de las plantillas y el flujo de trabajo en la Reserva, dispones de los siguientes video tutoriales explicativos:
+
+*   **Elegir y guardar una PLANTILLA para comunicación**: [Ver en Loom](https://www.loom.com/share/25fd2d8b8feb4dc3969bbacbe9052c7b)
+*   **Matriz de Mensajes de la RBSR Comunicación**: [Ver Presentación Google Slides](https://docs.google.com/presentation/d/1G6qysB5xTwcyReyiHJ7HnxBQECbucpSCnHlLozRybAA/edit?usp=sharing)
+*   **Como hacer publicación PARTE 1 (Canva, Edición de Textos)**: [Ver en Loom](https://www.loom.com/share/b118740a435a4f028474da3212ebf607)
+*   **Como hacer publicación PARTE 2 (Caso Meta, Sheets, Canva)**: [Ver en Loom](https://www.loom.com/share/a5719f254b5a44248b286fdee2fe161c)
+

@@ -78,4 +78,4 @@ Antes de que un post, WhatsApp o entrada de blog salga a la luz, el técnico o r
 - [ ] **Datos Críticos**: ¿Están claros y visibles los datos de logística? (Fecha, Hora de encuentro, Municipio de la actividad, Duración, Destinatarios).
 - [ ] **Llamada a la Acción (CTA)**: ¿Contiene un botón o enlace directo y limpio para realizar la reserva o inscripción?
 - [ ] **Accesibilidad (ALT)**: ¿Se ha redactado y adjuntado el texto alternativo detallado que describe la imagen para personas con discapacidad visual?
-- [ ] **Firma Institucional**: En el caso de notas de prensa, correos masivos oficiales o folletos, ¿se ha incluido el texto oficial MaB reglamentario al final en tamaño de letra secundario?
+
