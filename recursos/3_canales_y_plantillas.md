@@ -21,7 +21,7 @@ Disponemos de una **Matriz de Mensajes en Excel** que sirve como guía unificada
 *   **Plantilla 1:1 (Meta)**: `https://canva.link/metarsrb`
 *   **Plantilla 4:5**: `https://canva.link/933xncglzshcqxy`
 *   **Plantilla 16:9**: `https://canva.link/fgesdrt0q2oji1v`
-*   **Plantilla 9:16 (Story)**: `https://www.canva.com/brand/brand-templates/EAHM51TADAc`
+*   **Plantilla 9:16 (Story)**: `https://canva.link/ql314ijqwb1k2qe`
 
 ---
 

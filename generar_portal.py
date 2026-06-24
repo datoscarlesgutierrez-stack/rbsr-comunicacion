@@ -371,7 +371,7 @@ def compile_portal():
         "template_1_1": "https://canva.link/metarsrb",
         "template_4_5": "https://canva.link/933xncglzshcqxy",
         "template_16_9": "https://canva.link/fgesdrt0q2oji1v",
-        "template_9_16": "https://www.canva.com/brand/brand-templates/EAHM51TADAc"
+        "template_9_16": "https://canva.link/ql314ijqwb1k2qe"
     }
     for k, v in defaults.items():
         if k not in canva_links:
@@ -503,20 +503,20 @@ def compile_portal():
 
     <!-- Top Premium Brand Header -->
     <header class="glass sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="flex items-center gap-4">
+        <button onclick="switchTab('esencia'); window.scrollTo({{top: 0, behavior: 'smooth'}});" class="flex items-center text-left gap-4 hover:opacity-90 active:scale-[0.99] transition-all focus:outline-none group">
             <!-- Simulated Premium Botanical Logo Representation -->
-            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-reserve-forest to-reserve-olive flex items-center justify-center text-white font-title font-black text-lg shadow-md select-none">
-                SR
+            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-reserve-forest to-reserve-olive flex items-center justify-center text-white font-title font-black text-sm tracking-tighter shadow-md select-none group-hover:shadow-lg transition-all">
+                SBSR
             </div>
             <div>
-                <h1 class="font-title font-black text-xl tracking-tight text-reserve-forest flex items-center gap-2">
+                <h1 class="font-title font-black text-xl tracking-tight text-reserve-forest flex items-center gap-2 group-hover:text-reserve-olive transition-colors">
                     Reserva de la Biosfera <span class="text-reserve-olivedark font-medium">Sierra del Rincón</span>
                 </h1>
                 <p class="text-xs text-stone-500 uppercase tracking-widest font-semibold flex items-center gap-1.5 mt-0.5">
-                    🌿 Programa Man & Biosphere (MaB) - UNESCO
+                    🌿 Programa de Comunicación · Reserva de la Biosfera (UNESCO)
                 </p>
             </div>
-        </div>
+        </button>
         
         <!-- Navigation Menu -->
         <nav class="flex flex-wrap gap-1.5 bg-stone-100/80 p-1 rounded-full border border-stone-200">

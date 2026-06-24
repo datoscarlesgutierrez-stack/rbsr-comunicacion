@@ -1,203 +1,99 @@
-# 🌿 Portal de Comunicación RBSR
-**Reserva de la Biosfera Sierra del Rincón — Toolkit Digital para Técnicos**
+# 🌿 Portal de Comunicación y Recursos - Reserva de la Biosfera Sierra del Rincón (RBSR)
+**Toolkit Digital para Técnicos Locales de Comunicación**
 
-Portal web interactivo y sistema modular de recursos para la gestión de la comunicación de la **Reserva de la Biosfera Sierra del Rincón (RBSR)**, declarada por la UNESCO en 2005 bajo el programa MaB.
+Este repositorio contiene el código fuente, los recursos editoriales y las herramientas de automatización del **Portal de Comunicación de la Reserva de la Biosfera Sierra del Rincón (RBSR)**. El portal centraliza el tono de marca, manuales visuales, estrategias y un generador interactivo de posts alineados con las directrices del plan estratégico.
 
-🔗 **Portal online:** [datoscarlesgutierrez-stack.github.io/rbsr-comunicacion](https://datoscarlesgutierrez-stack.github.io/rbsr-comunicacion)
-📁 **Repositorio:** [github.com/datoscarlesgutierrez-stack/rbsr-comunicacion](https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion)
-
----
-
-## ¿Qué contiene?
-
-| Sección del portal | Descripción |
-| :--- | :--- |
-| 🌸 **Esencia** | Propósito, visión, valores y tono de voz de la marca RBSR |
-| 🎨 **Manual Visual** | Paleta oficial de marca + 4 paletas estacionales Canva (clic para copiar HEX) y tipografías |
-| 📝 **Plantillas** | Guía del Excel de plantillas y protocolo estacional + estructuras por canal (IG, LinkedIn, WhatsApp) |
-| 📊 **Estrategia** | 7 ejes temáticos, secciones fijas (`#AgendaRBSR`, `#GenteDelBosque`) y checklist de calidad |
-| ⚙️ **Generador de Post** | Formulario que produce copys multicanal + prompt de IA + ALT TEXT en segundos |
-| 📋 **Instrucciones IA** | Bloques de texto copiables para GEM (Google Gemini), ChatGPT Custom GPT y Canva (Voz de Marca) |
-| ❓ **Q&A** | Base de conocimiento buscable con preguntas y respuestas validadas |
-| 🤖 **Modo Avanzado** | Panel oculto (robot en esquina inferior derecha): SKILL de Antigravity + acceso al repositorio |
+*   🔗 **Portal online:** [datoscarlesgutierrez-stack.github.io/rbsr-comunicacion](https://datoscarlesgutierrez-stack.github.io/rbsr-comunicacion)
+*   📁 **Repositorio:** [github.com/datoscarlesgutierrez-stack/rbsr-comunicacion](https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion)
 
 ---
 
-## Guía Rápida de Uso
+## 🛠️ ¿Para qué sirve `generar_portal.py`?
 
-### 🌿 Flujo de trabajo habitual para publicar
+El archivo `generar_portal.py` es el **compilador/generador estático del portal**. Se encarga de procesar los archivos de contenido en formato Markdown y empaquetarlos en la web final. Sus funciones específicas son:
 
-1. **Consulta la estación** — El banner de inicio muestra la estación activa. Eso determina el tono y la paleta que debes usar.
-2. **Abre el Excel de plantillas** — En la pestaña **Plantillas** encontrarás el enlace al Google Sheet con los textos base estacionales. Sigue el paso a paso descrito ahí.
-3. **Usa el Generador de Post** — Rellena el formulario con los datos de tu actividad o noticia y pulsa **Generar**. En segundos obtienes copys para Instagram, WhatsApp y LinkedIn, más un prompt de imagen y un ALT TEXT de accesibilidad.
-4. **Copia las instrucciones de IA** — Desde la pestaña **Instrucciones IA** puedes copiar de un clic el bloque de instrucciones completo para usarlo en GEM (Google Gemini), ChatGPT o Canva.
-5. **Consulta el Q&A** — Si tienes una duda sobre tipografía, colores, hashtags o herramientas, búscala en el buscador de la pestaña Q&A.
-
-### ⚙️ ¿El Generador de Post usa IA?
-
-**No.** El generador es una herramienta de **combinación de plantillas** que funciona 100% en tu navegador sin conexión a ningún servidor ni API de IA. Toma los datos del formulario (título, lugar, fecha, descripción, estación) y los inserta en estructuras de texto predefinidas y alineadas con el tono de la Reserva.
-
-**Flujo recomendado**:
-> Rellena el formulario → Genera → Revisa el borrador → Si quieres más profundidad, cópialo en tu GEM de la Reserva y pídele que lo pula manteniendo el tono de la Sierra.
-
-Los textos generados son borradores listos para publicar o para usarse como punto de partida con cualquier asistente de IA.
+1.  **Conversión de Contenidos (Markdown ➔ HTML)**:
+    *   Lee los archivos origen (`.md`) dentro de la carpeta `recursos/` (esencia, sistema visual, plantillas, estrategia, Q&A).
+    *   Analiza y convierte elementos markdown (títulos, tablas, citas, listas, enlaces, alertas especiales) en código HTML estilizado con Tailwind CSS mediante expresiones regulares optimizadas.
+2.  **Extracción Dinámica de Enlaces Canva**:
+    *   Escanea `recursos/3_canales_y_plantillas.md` buscando los enlaces a plantillas Canva y genera un objeto JSON que inyecta en el portal.
+3.  **Generación de Tarjetas Q&A**:
+    *   Parsea el documento de preguntas frecuentes (`6_qna.md`) y crea tarjetas dinámicas interactivas listas para el buscador del portal.
+4.  **Ensamblaje del Portal (`index.html`)**:
+    *   Carga todo el contenido procesado, los prompts de IA y la estructura web, y los empaqueta en un único archivo HTML autocontenido (`index.html`) en la raíz del proyecto.
 
 ---
 
+## ⚙️ ¿Cómo funciona este portal web?
 
+El portal está diseñado bajo la filosofía de **Single Page Application (SPA)** y es completamente estático y autocontenido. Funciona de la siguiente manera:
 
-**Paleta Oficial de Marca** (posters, infografías, papelería):
-
-| Color | HEX | Uso |
-| :--- | :--- | :--- |
-| Verde Brote | `#b8be3f` (Pantone 583C) | Acentos, CTA, iconos |
-| Olivo Oscuro | `#585615` (Pantone 581C) | Textos secundarios, contornos |
-| Verde Bosque | `#4d7c67` (Pantone 624C) | Cabeceras institucionales |
-| Crema Orgánico | `#f4f3ed` | Fondo principal |
-| Negro Pizarra | `#1c1e1a` | Texto principal |
-
-**Paletas Canva** (redes sociales y plantillas): Genérica · Primavera · Verano · Invierno  
-**Tipografía Canva**: `Montserrat Bold` (titulares) + `News Cycle Regular` (cuerpo)
+*   **Sin Servidor (Client-side)**: No requiere bases de datos ni backends. Todo el portal se ejecuta localmente en el navegador del usuario a partir del archivo `index.html`.
+*   **Diseño Premium con Tailwind CSS**: Carga Tailwind CSS desde un CDN para ofrecer una interfaz moderna y adaptativa (responsive) para móviles, tablets y ordenadores con paletas cromáticas naturales adaptadas a la Reserva.
+*   **Navegación Dinámica (Tabs)**: Utiliza Vanilla JavaScript para conmutar las pestañas instantáneamente sin recargar la página. Al pulsar los menús o el logo `SBSR`, el sitio cambia de sección de forma suave y limpia.
+*   **Generador de Post Seguro y Privado**: El formulario de generación de posts procesa la información localmente en tu ordenador. Construye copys optimizados para WhatsApp, Instagram y LinkedIn, y redacta prompts de imágenes y textos alternativos (ALT text) sin enviar ningún dato a APIs externas.
+*   **Persistencia de Enlaces**: Permite a los técnicos modificar los enlaces de Canva en caliente; estos cambios se guardan localmente en el `localStorage` del navegador para futuras sesiones.
 
 ---
 
-## Cómo Actualizar el Portal
+## 📁 Estructura del Repositorio
 
-1. Edita cualquier archivo `.md` en la carpeta `recursos/`
-2. Compila:
-   ```bash
-   python3 generar_portal.py
-   ```
-3. Publica en GitHub Pages:
-   ```bash
-   git add -A && git commit -m "Actualización" && git push
-   ```
-
-> El portal se regenera completamente como un único `index.html` autocontenido. GitHub Pages lo publica automáticamente al hacer push a `main`.
-
----
-
-## Estructura del Repositorio
-
-```
+```text
 .
-├── index.html                            # Portal web (autogenerado — no editar a mano)
-├── generar_portal.py                     # Compilador Markdown → HTML
-├── skill_comunicacion_rbsr.md            # SKILL del agente Antigravity
-├── Instrucciones_GEM_ComunicaciónRBSR.md # Instrucciones completas para GEM
-├── README.md
+├── index.html                            # Portal web final compilado (no editar a mano)
+├── generar_portal.py                     # Script compilador (Markdown ➔ HTML)
+├── skill_comunicacion_rbsr.md            # Archivo de contexto del Agente de IA en Antigravity
+├── Instrucciones_GEM_ComunicaciónRBSR.md # Instrucciones listas para inyectar en Google Gemini (GEM)
+├── README.md                             # Este manual explicativo
 │
-└── recursos/                             # Módulos editables (fuente de verdad)
-    ├── 1_esencia_y_valores.md
-    ├── 2_sistema_visual.md               # Colores, tipografías, logotipo
-    ├── 3_canales_y_plantillas.md         # Guía Excel + directrices por canal
-    ├── 4_estrategia_y_planificacion.md
-    ├── 5_instrucciones_plataformas.md    # GEM, ChatGPT y Canva (voz de marca)
-    └── 6_qna.md                          # Base de conocimiento Q&A
-```
-
----
-
-## Contacto
-
-**Reserva de la Biosfera Sierra del Rincón**  
-Calle Iglesia nº10, Prádena del Rincón — Madrid (28191), España  
-📧 reservabiosferasierradelrincon@gmail.com
-
-
----
-
-## ¿Qué es este proyecto?
-
-Este repositorio contiene todo lo necesario para que los técnicos de la Reserva de la Biosfera Sierra del Rincón puedan comunicar de manera coherente, eficaz y alineada con la identidad de marca del territorio. Incluye:
-
-- **Directrices editoriales y visuales** de la marca RBSR (colores, tipografías, logotipo, tono de voz).
-- **Plantillas multicanal** listas para usar en Instagram, LinkedIn, WhatsApp y Blog.
-- **Instrucciones para Agentes de IA** adaptadas para Google Gemini (GEM), ChatGPT Custom GPT y Canva (Voz de la marca).
-- **Generador interactivo de copys** que produce en segundos textos optimizados para cada red social.
-- **Base de conocimiento Q&A** consultable y buscable en tiempo real.
-
-Todo compilado en un único archivo `index.html` autocontenido — sin servidores ni dependencias externas.
-
----
-
-## Estructura del Repositorio
-
-```
-.
-├── index.html                          # Portal web interactivo (autogenerado)
-├── generar_portal.py                   # Script compilador (Markdown → HTML)
-├── skill_comunicacion_rbsr.md          # SKILL raíz del Agente de IA
-├── Instrucciones_GEM_ComunicaciónRBSR.md  # Instrucciones completas para GEM
-├── README.md                           # Este archivo
+├── recursos/                             # Documentos fuente editables (fuente de verdad)
+│   ├── 1_esencia_y_valores.md            # Identidad, visión, valores y tono de voz
+│   ├── 2_sistema_visual.md               # Paleta oficial de marca, tipografías y reglas del logo
+│   ├── 3_canales_y_plantillas.md         # Directrices de canales de red social y enlaces Canva
+│   ├── 4_estrategia_y_planificacion.md   # Los 7 ejes estratégicos, secciones fijas y checklist
+│   ├── 5_instrucciones_plataformas.md    # Prompts de sistema para GEM, ChatGPT y Canva
+│   └── 6_qna.md                          # Base de conocimiento (Preguntas y Respuestas)
 │
-├── recursos/                           # Módulos editables (fuente de verdad)
-│   ├── 1_esencia_y_valores.md          # Propósito, visión, valores y tono de voz
-│   ├── 2_sistema_visual.md             # Colores, tipografías, logotipo e imagen
-│   ├── 3_canales_y_plantillas.md       # Directrices por canal + plantillas
-│   ├── 4_estrategia_y_planificacion.md # 7 ejes, secciones fijas y checklist
-│   ├── 5_instrucciones_plataformas.md  # GEM, ChatGPT y Canva (voz de marca)
-│   └── 6_qna.md                        # Base de conocimiento Q&A
-│
-└── Fuentes/                            # Documentos origen del proyecto
+└── Fuentes/                              # Documentación original e histórica del proyecto
     ├── Plan Estrategico Biosfera de la Sierra del Rincon (BSR) - Feb 2- 2026-1.pdf
     └── Prompt Ejemplo Rerva del Rincón.pdf
 ```
 
 ---
 
-## Cómo Actualizar el Portal
+## 🚀 Guía de Actualización y Despliegue
 
-1. Edita cualquier archivo `.md` de la carpeta `recursos/` con un editor de texto.
-2. Ejecuta el compilador desde la carpeta raíz del proyecto:
-   ```bash
-   python3 generar_portal.py
-   ```
-3. El archivo `index.html` se regenera automáticamente con todos los cambios.
-4. Sube los cambios a GitHub:
-   ```bash
-   git add -A && git commit -m "Actualización de recursos" && git push
-   ```
+Si necesitas realizar un cambio en los textos oficiales o añadir información al Q&A, el flujo es el siguiente:
 
-> El portal se publica automáticamente en GitHub Pages al hacer `push` a la rama `main`.
-
----
-
-## Funcionalidades del Portal
-
-| Sección | Descripción |
-| :--- | :--- |
-| 🌸 **Esencia** | Propósito, visión, valores y tono de voz de la marca |
-| 🎨 **Manual Visual** | Paleta de colores interactiva (clic para copiar HEX), tipografías y directrices de imagen |
-| 📝 **Plantillas** | Estructuras de texto listas para Instagram, LinkedIn, WhatsApp y Blog |
-| 📊 **Estrategia** | 7 ejes temáticos, secciones fijas del calendario y checklist de calidad |
-| ⚙️ **Generador de Post** | Formulario que genera al instante copys multicanal + prompt de IA + ALT TEXT |
-| 📋 **Instrucciones IA** | Versiones adaptadas para GEM, ChatGPT y Canva con botón "Copiar todo" |
-| ❓ **Q&A** | Base de conocimiento buscable con preguntas y respuestas validadas |
-| 🤖 **SKILL Agente** | Referencia técnica del SKILL raíz del agente de comunicación |
+1.  **Edita el archivo fuente**: Modifica el archivo correspondiente dentro de la carpeta `recursos/` (por ejemplo, `recursos/6_qna.md` para añadir una nueva pregunta).
+2.  **Compila el portal**: Abre tu terminal en la carpeta raíz y ejecuta:
+    ```bash
+    python3 generar_portal.py
+    ```
+    *(Esto actualizará automáticamente `index.html` con tus cambios)*.
+3.  **Sube los cambios a GitHub**:
+    ```bash
+    git add -A
+    git commit -m "Actualizar recursos del portal"
+    git push
+    ```
+4.  **Publicación automática**: GitHub Pages detectará la actualización en la rama `main` y publicará los cambios online de forma automática en pocos segundos.
 
 ---
 
-## Identidad Visual (Resumen Rápido)
+## 👥 Desarrollo y Autoría
 
-| Token | Valor | Uso |
-| :--- | :--- | :--- |
-| Verde Brote | `#b8be3f` (Pantone 583C) | Acentos, CTA, iconos |
-| Olivo Oscuro | `#585615` (Pantone 581C) | Textos secundarios, contornos |
-| Verde Bosque | `#4d7c67` (Pantone 624C) | Cabeceras institucionales |
-| Crema Orgánico | `#f4f3ed` | Fondo principal (nunca blanco puro) |
-| Negro Pizarra | `#1c1e1a` | Texto principal |
-| Tipografía Titulares | Montserrat Bold | H1, H2, botones |
-| Tipografía Cuerpo | Calibri / News Cycle | Párrafos y texto largo |
+Este portal y su sistema de automatización y compilación ha sido conceptualizado y desarrollado por:
+
+*   **Desarrollo Tecnológico y Digital**: **[Carles Gutiérrez Vallès](https://carlesgutierrez.github.io/consultoria-digital/)** (Consultoría Tecnológica, Desarrollo Web y Automatización).
+*   **Marketing y Comunicación**: **Nicolas Serna** (Estrategia de Marketing Digital y Comunicación Territorial).
+
+Diseñado específicamente como un toolkit digital avanzado para la Mancomunidad y el equipo técnico de la **Reserva de la Biosfera Sierra del Rincón**, declarada por la UNESCO el 26 de junio de 2005.
 
 ---
 
-## Contacto
+## 📞 Contacto
 
-**Reserva de la Biosfera Sierra del Rincón**
-Calle Iglesia nº10, Prádena del Rincón — Madrid (28191), España
-📧 reservabiosferasierradelrincon@gmail.com
-
----
-
-*Co-desarrollado por [Carles Gutiérrez Vallès](https://carlesgutierrez.github.io/consultoria-digital/) con la ayuda de Nicolas Serna (Marketing Digital) como toolkit digital de comunicación territorial. Declarada Reserva de la Biosfera por la UNESCO el 26 de junio de 2005.*
+**Reserva de la Biosfera Sierra del Rincón**  
+Calle Iglesia nº10, Prádena del Rincón — Madrid (28191), España  
+📧 [reservabiosferasierradelrincon@gmail.com](mailto:reservabiosferasierradelrincon@gmail.com)
