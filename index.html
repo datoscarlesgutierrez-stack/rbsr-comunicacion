@@ -46,6 +46,43 @@
         code, pre, .font-mono {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
+        /* ─── Modo Alto Contraste y Accesibilidad ────────────────────────────── */
+        html.accessibility-mode {
+            font-size: 112% !important;
+        }
+        html.accessibility-mode body {
+            background-color: #f4f2e6 !important;
+            color: #000000 !important;
+        }
+        html.accessibility-mode *, 
+        html.accessibility-mode *::before, 
+        html.accessibility-mode *::after {
+            font-weight: 500 !important;
+        }
+        html.accessibility-mode p, 
+        html.accessibility-mode span, 
+        html.accessibility-mode li, 
+        html.accessibility-mode td, 
+        html.accessibility-mode label,
+        html.accessibility-mode blockquote {
+            color: #000000 !important;
+        }
+        html.accessibility-mode .text-stone-500,
+        html.accessibility-mode .text-stone-600,
+        html.accessibility-mode .text-stone-400,
+        html.accessibility-mode .text-stone-700 {
+            color: #111111 !important;
+            font-weight: 600 !important;
+        }
+        html.accessibility-mode .glass,
+        html.accessibility-mode div,
+        html.accessibility-mode section {
+            border-color: #333333 !important;
+        }
+        html.accessibility-mode button,
+        html.accessibility-mode .tab-btn {
+            border: 2px solid #000000 !important;
+        }
         /* ─────────────────────────────────────────────────────────────────────── */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -71,59 +108,66 @@
             opacity: 1;
         }
         .glass {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 223, 213, 0.5);
+            border: 1px solid rgba(226, 223, 213, 0.7);
         }
     </style>
 </head>
 <body class="bg-reserve-light text-reserve-slate min-h-screen flex flex-col font-sans selection:bg-reserve-olive/30 selection:text-reserve-olivedark">
 
     <!-- Top Premium Brand Header -->
-    <header class="glass sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+    <header class="glass sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col lg:flex-row justify-between items-center gap-4">
         <button onclick="switchTab('esencia'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center text-left gap-4 hover:opacity-90 active:scale-[0.99] transition-all focus:outline-none group">
             <!-- Logo oficial RBSR -->
             <img src="recursos/img/logo_solo.png" alt="Logo Reserva de la Biosfera Sierra del Rincón" class="w-12 h-12 object-contain select-none group-hover:scale-105 transition-all">
             <div>
-                <h1 class="font-title font-black text-xl tracking-tight text-reserve-forest flex items-center gap-2 group-hover:text-reserve-olive transition-colors">
+                <h1 class="font-title font-black text-xl md:text-2xl tracking-tight text-reserve-forest flex items-center gap-2 group-hover:text-reserve-olive transition-colors">
                     Reserva de la Biosfera <span class="text-reserve-olivedark font-medium">Sierra del Rincón</span>
                 </h1>
-                <p class="text-xs text-stone-500 uppercase tracking-widest font-semibold flex items-center gap-1.5 mt-0.5">
+                <p class="text-xs md:text-sm text-stone-700 uppercase tracking-widest font-bold flex items-center gap-1.5 mt-0.5">
                     🌿 Programa de Comunicación · Reserva de la Biosfera (UNESCO)
                 </p>
             </div>
         </button>
         
-        <!-- Navigation Menu -->
-        <nav class="flex flex-wrap gap-1.5 bg-stone-100/80 p-1 rounded-full border border-stone-200">
-            <button onclick="switchTab('esencia')" id="btn-esencia" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all active-tab bg-reserve-forest text-white shadow-sm">
-                🌸 Esencia
+        <div class="flex flex-wrap items-center justify-center lg:justify-end gap-3">
+            <!-- Navigation Menu -->
+            <nav class="flex flex-wrap gap-1.5 bg-stone-100/90 p-1 rounded-full border border-stone-300">
+                <button onclick="switchTab('esencia')" id="btn-esencia" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all active-tab bg-reserve-forest text-white shadow-sm">
+                    🌸 Esencia
+                </button>
+                <button onclick="switchTab('visual')" id="btn-visual" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
+                    🎨 Manual Visual
+                </button>
+                <button onclick="switchTab('plantillas')" id="btn-plantillas" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
+                    📝 Plantillas
+                </button>
+                <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
+                    📊 Estrategia
+                </button>
+                <button onclick="switchTab('manual')" id="btn-manual" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
+                    🏛️ Manual Anterior
+                </button>
+                <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
+                    🎥 Tutoriales
+                </button>
+                <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
+                    ⚙️ Generador de Post
+                </button>
+                <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
+                    📋 Instrucciones IA
+                </button>
+                <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
+                    ❓ Q&amp;A
+                </button>
+            </nav>
+
+            <!-- Accessibility / High Contrast Toggle Button -->
+            <button onclick="toggleAccessibility()" id="btn-accessibility" title="Activar / Desactivar Modo de Alto Contraste y Texto Grande" class="px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border border-stone-400 bg-white hover:bg-stone-100 text-stone-900 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95">
+                <span id="accessibility-icon">👁️</span> <span id="accessibility-text">Alto Contraste</span>
             </button>
-            <button onclick="switchTab('visual')" id="btn-visual" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
-                🎨 Manual Visual
-            </button>
-            <button onclick="switchTab('plantillas')" id="btn-plantillas" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
-                📝 Plantillas
-            </button>
-            <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
-                📊 Estrategia
-            </button>
-            <button onclick="switchTab('manual')" id="btn-manual" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
-                🏛️ Manual Anterior
-            </button>
-            <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
-                🎥 Tutoriales
-            </button>
-            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
-                ⚙️ Generador de Post
-            </button>
-            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
-                📋 Instrucciones IA
-            </button>
-            <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
-                ❓ Q&amp;A
-            </button>
-        </nav>
+        </div>
     </header>
 
     <!-- Main Container -->
@@ -136,20 +180,20 @@
                 <span class="px-2.5 py-1 rounded bg-reserve-olive text-reserve-forest font-title font-bold text-xs uppercase tracking-wider select-none">
                     Toolkit de los Técnicos
                 </span>
-                <h2 class="text-2xl md:text-3xl font-title font-bold tracking-tight">Portal de Comunicación y Recursos RBSR</h2>
-                <p class="text-stone-300 max-w-2xl text-sm leading-relaxed">
-                    Esta herramienta interactiva compila las directrices oficiales del plan estratégico para facilitar la redacción y alineación estética de las actividades de la Reserva sin esfuerzo.
+                <h2 class="text-2xl md:text-3xl font-black font-title tracking-tight">Manual de Comunicación y Recursos de la Reserva</h2>
+                <p class="text-stone-200 text-sm md:text-base max-w-2xl leading-relaxed">
+                    Portal de consulta activa para los técnicos de comunicación. Encuentra la guía visual, mensajes clave por municipio, plantillas directas y el generador multicanal.
                 </p>
             </div>
-            <div class="relative z-10 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl text-center flex flex-col items-center gap-1 shadow-sm">
-                <span class="text-2xl">🌲</span>
-                <span class="text-xs uppercase text-stone-300 font-bold tracking-widest">Estación Activa</span>
-                <span id="current-season-badge" class="font-title font-black text-reserve-olive text-sm uppercase">Cargando...</span>
+            
+            <div class="relative z-10 flex flex-col items-center md:items-end gap-2 shrink-0">
+                <span class="text-xs uppercase font-bold text-stone-300 tracking-wider">Estación del Año Activa</span>
+                <div id="current-season-badge" class="font-title font-black text-sm uppercase px-3.5 py-1.5 rounded-full bg-white/10 text-white border border-white/20">
+                    🌿 Cargando...
+                </div>
             </div>
         </div>
 
-        <!-- TABS PANELS CONTENT -->
-        
         <!-- Tab 1: Esencia -->
         <div id="tab-esencia" class="tab-content active space-y-6">
             <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
@@ -178,99 +222,101 @@ El tono de voz de la Reserva no es el de una corporación lejana ni el de una of
             <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
                 
                 <!-- Quick interactive color palettes -->
-                <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                <h3 class="text-2xl font-bold text-emerald-900 border-b border-stone-200 pb-3 flex items-center gap-2">
                     <span>🎨</span> Paletas de Colores para Redes Sociales
                 </h3>
                 
                 <div class="space-y-6">
                     <!-- Paletas Canva (Redes Sociales y Estacionalidad) -->
-                    <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3 flex items-center gap-1.5">
-                            <span class="inline-block w-2 h-2 rounded-full bg-violet-600"></span>
+                    <div class="space-y-4">
+                        <h4 class="text-base font-bold uppercase tracking-wider text-emerald-950 flex items-center gap-2">
+                            <span class="inline-block w-3 h-3 rounded-full bg-violet-600"></span>
                             Paletas Canva (Redes Sociales y Estacionalidad)
                         </h4>
-                        <p class="text-xs text-stone-500 mb-4">Combinaciones estacionales optimizadas para las plantillas de Canva. Haz clic sobre cualquier color para copiar su código HEX.</p>
+                        <p class="text-sm md:text-base font-medium text-stone-800 bg-emerald-50/80 border-l-4 border-emerald-600 p-4 rounded-r-xl leading-relaxed shadow-sm">
+                            Combinaciones estacionales optimizadas para las plantillas de Canva. Haz clic sobre cualquier color para copiar su código HEX al portapapeles.
+                        </p>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                             <!-- Paleta Genérica -->
-                            <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-3">
-                                <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">🔘 Genérica (Principal)</span>
-                                <div class="grid grid-cols-3 gap-2">
+                            <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <span class="text-sm font-bold text-stone-900 flex items-center gap-1.5">🔘 Genérica (Principal)</span>
+                                <div class="grid grid-cols-3 gap-2.5">
                                     <div onclick="copyToClipboard('#88ab81', 'HEX Verde Musgo Canva')" title="Verde Musgo Suave (#88ab81) - Transversal y recordatorios permanentes." class="group cursor-pointer text-center">
-                                        <div class="w-full h-12 rounded-lg bg-[#88ab81] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#88ab81</span>
+                                        <div class="w-full h-14 rounded-xl bg-[#88ab81] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-xs font-bold font-mono text-stone-800 block mt-1.5">#88ab81</span>
                                     </div>
                                     <div onclick="copyToClipboard('#fefaed', 'HEX Crema Hueso Canva')" title="Crema Hueso (#fefaed) - Fondo general para publicaciones limpias." class="group cursor-pointer text-center">
-                                        <div class="w-full h-12 rounded-lg bg-[#fefaed] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#fefaed</span>
+                                        <div class="w-full h-14 rounded-xl bg-[#fefaed] border border-stone-300 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-xs font-bold font-mono text-stone-800 block mt-1.5">#fefaed</span>
                                     </div>
                                     <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote Canva')" title="Verde Brote Canva (#92b115) - Acentuación y llamadas a la acción." class="group cursor-pointer text-center">
-                                        <div class="w-full h-12 rounded-lg bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#92b115</span>
+                                        <div class="w-full h-14 rounded-xl bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-xs font-bold font-mono text-stone-800 block mt-1.5">#92b115</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Paleta Primavera -->
-                            <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-3">
-                                <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">🌸 Primavera</span>
-                                <div class="grid grid-cols-4 gap-1.5">
+                            <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <span class="text-sm font-bold text-stone-900 flex items-center gap-1.5">🌸 Primavera</span>
+                                <div class="grid grid-cols-4 gap-2">
                                     <div onclick="copyToClipboard('#ff8ac7', 'HEX Rosa Floración')" title="Rosa Cerezo / Floración (#ff8ac7) - Tono estacional primaveral." class="group cursor-pointer text-center">
-                                        <div class="w-full h-10 rounded-lg bg-[#ff8ac7] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#ff8ac7</span>
+                                        <div class="w-full h-12 rounded-xl bg-[#ff8ac7] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[10px] font-mono font-bold text-stone-700 block mt-1.5">#ff8ac7</span>
                                     </div>
                                     <div onclick="copyToClipboard('#f1efe2', 'HEX Crema Primavera')" title="Crema Primavera (#f1efe2) - Fondo suave estacional." class="group cursor-pointer text-center">
-                                        <div class="w-full h-10 rounded-lg bg-[#f1efe2] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#f1efe2</span>
+                                        <div class="w-full h-12 rounded-xl bg-[#f1efe2] border border-stone-300 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[10px] font-mono font-bold text-stone-700 block mt-1.5">#f1efe2</span>
                                     </div>
                                     <div onclick="copyToClipboard('#92b115', 'HEX Verde Brote')" title="Verde Brote (#92b115) - Evoca el renacimiento silvestre." class="group cursor-pointer text-center">
-                                        <div class="w-full h-10 rounded-lg bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#92b115</span>
+                                        <div class="w-full h-12 rounded-xl bg-[#92b115] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[10px] font-mono font-bold text-stone-700 block mt-1.5">#92b115</span>
                                     </div>
                                     <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" title="Verde Pino Oscuro (#103f2b) - Estructura y fondo oscuro." class="group cursor-pointer text-center">
-                                        <div class="w-full h-10 rounded-lg bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#103f2b</span>
+                                        <div class="w-full h-12 rounded-xl bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[10px] font-mono font-bold text-stone-700 block mt-1.5">#103f2b</span>
                                     </div>
                                 </div>
                             </div>
                             <!-- Paleta Verano -->
-                            <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-3">
-                                <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">☀️ Verano</span>
-                                <div class="grid grid-cols-4 gap-1.5">
+                            <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <span class="text-sm font-bold text-stone-900 flex items-center gap-1.5">☀️ Verano</span>
+                                <div class="grid grid-cols-4 gap-2">
                                     <div onclick="copyToClipboard('#65b9f0', 'HEX Azul Río')" title="Azul Río / Frescor (#65b9f0) - Agua y cielo estival." class="group cursor-pointer text-center">
-                                        <div class="w-full h-10 rounded-lg bg-[#65b9f0] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#65b9f0</span>
+                                        <div class="w-full h-12 rounded-xl bg-[#65b9f0] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[10px] font-mono font-bold text-stone-700 block mt-1.5">#65b9f0</span>
                                     </div>
                                     <div onclick="copyToClipboard('#e7b43f', 'HEX Amarillo Sol')" title="Amarillo Sol / Trigo (#e7b43f) - Luz y madurez." class="group cursor-pointer text-center">
-                                        <div class="w-full h-10 rounded-lg bg-[#e7b43f] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#e7b43f</span>
+                                        <div class="w-full h-12 rounded-xl bg-[#e7b43f] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[10px] font-mono font-bold text-stone-700 block mt-1.5">#e7b43f</span>
                                     </div>
                                     <div onclick="copyToClipboard('#d7bf99', 'HEX Arena')" title="Arena de Río (#d7bf99) - Fondo y texturas terrosas." class="group cursor-pointer text-center">
-                                        <div class="w-full h-10 rounded-lg bg-[#d7bf99] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#d7bf99</span>
+                                        <div class="w-full h-12 rounded-xl bg-[#d7bf99] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[10px] font-mono font-bold text-stone-700 block mt-1.5">#d7bf99</span>
                                     </div>
                                     <div onclick="copyToClipboard('#103f2b', 'HEX Verde Pino')" title="Verde Pino Oscuro (#103f2b) - Estructura y legibilidad." class="group cursor-pointer text-center">
-                                        <div class="w-full h-10 rounded-lg bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[8px] font-mono text-stone-400 block mt-1">#103f2b</span>
+                                        <div class="w-full h-12 rounded-xl bg-[#103f2b] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-[10px] font-mono font-bold text-stone-700 block mt-1.5">#103f2b</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Paleta Invierno -->
-                            <div class="bg-white p-4 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-3">
-                                <span class="text-xs font-bold text-stone-800 flex items-center gap-1.5">❄️ Invierno</span>
-                                <div class="grid grid-cols-3 gap-2">
+                            <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-sm flex flex-col justify-between space-y-4">
+                                <span class="text-sm font-bold text-stone-900 flex items-center gap-1.5">❄️ Invierno</span>
+                                <div class="grid grid-cols-3 gap-2.5">
                                     <div onclick="copyToClipboard('#006a3e', 'HEX Verde Acebo')" title="Verde Acebo Oscuro (#006a3e) - Follaje invernal y acebos." class="group cursor-pointer text-center">
-                                        <div class="w-full h-12 rounded-lg bg-[#006a3e] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#006a3e</span>
+                                        <div class="w-full h-14 rounded-xl bg-[#006a3e] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-xs font-bold font-mono text-stone-800 block mt-1.5">#006a3e</span>
                                     </div>
                                     <div onclick="copyToClipboard('#9eb3c5', 'HEX Gris Ventisca')" title="Gris Ventisca / Pizarra (#9eb3c5) - Cumbres y roca fría." class="group cursor-pointer text-center">
-                                        <div class="w-full h-12 rounded-lg bg-[#9eb3c5] shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#9eb3c5</span>
+                                        <div class="w-full h-14 rounded-xl bg-[#9eb3c5] shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-xs font-bold font-mono text-stone-800 block mt-1.5">#9eb3c5</span>
                                     </div>
                                     <div onclick="copyToClipboard('#ffffff', 'HEX Blanco Nieve')" title="Blanco Nieve (#ffffff) - Claridad y nieve de las cumbres." class="group cursor-pointer text-center">
-                                        <div class="w-full h-12 rounded-lg bg-[#ffffff] border border-stone-200 shadow-inner transition-all hover:scale-105"></div>
-                                        <span class="text-[9px] font-mono text-stone-500 block mt-1">#ffffff</span>
+                                        <div class="w-full h-14 rounded-xl bg-[#ffffff] border border-stone-300 shadow-inner transition-all hover:scale-105"></div>
+                                        <span class="text-xs font-bold font-mono text-stone-800 block mt-1.5">#ffffff</span>
                                     </div>
                                 </div>
                             </div>
@@ -1674,6 +1720,34 @@ Cuando el usuario te pida redactar un contenido o planificar un post, estructura
 
             // Smooth scroll to tabs
             window.scrollTo({ top: 320, behavior: 'smooth' });
+        }
+
+        // Accessibility & High Contrast Toggle
+        function toggleAccessibility() {
+            const isAccess = document.documentElement.classList.toggle('accessibility-mode');
+            localStorage.setItem('rbsr_accessibility', isAccess ? 'true' : 'false');
+            updateAccessibilityBtn(isAccess);
+        }
+
+        function updateAccessibilityBtn(active) {
+            const icon = document.getElementById('accessibility-icon');
+            const text = document.getElementById('accessibility-text');
+            const btn = document.getElementById('btn-accessibility');
+            if (active) {
+                if (icon) icon.innerText = '👁️‍🗨️';
+                if (text) text.innerText = 'Contraste: ON';
+                if (btn) btn.className = "px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border-2 border-emerald-700 bg-emerald-800 text-white shadow-md flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95";
+            } else {
+                if (icon) icon.innerText = '👁️';
+                if (text) text.innerText = 'Alto Contraste';
+                if (btn) btn.className = "px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border border-stone-400 bg-white hover:bg-stone-100 text-stone-900 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95";
+            }
+        }
+
+        // Initialize Accessibility mode on load
+        if (localStorage.getItem('rbsr_accessibility') === 'true') {
+            document.documentElement.classList.add('accessibility-mode');
+            updateAccessibilityBtn(true);
         }
 
         // Toggle Form Inputs based on selected typolology
