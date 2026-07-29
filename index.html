@@ -100,6 +100,15 @@
         html.accessibility-mode .tab-btn {
             border: 2px solid #222222 !important;
         }
+        /* ─── Estilos de Selección de Texto (Mouse Highlight) ───────────────── */
+        ::selection {
+            background-color: #1e3b2e !important; /* Fondo verde oscuro de alto contraste */
+            color: #ffffff !important;            /* Texto blanco cristalino garantizado */
+        }
+        ::-moz-selection {
+            background-color: #1e3b2e !important;
+            color: #ffffff !important;
+        }
         /* ─────────────────────────────────────────────────────────────────────── */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -131,7 +140,7 @@
         }
     </style>
 </head>
-<body class="bg-reserve-light text-reserve-slate min-h-screen flex flex-col font-sans selection:bg-reserve-olive/30 selection:text-reserve-olivedark relative">
+<body class="bg-reserve-light text-reserve-slate min-h-screen flex flex-col font-sans relative">
 
     <!-- Top Premium Brand Header -->
     <header class="glass sticky top-0 z-40 px-4 md:px-6 py-2.5 shadow-sm flex flex-col xl:flex-row items-center justify-between gap-2 xl:gap-3">
