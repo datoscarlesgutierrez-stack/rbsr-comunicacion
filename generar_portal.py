@@ -505,18 +505,22 @@ def compile_portal():
         html.accessibility-mode .text-white {{
             color: #ffffff !important;
         }}
+        html.accessibility-mode main .text-stone-500,
+        html.accessibility-mode main .text-stone-600,
+        html.accessibility-mode main .text-stone-400,
+        html.accessibility-mode main .text-stone-700 {{
+            color: #1a1a1a !important;
+            font-weight: 600 !important;
+        }}
+        /* Fuerza absoluta de texto blanco legible en el Footer */
+        html.accessibility-mode footer,
+        html.accessibility-mode footer *,
         html.accessibility-mode footer p,
         html.accessibility-mode footer span,
         html.accessibility-mode footer div,
-        html.accessibility-mode footer a {{
-            color: #e2e8f0 !important;
-        }}
-        html.accessibility-mode .text-stone-500,
-        html.accessibility-mode .text-stone-600,
-        html.accessibility-mode .text-stone-400,
-        html.accessibility-mode .text-stone-700 {{
-            color: #1a1a1a !important;
-            font-weight: 600 !important;
+        html.accessibility-mode footer a,
+        html.accessibility-mode footer h4 {{
+            color: #ffffff !important;
         }}
         html.accessibility-mode .glass,
         html.accessibility-mode section,
