@@ -485,11 +485,11 @@ def compile_portal():
         html.accessibility-mode *::after {{
             font-weight: 500 !important;
         }}
-        html.accessibility-mode p:not(.text-white):not(.text-stone-200):not(.text-stone-300), 
-        html.accessibility-mode span:not(.text-white):not(.text-stone-200):not(.text-stone-300), 
-        html.accessibility-mode li:not(.text-white), 
-        html.accessibility-mode td:not(.text-white), 
-        html.accessibility-mode label:not(.text-white) {{
+        html.accessibility-mode main p:not(.text-white):not(.text-stone-200):not(.text-stone-300), 
+        html.accessibility-mode main span:not(.text-white):not(.text-stone-200):not(.text-stone-300), 
+        html.accessibility-mode main li:not(.text-white), 
+        html.accessibility-mode main td:not(.text-white), 
+        html.accessibility-mode main label:not(.text-white) {{
             color: #111111 !important;
         }}
         /* Mantener legibilidad blanca dentro de contenedores y botones oscuros */
