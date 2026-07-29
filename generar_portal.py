@@ -495,12 +495,21 @@ def compile_portal():
         /* Mantener legibilidad blanca dentro de contenedores y botones oscuros */
         html.accessibility-mode .bg-reserve-forest *,
         html.accessibility-mode .bg-stone-800 *,
+        html.accessibility-mode .bg-stone-900 *,
+        html.accessibility-mode .bg-reserve-slate *,
+        html.accessibility-mode footer *,
         html.accessibility-mode .bg-\[\#737a00\] *,
         html.accessibility-mode .bg-emerald-800 *,
         html.accessibility-mode .bg-amber-600 *,
         html.accessibility-mode .active-tab,
         html.accessibility-mode .text-white {{
             color: #ffffff !important;
+        }}
+        html.accessibility-mode footer p,
+        html.accessibility-mode footer span,
+        html.accessibility-mode footer div,
+        html.accessibility-mode footer a {{
+            color: #e2e8f0 !important;
         }}
         html.accessibility-mode .text-stone-500,
         html.accessibility-mode .text-stone-600,
@@ -1402,27 +1411,21 @@ def compile_portal():
     </main>
 
     <!-- Footer -->
-    <footer class="mt-12 bg-reserve-slate text-stone-400 py-10 border-t border-stone-800">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-            <div class="space-y-3">
+    <footer class="mt-12 bg-reserve-slate text-stone-300 py-10 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+            <div class="space-y-2 text-center md:text-left">
                 <h4 class="font-title font-bold text-white text-base">Reserva de la Biosfera Sierra del Rincón</h4>
-                <p class="text-xs text-stone-500 max-w-sm">
+                <p class="text-xs text-stone-400 max-w-md">
                     Declarada el 26 de junio de 2005. Coordinada por la Dirección General de Biodiversidad y Áreas Protegidas de la Comunidad de Madrid.
                 </p>
-                <div class="text-xs text-stone-500">
-                    Calle Iglesia nº10, Prádena del Rincón (Madrid, España) - 28191.
-                </div>
             </div>
             
-            <div class="flex flex-col justify-between items-start md:items-end gap-4">
-                <span class="px-3 py-1.5 rounded bg-stone-800 text-stone-400 font-mono text-xs select-none">
+            <div class="flex flex-col items-center md:items-end gap-3">
+                <span class="px-3 py-1.5 rounded bg-stone-800 text-stone-300 font-mono text-xs select-none">
                     v1.0.0 Stable | MD-to-HTML Compiled
                 </span>
-                <p class="text-xs text-stone-600 text-left md:text-right">
-                    © 2026 RBSR. Todos los derechos reservados. Diseñado para técnicos locales.
-                </p>
-                <p class="text-xs text-stone-500 text-left md:text-right mt-1">
-                    Co-desarrollado por <a href="https://carlesgutierrez.github.io/consultoria-digital/" target="_blank" rel="noopener" class="text-stone-400 hover:text-white underline underline-offset-2 transition-colors font-medium">Carles Gutiérrez Vallès</a> con la ayuda de Nicolas Serna (Marketing Digital).
+                <p class="text-xs text-stone-400 text-center md:text-right">
+                    Co-desarrollado por <a href="https://carlesgutierrez.github.io/consultoria-digital/" target="_blank" rel="noopener" class="text-stone-300 hover:text-white underline underline-offset-2 transition-colors font-semibold">Carles Gutiérrez Vallès</a> con la ayuda de Nicolas Serna (Marketing Digital).
                 </p>
             </div>
         </div>
