@@ -82,10 +82,8 @@
     <!-- Top Premium Brand Header -->
     <header class="glass sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
         <button onclick="switchTab('esencia'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center text-left gap-4 hover:opacity-90 active:scale-[0.99] transition-all focus:outline-none group">
-            <!-- Simulated Premium Botanical Logo Representation -->
-            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-reserve-forest to-reserve-olive flex items-center justify-center text-white font-title font-black text-sm tracking-tighter shadow-md select-none group-hover:shadow-lg transition-all">
-                SBSR
-            </div>
+            <!-- Logo oficial RBSR -->
+            <img src="recursos/img/logo_solo.png" alt="Logo Reserva de la Biosfera Sierra del Rincón" class="w-12 h-12 object-contain select-none group-hover:scale-105 transition-all">
             <div>
                 <h1 class="font-title font-black text-xl tracking-tight text-reserve-forest flex items-center gap-2 group-hover:text-reserve-olive transition-colors">
                     Reserva de la Biosfera <span class="text-reserve-olivedark font-medium">Sierra del Rincón</span>
@@ -110,16 +108,19 @@
             <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 📊 Estrategia
             </button>
-            <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all flex items-center gap-1 bg-sky-100/60 text-sky-700 border border-sky-200 hover:bg-sky-100">
+            <button onclick="switchTab('manual')" id="btn-manual" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
+                🏛️ Manual Anterior
+            </button>
+            <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 🎥 Tutoriales
             </button>
-            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all bg-reserve-olive/20 text-reserve-olivedark border border-reserve-olive/40 hover:bg-reserve-olive/30 flex items-center gap-1">
+            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 ⚙️ Generador de Post
             </button>
-            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all flex items-center gap-1 bg-violet-100/60 text-violet-700 border border-violet-200 hover:bg-violet-100">
+            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 📋 Instrucciones IA
             </button>
-            <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all flex items-center gap-1 bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100">
+            <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 ❓ Q&amp;A
             </button>
         </nav>
@@ -178,53 +179,15 @@ El tono de voz de la Reserva no es el de una corporación lejana ni el de una of
                 
                 <!-- Quick interactive color palettes -->
                 <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
-                    <span>🎨</span> Paletas de Colores de la Reserva
+                    <span>🎨</span> Paletas de Colores para Redes Sociales
                 </h3>
                 
                 <div class="space-y-6">
-                    <!-- A. Paleta Oficial de la MARCA -->
-                    <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3 flex items-center gap-1.5">
-                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-600"></span>
-                            A. Paleta Oficial de Marca (Institucional)
-                        </h4>
-                        <p class="text-xs text-stone-500 mb-4">Identidad cromática oficial para publicaciones formales, cartelería institucional y papelería corporativa.</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <!-- Verde Brote -->
-                            <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" title="Verde Brote (#b8be3f) - Pantone 583C. Uso: Acentos, iconos y llamadas a la acción." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
-                                <div class="w-10 h-10 rounded-lg bg-[#b8be3f] shadow-inner"></div>
-                                <div class="text-left">
-                                    <p class="text-xs font-bold text-stone-800 leading-none">Verde Brote</p>
-                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#b8be3f</span>
-                                    <span class="text-[9px] text-stone-400">Pantone 583C</span>
-                                </div>
-                            </div>
-                            <!-- Olivo Oscuro -->
-                            <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" title="Olivo Oscuro (#585615) - Pantone 581C. Uso: Textos secundarios, contornos y fondos estructurados." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
-                                <div class="w-10 h-10 rounded-lg bg-[#585615] shadow-inner"></div>
-                                <div class="text-left">
-                                    <p class="text-xs font-bold text-stone-800 leading-none">Olivo Oscuro</p>
-                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#585615</span>
-                                    <span class="text-[9px] text-stone-400">Pantone 581C</span>
-                                </div>
-                            </div>
-                            <!-- Verde Bosque RERB -->
-                            <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" title="Verde Bosque RERB (#4d7c67) - Pantone 624C. Identidad de la Red Española de Reservas de la Biosfera." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
-                                <div class="w-10 h-10 rounded-lg bg-[#4d7c67] shadow-inner"></div>
-                                <div class="text-left">
-                                    <p class="text-xs font-bold text-stone-800 leading-none">Verde Bosque</p>
-                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#4d7c67</span>
-                                    <span class="text-[9px] text-stone-400">Pantone 624C</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- B. Paletas Canva (Redes Sociales y Estacionalidad) -->
+                    <!-- Paletas Canva (Redes Sociales y Estacionalidad) -->
                     <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
                         <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3 flex items-center gap-1.5">
                             <span class="inline-block w-2 h-2 rounded-full bg-violet-600"></span>
-                            B. Paletas Canva (Redes Sociales y Estacionalidad)
+                            Paletas Canva (Redes Sociales y Estacionalidad)
                         </h4>
                         <p class="text-xs text-stone-500 mb-4">Combinaciones estacionales optimizadas para las plantillas de Canva. Haz clic sobre cualquier color para copiar su código HEX.</p>
                         
@@ -315,42 +278,18 @@ El tono de voz de la Reserva no es el de una corporación lejana ni el de una of
                     </div>
                 </div>
 
-                <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Manual del Sistema Visual e Identidad Gráfica: Reserva de la Biosfera Sierra del Rincón (RBSR)</h1>
-<p class="text-stone-800 leading-loose my-5 text-base">Este documento detalla las normas de uso de la identidad visual de la <strong class="font-bold text-stone-900">Reserva de la Biosfera Sierra del Rincón (RBSR)</strong> y proporciona directrices estrictas para la creación de imágenes coherentes, auténticas y de estética premium.</p>
+                <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Consultoría de Redes Sociales: Sistema Visual e Identidad Gráfica (RBSR)</h1>
+<p class="text-stone-800 leading-loose my-5 text-base">Este documento detalla las directrices estrictas para la creación de imágenes coherentes, auténticas y de estética premium en las Redes Sociales de la Reserva de la Biosfera Sierra del Rincón (RBSR).</p>
 <p class="text-stone-800 leading-loose my-5 text-base">---</p>
-<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Pautas y Protocolo de Uso del Logotipo</h2>
-<p class="text-stone-800 leading-loose my-5 text-base">El logotipo de la Reserva destaca el patrimonio natural y el desarrollo rural sostenible. Debe usarse siempre respetando la armonía visual y las directrices institucionales de la Comunidad de Madrid y el programa MaB de la UNESCO.</p>
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Reglas de Aplicación</h3>
-<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Margen de Seguridad (Anexo 3)</strong>: El logotipo debe disponer siempre de un margen libre a su alrededor de <strong class="font-bold text-stone-900">mínimo 1 cm</strong> en impresos o 20px en digital, libre de textos, otras imágenes o bordes. Solo debe situarse sobre fondos lisos o texturas muy tenues que no afecten la lectura.</li><li class="text-base"><strong class="font-bold text-stone-900">Alineación Institucional (Anexo 1)</strong>: Cuando se publique junto a escudos municipales (ayuntamientos de la comarca) o logos colaboradores, se debe colocar <strong class="font-bold text-stone-900">al mismo nivel horizontal</strong> y sus dimensiones nunca superarán el tamaño visual del escudo o logotipo principal del colaborador local.</li><li class="text-base"><strong class="font-bold text-stone-900">Proporción Intacta (Anexo 4)</strong>: Bajo ningún concepto se puede achatar, estirar, rotar o deformar el logotipo. Al redimensionarlo, se debe bloquear la proporción de aspecto original.</li><li class="text-base"><strong class="font-bold text-stone-900">Variantes de Fondo (Anexo 2)</strong>:</li><li class="text-base"><strong class="font-bold text-stone-900">Fondo Claro</strong>: Logotipo en versión color normal o verde oscuro.</li><li class="text-base"><strong class="font-bold text-stone-900">Fondo Oscuro</strong>: Logotipo en versión negativo (blanco puro o silueta transparente).</li></ul>
+<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Tipografía Recomendada para Canva (Redes Sociales y Plantillas)</h2>
+<p class="text-stone-800 leading-loose my-5 text-base">Para todas las plantillas de redes sociales y diseños en Canva, se utilizará la siguiente tipografía para mantener la coherencia y simplicidad:</p>
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">News Cycle Regular</strong>: Se utilizará para todos los niveles de texto (titulares, subtítulos y cuerpo de texto). Aporta una estética editorial y cercana a la tradición impresa del territorio, siendo legible y orgánica.</li></ul>
 <p class="text-stone-800 leading-loose my-5 text-base">---</p>
-<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. Tipografías Corporativas</h2>
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">A. Estándar Oficial de Marca (Cartelería, Papelería, Notas de Prensa)</h3>
-<p class="text-stone-800 leading-loose my-5 text-base">Para asegurar la legibilidad y mantener una estética limpia y atemporal:</p>
-<div class="overflow-x-auto my-6 rounded-lg border border-stone-200 shadow-sm"><table class="min-w-full divide-y divide-stone-200 text-left"><thead class="bg-stone-50 text-emerald-900 font-semibold"><tr><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Aplicación</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Tipografía Oficial</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Tipografía Web / Digital Recomendada</th></tr></thead><tbody class="bg-white divide-y divide-stone-100 text-stone-800"><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Titulares Principales</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Montserrat Bold</code> o <code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">VSV Alergia Bold</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Montserrat (Google Fonts, Bold 700)</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Subtítulos y Cifras</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Montserrat SemiBold</code> / <code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">VSV Alergia Regular</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Montserrat (Google Fonts, SemiBold 600)</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Texto de Lectura</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Calibri Regular</code> / <code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Arial</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Calibri / Inter / System Sans (Regular 400)</td></tr></tbody></table></div>
-<blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Nota</strong>: La fuente <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">VSV Alergia</code> es una tipografía corporativa exclusiva de la Reserva. <strong class="font-bold text-stone-900">No está disponible en Canva</strong>, por lo que en plantillas de redes sociales se sustituye siempre por <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">Montserrat Bold</code>.</blockquote>
----
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">B. Tipografía Recomendada para Canva (Redes Sociales y Plantillas)</h3>
-<p class="text-stone-800 leading-loose my-5 text-base">Dado que <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">VSV Alergia</code> no está disponible en Canva, la combinación validada para plantillas de redes es la siguiente:</p>
-<div class="overflow-x-auto my-6 rounded-lg border border-stone-200 shadow-sm"><table class="min-w-full divide-y divide-stone-200 text-left"><thead class="bg-stone-50 text-emerald-900 font-semibold"><tr><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Jerarquía</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Tipografía en Canva</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Rol</th></tr></thead><tbody class="bg-white divide-y divide-stone-100 text-stone-800"><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Titulares (H1)</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Montserrat Bold</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Fuerza, claridad institucional y coherencia con la marca.</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Subtítulos (H2/H3)</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Montserrat SemiBold</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Jerarquía visual limpia y legible en móvil.</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Cuerpo de texto</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">News Cycle Regular</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Calidez editorial, cercana a la tradición impresa del territorio. Legible y orgánica.</td></tr></tbody></table></div>
-<p class="text-stone-800 leading-loose my-5 text-base">La combinación <strong class="font-bold text-stone-900">Montserrat + News Cycle</strong> ofrece el equilibrio correcto entre lo institucional (geométrico y limpio) y lo territorial (editorial y cálido). Ambas tipografías están disponibles de forma nativa en Canva como Google Fonts.</p>
-<p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Reglas de uso en Canva</strong>:
-<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">No usar <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">News Cycle</code> como tipografía de titular principal — pierde impacto a distancia.</li><li class="text-base">No usar <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">News Cycle Bold</code> junto a <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">Montserrat Bold</code> en el mismo bloque — compiten en peso visual.</li><li class="text-base">Nunca combinar más de dos familias tipográficas en una misma pieza gráfica.</li></ul></p>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
-<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">3. Paleta de Colores</h2>
-<div class="border-l-4 p-4 my-6 rounded-r-lg bg-emerald-50 border-emerald-600 text-emerald-800"><p class="font-bold flex items-center gap-2 mb-1"><span>🌿</span> IMPORTANT</p><p class="text-sm leading-relaxed">Las paletas completas (Oficial, Genérica y Estacionales) están disponibles como <strong class="font-bold text-stone-900">swatches interactivos</strong> al inicio de esta pestaña. Haz clic en cualquier color para copiar su código HEX al portapapeles.</p></div>
----
-<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">4. Guía de Estética de Imagen y Generación con IA</h2>
+<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. Guía de Estética de Imagen</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">La autenticidad es nuestra mayor herramienta de conservación. <strong class="font-bold text-stone-900">Nunca se deben utilizar imágenes de stock genéricas</strong> con modelos de estudio o paisajes artificiales ajenos a la Sierra de Madrid.</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Reglas Estéticas para Fotografías e Ilustraciones</h3>
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Foco Humano y Real</strong>: Rostros de agricultores locales, técnicos del CEA guiando una senda, artesanos de la madera, participantes de talleres reales y vecinos de los seis municipios.</li><li class="text-base"><strong class="font-bold text-stone-900">Sensación Estacional</strong>: La fotografía debe reflejar de forma fidedigna la estación en curso (el otoño dorado del hayedo de Montejo, el silencio blanco del invierno en los puertos, el estallido verde de primavera en los prados, la luz dorada y fresca de los veranos de montaña).</li><li class="text-base"><strong class="font-bold text-stone-900">Iluminación Orgánica</strong>: Luz natural suave, luces de atardecer filtradas por los árboles (efecto <em class="italic text-stone-700">golden hour</em>), nieblas matutinas de montaña. Evitar luces de flash artificiales y contrastes extremos de estudio.</li><li class="text-base"><strong class="font-bold text-stone-900">Enfoque Texturizado</strong>: Planos cortos que capturen las texturas físicas del territorio: piedra de pizarra, madera tallada, lana artesana, corteza de roble húmeda, agua limpia de arroyos serranos.</li></ol>
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Biblioteca de Prompts de IA (para crear recursos de referencia)</h3>
-Si necesitas generar una imagen representativa para acompañar un post o cartel de la Reserva, utiliza la siguiente estructura de prompts (adaptable en español o inglés):
-<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">Prompt 1: Fotografía de Actividad Interpretativa (Primavera / Verano)</h4>
-<blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Prompt:</strong> <em class="italic text-stone-700">"A candid, high-resolution lifestyle photograph of a local environmental educator guiding a small family group along a lush forest path in Spain's Sierra del Rincón. Sunbeams filtering through birch and oak trees, soft natural golden lighting, authentic and warm atmosphere. Realistic textures of slate stone paths and moss, focus on connection with nature. Shot on 35mm lens, atmospheric depth, documentary photography style, cinematic grading, natural colors. No studio lighting, no generic actors."</em></blockquote>
-<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">Prompt 2: Retrato de Productor Local / "Gente del Bosque" (Otoño)</h4>
-<blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Prompt:</strong> <em class="italic text-stone-700">"A warm, authentic close-up portrait of an elderly artisan cheese maker from the Sierra del Rincón, Madrid, smiling gently in his rustic workshop. Soft window light illuminating his face, rich textures of wood and aged stone walls in the background, organic atmosphere. Focus on hands and smiling eyes, highlighting tradition and connection to the territory. Earthy natural tones, cinematic warm grading, highly detailed skin textures, shot on 85mm lens, f/1.8."</em></blockquote>
-<h4 class="text-base font-bold text-stone-900 mt-5 mb-2">Prompt 3: Paisaje Evocador Estacional (Invierno)</h4>
-<blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Prompt:</strong> <em class="italic text-stone-700">"A majestic, quiet winter landscape of the Sierra del Rincón mountains in Madrid, Spain, covered in light snow. Whispers of dry oak branches, frozen streams of crystal clear water, heavy morning fog rising between pine trees. Peaceful silence, moody atmospheric lighting, cool slate-grey and soft white color palette. Cinematic landscape photography, hyper-realistic, highly detailed, shot on medium format camera."</em></blockquote>
+<blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Nota sobre el uso de IA</strong>: Las imágenes publicadas deben ser siempre verdaderas. El uso de Inteligencia Artificial se limitará exclusivamente a pequeños retoques de las imágenes cuando sea necesario. Las instrucciones específicas para estos retoques se definirán en los prompts de las GEM o proyectos correspondientes, priorizando siempre la veracidad.</blockquote>
             </div>
         </div>
 
@@ -520,6 +459,178 @@ pie title Distribución Mensual de Contenidos (Feed)
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">4. Flujo de Trabajo y Checklist de Calidad (Antes de Publicar)</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">Antes de que un post, WhatsApp o entrada de blog salga a la luz, el técnico o redactor debe verificar obligatoriamente este checklist para garantizar el cumplimiento de los estándares de marca RBSR:</p>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">[ ] <strong class="font-bold text-stone-900">Alineamiento de Tono</strong>: ¿El lenguaje suena cálido, humano y sensorial acorde con la estación de la sierra, o es frío y burocrático?</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Coherencia Visual</strong>: ¿La imagen es real del territorio o de sus gentes? (Queda terminantemente prohibido usar fotos de banco de stock artificiales).</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Norma del Logotipo</strong>: Si la imagen lleva el logo de la RBSR, ¿mantiene la proporción de aspecto, está situado sobre fondo liso y tiene el margen de seguridad de 1 cm libre de elementos?</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Jerarquía de Logotipos</strong>: Si es una colaboración institucional, ¿está el logo de la RBSR al mismo nivel horizontal e igual o menor tamaño visual que el escudo del ayuntamiento colaborador?</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Datos Críticos</strong>: ¿Están claros y visibles los datos de logística? (Fecha, Hora de encuentro, Municipio de la actividad, Duración, Destinatarios).</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Llamada a la Acción (CTA)</strong>: ¿Contiene un botón o enlace directo y limpio para realizar la reserva o inscripción?</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Accesibilidad (ALT)</strong>: ¿Se ha redactado y adjuntado el texto alternativo detallado que describe la imagen para personas con discapacidad visual?</li></ul>
+            </div>
+        </div>
+
+        <!-- Tab: Manual Anterior -->
+        <div id="tab-manual" class="tab-content space-y-6">
+            <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
+
+                <!-- Nota de Contexto y Referencia Histórica -->
+                <div class="bg-amber-50 border border-amber-200 p-6 rounded-2xl space-y-4">
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl">🏛️</span>
+                        <div class="space-y-2">
+                            <h4 class="text-base font-bold text-amber-900">Manual de Marca Institucional &amp; Referencias Históricas</h4>
+                            <p class="text-xs text-amber-800 leading-relaxed">
+                                Este bloque recopila las directrices oficiales basadas en el 
+                                <a href="https://drive.google.com/file/d/1mPFJfUtaEvCKvsQ_ZgsfwfyJwHD6Ez6d/view?usp=sharing" target="_blank" rel="noopener" class="underline font-bold hover:text-amber-950">📄 Manual de Estilo de la Marca (2024)</a>.
+                                Las referencias a los <strong>«Anexos»</strong> citadas a continuación proceden directamente de dicho documento oficial y se mantienen íntegras para preservar su concordancia técnica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-amber-200/80 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-amber-800">
+                        <div class="bg-white/70 p-3.5 rounded-xl border border-amber-200/60">
+                            <p class="font-bold text-amber-900 mb-1">📱 Evolución del Diseño para Redes Sociales</p>
+                            <p class="leading-relaxed">
+                                En la página final del manual de estilo original se incluye una breve pincelada sobre el uso gráfico en Redes Sociales. Desde este portal, hemos restaurado, ampliado y evolucionado esa idea en una propuesta visual ágil, estacional y adaptada a las necesidades reales de comunicación digital de la Reserva.
+                            </p>
+                        </div>
+                        <div class="bg-white/70 p-3.5 rounded-xl border border-amber-200/60">
+                            <p class="font-bold text-amber-900 mb-1">⚖️ Recomendación de Revisión Institucional</p>
+                            <p class="leading-relaxed">
+                                Recomendamos que la Reserva de la Biosfera y su equipo gestor revisen y validen todas estas decisiones de diseño junto a su equipo de diseño formal. Este portal proporciona reglas para dotar de estabilidad y coherencia a las publicaciones, siendo la Reserva quien finalmente adapte y aplique su criterio definitivo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo Institucional -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                        <span>🖼️</span> Logotipo Oficial
+                    </h3>
+                    <div class="bg-stone-50 border border-stone-200 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-8">
+                        <!-- Logo on white bg — version natural (PNG oficial) -->
+                        <div class="flex flex-col gap-3 items-center">
+                            <div class="bg-white border border-stone-200 rounded-xl p-8 shadow-sm flex items-center justify-center" style="min-width:300px;">
+                                <img src="recursos/img/logo_rbsr_oficial.png" alt="Logo oficial Sierra del Rincón - Reserva de la Biosfera" class="w-64 h-auto" style="max-height:120px; object-fit:contain;">
+                            </div>
+                            <span class="text-xs text-stone-500">Versión original sobre fondo blanco (uso estándar)</span>
+                        </div>
+                        <!-- Logo on dark corporate bg -->
+                        <div class="flex flex-col gap-3 items-center">
+                            <div class="rounded-xl p-8 shadow-md flex items-center justify-center" style="min-width:300px; background:#737a00;">
+                                <img src="recursos/img/logo_rbsr_oficial.png" alt="Logo oficial Sierra del Rincón sobre fondo corporativo" class="w-64 h-auto" style="max-height:120px; object-fit:contain; filter: brightness(0) invert(1);">
+                            </div>
+                            <span class="text-xs text-stone-500">Versión negativo (blanco) sobre fondo corporativo verde</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paleta Oficial de Marca -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                        <span>🎨</span> Paleta Cromática Oficial (Cartelería Institucional)
+                    </h3>
+                    <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
+                        <p class="text-xs text-stone-500 mb-4">Identidad cromática oficial para cartelería física, papelería corporativa, señalética y comunicaciones institucionales impresas. Haz clic en cada color para copiar su código HEX.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <!-- Verde Raíz -->
+                            <div onclick="copyToClipboard('#737a00', 'HEX Verde Raíz')" title="Verde Raíz (#737a00) - Pantone 583C. Color principal del logotipo y fondos institucionales." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#737a00;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Verde Raíz</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Color principal del logotipo</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#737a00 · Pantone 583C</span>
+                                </div>
+                            </div>
+                            <!-- Verde Brote -->
+                            <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" title="Verde Brote (#b8be3f) - Pantone 583C variación. Acentos, iconos y llamadas a la acción." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#b8be3f;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Verde Brote</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Acentos e iconografía</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#b8be3f · Pantone 583C</span>
+                                </div>
+                            </div>
+                            <!-- Olivo Oscuro -->
+                            <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" title="Olivo Oscuro (#585615) - Pantone 581C. Textos secundarios y contornos." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#585615;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Olivo Oscuro</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Textos y contornos</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#585615 · Pantone 581C</span>
+                                </div>
+                            </div>
+                            <!-- Verde Bosque RERB -->
+                            <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" title="Verde Bosque RERB (#4d7c67) - Pantone 624C. Red Española de Reservas de la Biosfera." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#4d7c67;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Verde Bosque RERB</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Red Española Reservas Biosfera</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#4d7c67 · Pantone 624C</span>
+                                </div>
+                            </div>
+                            <!-- Blanco institucional -->
+                            <div onclick="copyToClipboard('#ffffff', 'HEX Blanco Institucional')" title="Blanco (#ffffff) - Para logotipo en negativo y textos sobre fondos oscuros." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0 border border-stone-300" style="background:#ffffff;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Blanco Institucional</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Logotipo en negativo</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#ffffff · White</span>
+                                </div>
+                            </div>
+                            <!-- Negro tipográfico -->
+                            <div onclick="copyToClipboard('#1a1a18', 'HEX Negro Tipográfico')" title="Negro tipográfico (#1a1a18) - Para textos sobre fondos claros en documentos impresos." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#1a1a18;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Negro Tipográfico</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Textos en impresos</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#1a1a18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenido del archivo 7_manual_uso_marca.md -->
+                <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Manual de Uso de la Marca: Reserva de la Biosfera Sierra del Rincón (RBSR)</h1>
+<p class="text-stone-800 leading-loose my-5 text-base">Este documento detalla las normas de uso de la identidad visual oficial de la <strong class="font-bold text-stone-900">Reserva de la Biosfera Sierra del Rincón (RBSR)</strong>.</p>
+<p class="text-stone-800 leading-loose my-5 text-base">---</p>
+<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Pautas y Protocolo de Uso del Logotipo</h2>
+<p class="text-stone-800 leading-loose my-5 text-base">El logotipo de la Reserva destaca el patrimonio natural y el desarrollo rural sostenible. Debe usarse siempre respetando la armonía visual y las directrices institucionales de la Comunidad de Madrid y el programa MaB de la UNESCO.</p>
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Reglas de Aplicación</h3>
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Margen de Seguridad (Anexo 3)</strong>: El logotipo debe disponer siempre de un margen libre a su alrededor de <strong class="font-bold text-stone-900">mínimo 1 cm</strong> en impresos o 20px en digital, libre de textos, otras imágenes o bordes. Solo debe situarse sobre fondos lisos o texturas muy tenues que no afecten la lectura.</li><li class="text-base"><strong class="font-bold text-stone-900">Alineación Institucional (Anexo 1)</strong>: Cuando se publique junto a escudos municipales (ayuntamientos de la comarca) o logos colaboradores, se debe colocar <strong class="font-bold text-stone-900">al mismo nivel horizontal</strong> y sus dimensiones nunca superarán el tamaño visual del escudo o logotipo principal del colaborador local.</li><li class="text-base"><strong class="font-bold text-stone-900">Proporción Intacta (Anexo 4)</strong>: Bajo ningún concepto se puede achatar, estirar, rotar o deformar el logotipo. Al redimensionarlo, se debe bloquear la proporción de aspecto original.</li><li class="text-base"><strong class="font-bold text-stone-900">Variantes de Fondo (Anexo 2)</strong>:</li><li class="text-base"><strong class="font-bold text-stone-900">Fondo Claro</strong>: Logotipo en versión color normal o verde oscuro.</li><li class="text-base"><strong class="font-bold text-stone-900">Fondo Oscuro</strong>: Logotipo en versión negativo (blanco puro o silueta transparente).</li></ul>
+<p class="text-stone-800 leading-loose my-5 text-base">---</p>
+<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. Tipografías Corporativas</h2>
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Estándar Oficial de Marca (Cartelería, Papelería, Notas de Prensa)</h3>
+<p class="text-stone-800 leading-loose my-5 text-base">Para asegurar la legibilidad y mantener una estética limpia y atemporal:</p>
+<div class="overflow-x-auto my-6 rounded-lg border border-stone-200 shadow-sm"><table class="min-w-full divide-y divide-stone-200 text-left"><thead class="bg-stone-50 text-emerald-900 font-semibold"><tr><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Aplicación</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Tipografía Oficial</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Tipografía Web / Digital Recomendada</th></tr></thead><tbody class="bg-white divide-y divide-stone-100 text-stone-800"><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Titulares Principales</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Montserrat Bold</code> o <code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">VSV Alergia Bold</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Montserrat (Google Fonts, Bold 700)</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Subtítulos y Cifras</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Montserrat SemiBold</code> / <code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">VSV Alergia Regular</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Montserrat (Google Fonts, SemiBold 600)</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Texto de Lectura</strong></td><td class="px-6 py-4 text-base border-b border-stone-100"><code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Calibri Regular</code> / <code class="px-1 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-xs">Arial</code></td><td class="px-6 py-4 text-base border-b border-stone-100">Calibri / Inter / System Sans (Regular 400)</td></tr></tbody></table></div>
+<blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Nota</strong>: La fuente <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">VSV Alergia</code> es una tipografía corporativa exclusiva de la Reserva.</blockquote>
+
+                <!-- Normas clave de aplicación -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                        <span>📐</span> Normas Clave de Aplicación del Logotipo
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 border border-red-100 p-5 rounded-2xl">
+                            <p class="text-sm font-bold text-red-700 mb-3 flex items-center gap-2">🚫 Usos Prohibidos</p>
+                            <ul class="space-y-2 text-xs text-red-700">
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Aplastar, estirar o rotar el logotipo</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Cambiar los colores corporativos por otros no autorizados</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Colocar el logo sobre fondos con texturas fuertes o imágenes complejas</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Usar versión color sobre fondos oscuros (usar siempre el negativo blanco)</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Superar en tamaño visual al escudo/logo del socio colaborador principal</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Añadir efectos de sombra, bisel o degradados al logotipo</li>
+                            </ul>
+                        </div>
+                        <div class="bg-emerald-50 border border-emerald-100 p-5 rounded-2xl">
+                            <p class="text-sm font-bold text-emerald-700 mb-3 flex items-center gap-2">✅ Buenas Prácticas</p>
+                            <ul class="space-y-2 text-xs text-emerald-700">
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Mantener siempre un margen mínimo de <strong>1 cm</strong> en impresión / <strong>20px</strong> en digital</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Sobre fondos claros → versión color corporativo</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Sobre fondos oscuros → versión negativo en blanco puro</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Alinear al mismo nivel horizontal que escudos municipales colaboradores</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Bloquear proporción de aspecto al redimensionar</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Usar solo sobre fondos lisos o texturas muy tenues</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -787,29 +898,23 @@ pie title Distribución Mensual de Contenidos (Feed)
 ---
     </div>
 </div>
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿la fuente "news cycle" de canva es adecuada para la marca rbsr?">
+<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿qué tipografía se utiliza en canva para las publicaciones de redes sociales?">
     <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
         <div class="flex items-center gap-3">
             <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#001</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿La fuente "News Cycle" de Canva es adecuada para la marca RBSR?</h3>
+            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Qué tipografía se utiliza en Canva para las publicaciones de redes sociales?</h3>
         </div>
         <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
     </button>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
-        <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Preguntado por:</strong> Carles (técnico de comunicación)
-<strong class="font-bold text-stone-900">Fecha:</strong> Junio 2026</p>
+        <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Preguntado por:</strong> Carles (técnico de comunicación)  
+<strong class="font-bold text-stone-900">Fecha:</strong> Junio 2026 / Actualizado Julio 2026</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Respuesta</h3>
-<p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">News Cycle</strong> es una fuente serif de palo seco humanista (humanist slab-serif) de diseño periodístico clásico, limpia y legible. Comparada con las fuentes oficiales de la Reserva, este es el análisis:</p>
-<div class="overflow-x-auto my-6 rounded-lg border border-stone-200 shadow-sm"><table class="min-w-full divide-y divide-stone-200 text-left"><thead class="bg-stone-50 text-emerald-900 font-semibold"><tr><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Criterio</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">News Cycle</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Montserrat Bold (oficial)</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">VSV Alergia (oficial)</th></tr></thead><tbody class="bg-white divide-y divide-stone-100 text-stone-800"><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Familia tipográfica</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Slab-serif (serifa cuadrada)</td><td class="px-6 py-4 text-base border-b border-stone-100">Sans-serif geométrica</td><td class="px-6 py-4 text-base border-b border-stone-100">Sans-serif personalizada</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Personalidad</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Periodística, sobria, editorial</td><td class="px-6 py-4 text-base border-b border-stone-100">Moderna, clara, institucional</td><td class="px-6 py-4 text-base border-b border-stone-100">Orgánica, territorial, única</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Legibilidad en titulares</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Alta</td><td class="px-6 py-4 text-base border-b border-stone-100">Muy alta</td><td class="px-6 py-4 text-base border-b border-stone-100">Alta</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Legibilidad en texto corrido</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Muy alta</td><td class="px-6 py-4 text-base border-b border-stone-100">Media-alta</td><td class="px-6 py-4 text-base border-b border-stone-100">Media</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Alineamiento con la marca RBSR</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Parcial — evoca naturaleza y tradición pero no es la fuente oficial</td><td class="px-6 py-4 text-base border-b border-stone-100">Sí — es la tipografía de titulares oficial</td><td class="px-6 py-4 text-base border-b border-stone-100">Sí — es la tipografía corporativa exclusiva de la Reserva</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Disponibilidad en Canva</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">✅ Nativa en Canva</td><td class="px-6 py-4 text-base border-b border-stone-100">✅ Disponible en Canva (Google Fonts)</td><td class="px-6 py-4 text-base border-b border-stone-100">❌ No disponible en Canva (fuente propietaria)</td></tr></tbody></table></div>
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Veredicto</h3>
-<p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">News Cycle es una opción aceptable como fuente secundaria o de cuerpo de texto en Canva</strong>, especialmente para textos explicativos dentro de carteles o plantillas. Su carácter editorial y orgánico armoniza bien con el territorio rural de la Sierra. Sin embargo, <strong class="font-bold text-stone-900">no debe usarse como tipografía principal de titulares</strong>, ya que ese rol le corresponde a <strong class="font-bold text-stone-900">Montserrat Bold</strong> (que sí está disponible en Canva de forma nativa como fuente de Google Fonts).</p>
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Recomendación de combinación tipográfica en Canva</h3>
-<p class="text-stone-800 leading-loose my-5 text-base">La siguiente combinación respeta la identidad de marca y es 100% ejecutable en Canva:</p>
-<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Titulares principales (H1)</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">Montserrat Bold</code> — fuerza, modernidad, coherencia institucional.</li><li class="text-base"><strong class="font-bold text-stone-900">Subtítulos (H2/H3)</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">Montserrat SemiBold</code> — jerarquía clara y visual.</li><li class="text-base"><strong class="font-bold text-stone-900">Texto de lectura / cuerpo</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">News Cycle Regular</code> — legibilidad editorial cálida y cercana a la tradición impresa del territorio.</li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">Esta combinación <strong class="font-bold text-stone-900">Montserrat + News Cycle</strong> ofrece el contraste visual adecuado entre lo geométrico y limpio (institucional) y lo orgánico y editorial (territorial), complementándose sin competir. Es un emparejamiento semánticamente coherente con la Reserva.</p>
-<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Lo que debes evitar</h3>
-<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">No uses News Cycle en titulares de portada o cabeceras de imagen digital (demasiado pequeña a distancia).</li><li class="text-base">No uses News Cycle Bold en combinación con Montserrat Bold en el mismo bloque — saturará el peso visual.</li><li class="text-base">No mezcles más de dos familias tipográficas en una misma pieza gráfica.</li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
+<p class="text-stone-800 leading-loose my-5 text-base">Para todas las plantillas de Redes Sociales en Canva, se ha decidido utilizar la tipografía <strong class="font-bold text-stone-900">News Cycle</strong> (Regular / Bold) para <strong class="font-bold text-stone-900">todos los niveles de texto</strong> (titulares, subtítulos y cuerpo de texto), tal y como está configurado en las plantillas oficiales de Canva.</p>
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Razón y Beneficios</h3>
+<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Unificación y Simplicidad</strong>: Facilita el trabajo diario de los técnicos sin necesidad de combinar múltiples fuentes.</li><li class="text-base"><strong class="font-bold text-stone-900">Estética Editorial y Tradición</strong>: Aporta un tono periodístico, sobrio y orgánico muy cercano a la tradición impresa y al espíritu natural del territorio.</li><li class="text-base"><strong class="font-bold text-stone-900">100% Nativa en Canva</strong>: No requiere instalar ni subir licencias de fuentes externas.</li></ul>
+<blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed">⚠️ <strong class="font-bold text-stone-900">Nota de Gobernanza de Diseño</strong>: Esta decisión es la norma operativa actual acordada para dar agilidad al equipo. No obstante, <strong class="font-bold text-stone-900">puede sufrir modificaciones o refinamientos a futuro</strong> según los criterios y decisiones finales que determine el equipo formal de diseño de la Reserva.</blockquote>
+---
     </div>
 </div>
 <div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿cuándo usar el logo en negativo (blanco) vs. el logo en color?">
@@ -871,6 +976,26 @@ pie title Distribución Mensual de Contenidos (Feed)
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Se pueden publicar directamente</strong> si el contenido encaja bien con los datos introducidos.</li><li class="text-base"><strong class="font-bold text-stone-900">Se pueden copiar y pegar en GEM, ChatGPT o similar</strong> como base para que la IA los refine, personalice o amplíe con más detalle.</li></ol></p>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Flujo recomendado</strong>: Genera → Revisa el resultado → Si quieres más profundidad, cópialo en tu GEM de la Reserva y pídele que lo mejore manteniendo el tono y la identidad de la Sierra.</blockquote>
 <div class="border-l-4 p-4 my-6 rounded-r-lg bg-emerald-50 border-emerald-600 text-emerald-800"><p class="font-bold flex items-center gap-2 mb-1"><span>🌿</span> IMPORTANT</p><p class="text-sm leading-relaxed">📋 Instrucciones para Copiando el texto en el QnA: El generador NO accede a Internet, NO usa ningún modelo de IA externo y NO envía ningún dato a ningún servidor. Todo el procesamiento ocurre localmente en tu propio navegador.</p></div>
+---
+    </div>
+</div>
+<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿dónde está alojada esta web y cómo se realiza su mantenimiento o migración?">
+    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
+        <div class="flex items-center gap-3">
+            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#006</span>
+            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Dónde está alojada esta web y cómo se realiza su mantenimiento o migración?</h3>
+        </div>
+        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+    </button>
+    <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
+        <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Preguntado por:</strong> Equipo de Comunicación RBSR  
+<strong class="font-bold text-stone-900">Fecha:</strong> Julio 2026</p>
+<h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Respuesta</h3>
+<ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Alojamiento Gratuito e Indefinido</strong>: Esta web está alojada de forma totalmente <strong class="font-bold text-stone-900">gratuita</strong> por parte de <a href="https://carlesgutierrez.github.io/consultoria-digital/" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Carles Gutiérrez Vallès</a> en la infraestructura de GitHub Pages (mientras la plataforma lo permita, en principio de forma indefinida).</li></ol>
+<ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Cambio de Dominio</strong>: Si en el futuro se desea asociar la web a un dominio web oficial propio (ej: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">comunicacion.sierradelrincon.org</code>), es una configuración ágil que se puede realizar rápidamente en GitHub contactando con <a href="https://carlesgutierrez.github.io/consultoria-digital/" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Carles Gutiérrez</a>.</li></ol>
+<ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Migración a otro Servidor o Repositorio</strong>: Si la Reserva o la entidad gestora decide en el futuro migrar esta web a sus propios servidores o a una cuenta de GitHub institucional, se puede solicitar la asistencia técnica a Carles Gutiérrez.</li></ol>
+<ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Código Abierto y Repositorio Público</strong>: Todo el código fuente del portal, las plantillas y el generador están disponibles de forma <strong class="font-bold text-stone-900">libre y abierta</strong> en el repositorio público de GitHub:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li>📁 <strong class="font-bold text-stone-900">Repositorio oficial</strong>: <a href="https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium"><a href="https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all"><a href="https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion</a></a></a></li></ul></li></ol>
+<blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">Cualquier persona o técnico del equipo puede clonar, descargar o desplegar libremente este proyecto en otra cuenta de GitHub o servidor corporativo en cualquier momento.</em></blockquote>
 ---
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">¿Tienes una nueva pregunta? Añádela en este archivo con el formato <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">## Q&A_XXX: Pregunta</code> y ejecuta <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">python3 generar_portal.py</code> para que aparezca automáticamente en el portal.</em></blockquote>
     </div>

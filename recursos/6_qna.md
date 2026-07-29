@@ -22,43 +22,22 @@ El técnico ha indicado que el portal debe ser **más ligero de leer** para faci
 
 ---
 
-## Q&A_001: ¿La fuente "News Cycle" de Canva es adecuada para la marca RBSR?
+## Q&A_001: ¿Qué tipografía se utiliza en Canva para las publicaciones de redes sociales?
 
-**Preguntado por:** Carles (técnico de comunicación)
-**Fecha:** Junio 2026
+**Preguntado por:** Carles (técnico de comunicación)  
+**Fecha:** Junio 2026 / Actualizado Julio 2026
 
 ### Respuesta
 
-**News Cycle** es una fuente serif de palo seco humanista (humanist slab-serif) de diseño periodístico clásico, limpia y legible. Comparada con las fuentes oficiales de la Reserva, este es el análisis:
+Para todas las plantillas de Redes Sociales en Canva, se ha decidido utilizar la tipografía **News Cycle** (Regular / Bold) para **todos los niveles de texto** (titulares, subtítulos y cuerpo de texto), tal y como está configurado en las plantillas oficiales de Canva.
 
-| Criterio | News Cycle | Montserrat Bold (oficial) | VSV Alergia (oficial) |
-| :--- | :--- | :--- | :--- |
-| **Familia tipográfica** | Slab-serif (serifa cuadrada) | Sans-serif geométrica | Sans-serif personalizada |
-| **Personalidad** | Periodística, sobria, editorial | Moderna, clara, institucional | Orgánica, territorial, única |
-| **Legibilidad en titulares** | Alta | Muy alta | Alta |
-| **Legibilidad en texto corrido** | Muy alta | Media-alta | Media |
-| **Alineamiento con la marca RBSR** | Parcial — evoca naturaleza y tradición pero no es la fuente oficial | Sí — es la tipografía de titulares oficial | Sí — es la tipografía corporativa exclusiva de la Reserva |
-| **Disponibilidad en Canva** | ✅ Nativa en Canva | ✅ Disponible en Canva (Google Fonts) | ❌ No disponible en Canva (fuente propietaria) |
+### Razón y Beneficios
 
-### Veredicto
+- **Unificación y Simplicidad**: Facilita el trabajo diario de los técnicos sin necesidad de combinar múltiples fuentes.
+- **Estética Editorial y Tradición**: Aporta un tono periodístico, sobrio y orgánico muy cercano a la tradición impresa y al espíritu natural del territorio.
+- **100% Nativa en Canva**: No requiere instalar ni subir licencias de fuentes externas.
 
-**News Cycle es una opción aceptable como fuente secundaria o de cuerpo de texto en Canva**, especialmente para textos explicativos dentro de carteles o plantillas. Su carácter editorial y orgánico armoniza bien con el territorio rural de la Sierra. Sin embargo, **no debe usarse como tipografía principal de titulares**, ya que ese rol le corresponde a **Montserrat Bold** (que sí está disponible en Canva de forma nativa como fuente de Google Fonts).
-
-### Recomendación de combinación tipográfica en Canva
-
-La siguiente combinación respeta la identidad de marca y es 100% ejecutable en Canva:
-
-- **Titulares principales (H1)**: `Montserrat Bold` — fuerza, modernidad, coherencia institucional.
-- **Subtítulos (H2/H3)**: `Montserrat SemiBold` — jerarquía clara y visual.
-- **Texto de lectura / cuerpo**: `News Cycle Regular` — legibilidad editorial cálida y cercana a la tradición impresa del territorio.
-
-Esta combinación **Montserrat + News Cycle** ofrece el contraste visual adecuado entre lo geométrico y limpio (institucional) y lo orgánico y editorial (territorial), complementándose sin competir. Es un emparejamiento semánticamente coherente con la Reserva.
-
-### Lo que debes evitar
-
-- No uses News Cycle en titulares de portada o cabeceras de imagen digital (demasiado pequeña a distancia).
-- No uses News Cycle Bold en combinación con Montserrat Bold en el mismo bloque — saturará el peso visual.
-- No mezcles más de dos familias tipográficas en una misma pieza gráfica.
+> ⚠️ **Nota de Gobernanza de Diseño**: Esta decisión es la norma operativa actual acordada para dar agilidad al equipo. No obstante, **puede sufrir modificaciones o refinamientos a futuro** según los criterios y decisiones finales que determine el equipo formal de diseño de la Reserva.
 
 ---
 
@@ -136,6 +115,26 @@ El generador produce un **borrador estructurado y alineado con la identidad de l
 
 > [!IMPORTANT]
 > 📋 Instrucciones para Copiando el texto en el QnA: El generador NO accede a Internet, NO usa ningún modelo de IA externo y NO envía ningún dato a ningún servidor. Todo el procesamiento ocurre localmente en tu propio navegador.
+
+---
+
+## Q&A_006: ¿Dónde está alojada esta web y cómo se realiza su mantenimiento o migración?
+
+**Preguntado por:** Equipo de Comunicación RBSR  
+**Fecha:** Julio 2026
+
+### Respuesta
+
+1. **Alojamiento Gratuito e Indefinido**: Esta web está alojada de forma totalmente **gratuita** por parte de [Carles Gutiérrez Vallès](https://carlesgutierrez.github.io/consultoria-digital/) en la infraestructura de GitHub Pages (mientras la plataforma lo permita, en principio de forma indefinida).
+
+2. **Cambio de Dominio**: Si en el futuro se desea asociar la web a un dominio web oficial propio (ej: `comunicacion.sierradelrincon.org`), es una configuración ágil que se puede realizar rápidamente en GitHub contactando con [Carles Gutiérrez](https://carlesgutierrez.github.io/consultoria-digital/).
+
+3. **Migración a otro Servidor o Repositorio**: Si la Reserva o la entidad gestora decide en el futuro migrar esta web a sus propios servidores o a una cuenta de GitHub institucional, se puede solicitar la asistencia técnica a Carles Gutiérrez.
+
+4. **Código Abierto y Repositorio Público**: Todo el código fuente del portal, las plantillas y el generador están disponibles de forma **libre y abierta** en el repositorio público de GitHub:
+   - 📁 **Repositorio oficial**: [https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion](https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion)
+
+> *Cualquier persona o técnico del equipo puede clonar, descargar o desplegar libremente este proyecto en otra cuenta de GitHub o servidor corporativo en cualquier momento.*
 
 ---
 

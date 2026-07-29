@@ -286,7 +286,8 @@ def compile_portal():
         "esencia": "1_esencia_y_valores.md",
         "visual": "2_sistema_visual.md",
         "plantillas": "3_canales_y_plantillas.md",
-        "estrategia": "4_estrategia_y_planificacion.md"
+        "estrategia": "4_estrategia_y_planificacion.md",
+        "manual": "7_manual_uso_marca.md"
     }
     
     contents = {}
@@ -504,10 +505,8 @@ def compile_portal():
     <!-- Top Premium Brand Header -->
     <header class="glass sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
         <button onclick="switchTab('esencia'); window.scrollTo({{top: 0, behavior: 'smooth'}});" class="flex items-center text-left gap-4 hover:opacity-90 active:scale-[0.99] transition-all focus:outline-none group">
-            <!-- Simulated Premium Botanical Logo Representation -->
-            <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-reserve-forest to-reserve-olive flex items-center justify-center text-white font-title font-black text-sm tracking-tighter shadow-md select-none group-hover:shadow-lg transition-all">
-                SBSR
-            </div>
+            <!-- Logo oficial RBSR -->
+            <img src="recursos/img/logo_solo.png" alt="Logo Reserva de la Biosfera Sierra del Rincón" class="w-12 h-12 object-contain select-none group-hover:scale-105 transition-all">
             <div>
                 <h1 class="font-title font-black text-xl tracking-tight text-reserve-forest flex items-center gap-2 group-hover:text-reserve-olive transition-colors">
                     Reserva de la Biosfera <span class="text-reserve-olivedark font-medium">Sierra del Rincón</span>
@@ -532,16 +531,19 @@ def compile_portal():
             <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 📊 Estrategia
             </button>
-            <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all flex items-center gap-1 bg-sky-100/60 text-sky-700 border border-sky-200 hover:bg-sky-100">
+            <button onclick="switchTab('manual')" id="btn-manual" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
+                🏛️ Manual Anterior
+            </button>
+            <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 🎥 Tutoriales
             </button>
-            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all bg-reserve-olive/20 text-reserve-olivedark border border-reserve-olive/40 hover:bg-reserve-olive/30 flex items-center gap-1">
+            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 ⚙️ Generador de Post
             </button>
-            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all flex items-center gap-1 bg-violet-100/60 text-violet-700 border border-violet-200 hover:bg-violet-100">
+            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 📋 Instrucciones IA
             </button>
-            <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all flex items-center gap-1 bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100">
+            <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all">
                 ❓ Q&amp;A
             </button>
         </nav>
@@ -584,53 +586,15 @@ def compile_portal():
                 
                 <!-- Quick interactive color palettes -->
                 <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
-                    <span>🎨</span> Paletas de Colores de la Reserva
+                    <span>🎨</span> Paletas de Colores para Redes Sociales
                 </h3>
                 
                 <div class="space-y-6">
-                    <!-- A. Paleta Oficial de la MARCA -->
-                    <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
-                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3 flex items-center gap-1.5">
-                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-600"></span>
-                            A. Paleta Oficial de Marca (Institucional)
-                        </h4>
-                        <p class="text-xs text-stone-500 mb-4">Identidad cromática oficial para publicaciones formales, cartelería institucional y papelería corporativa.</p>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <!-- Verde Brote -->
-                            <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" title="Verde Brote (#b8be3f) - Pantone 583C. Uso: Acentos, iconos y llamadas a la acción." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
-                                <div class="w-10 h-10 rounded-lg bg-[#b8be3f] shadow-inner"></div>
-                                <div class="text-left">
-                                    <p class="text-xs font-bold text-stone-800 leading-none">Verde Brote</p>
-                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#b8be3f</span>
-                                    <span class="text-[9px] text-stone-400">Pantone 583C</span>
-                                </div>
-                            </div>
-                            <!-- Olivo Oscuro -->
-                            <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" title="Olivo Oscuro (#585615) - Pantone 581C. Uso: Textos secundarios, contornos y fondos estructurados." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
-                                <div class="w-10 h-10 rounded-lg bg-[#585615] shadow-inner"></div>
-                                <div class="text-left">
-                                    <p class="text-xs font-bold text-stone-800 leading-none">Olivo Oscuro</p>
-                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#585615</span>
-                                    <span class="text-[9px] text-stone-400">Pantone 581C</span>
-                                </div>
-                            </div>
-                            <!-- Verde Bosque RERB -->
-                            <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" title="Verde Bosque RERB (#4d7c67) - Pantone 624C. Identidad de la Red Española de Reservas de la Biosfera." class="group cursor-pointer flex items-center gap-3 bg-white p-3 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
-                                <div class="w-10 h-10 rounded-lg bg-[#4d7c67] shadow-inner"></div>
-                                <div class="text-left">
-                                    <p class="text-xs font-bold text-stone-800 leading-none">Verde Bosque</p>
-                                    <span class="text-[11px] font-mono text-stone-500 block mt-1">#4d7c67</span>
-                                    <span class="text-[9px] text-stone-400">Pantone 624C</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- B. Paletas Canva (Redes Sociales y Estacionalidad) -->
+                    <!-- Paletas Canva (Redes Sociales y Estacionalidad) -->
                     <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
                         <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3 flex items-center gap-1.5">
                             <span class="inline-block w-2 h-2 rounded-full bg-violet-600"></span>
-                            B. Paletas Canva (Redes Sociales y Estacionalidad)
+                            Paletas Canva (Redes Sociales y Estacionalidad)
                         </h4>
                         <p class="text-xs text-stone-500 mb-4">Combinaciones estacionales optimizadas para las plantillas de Canva. Haz clic sobre cualquier color para copiar su código HEX.</p>
                         
@@ -813,6 +777,166 @@ def compile_portal():
         <div id="tab-estrategia" class="tab-content space-y-6">
             <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
                 {contents["estrategia"]}
+            </div>
+        </div>
+
+        <!-- Tab: Manual Anterior -->
+        <div id="tab-manual" class="tab-content space-y-6">
+            <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
+
+                <!-- Nota de Contexto y Referencia Histórica -->
+                <div class="bg-amber-50 border border-amber-200 p-6 rounded-2xl space-y-4">
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl">🏛️</span>
+                        <div class="space-y-2">
+                            <h4 class="text-base font-bold text-amber-900">Manual de Marca Institucional &amp; Referencias Históricas</h4>
+                            <p class="text-xs text-amber-800 leading-relaxed">
+                                Este bloque recopila las directrices oficiales basadas en el 
+                                <a href="https://drive.google.com/file/d/1mPFJfUtaEvCKvsQ_ZgsfwfyJwHD6Ez6d/view?usp=sharing" target="_blank" rel="noopener" class="underline font-bold hover:text-amber-950">📄 Manual de Estilo de la Marca (2024)</a>.
+                                Las referencias a los <strong>«Anexos»</strong> citadas a continuación proceden directamente de dicho documento oficial y se mantienen íntegras para preservar su concordancia técnica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-amber-200/80 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-amber-800">
+                        <div class="bg-white/70 p-3.5 rounded-xl border border-amber-200/60">
+                            <p class="font-bold text-amber-900 mb-1">📱 Evolución del Diseño para Redes Sociales</p>
+                            <p class="leading-relaxed">
+                                En la página final del manual de estilo original se incluye una breve pincelada sobre el uso gráfico en Redes Sociales. Desde este portal, hemos restaurado, ampliado y evolucionado esa idea en una propuesta visual ágil, estacional y adaptada a las necesidades reales de comunicación digital de la Reserva.
+                            </p>
+                        </div>
+                        <div class="bg-white/70 p-3.5 rounded-xl border border-amber-200/60">
+                            <p class="font-bold text-amber-900 mb-1">⚖️ Recomendación de Revisión Institucional</p>
+                            <p class="leading-relaxed">
+                                Recomendamos que la Reserva de la Biosfera y su equipo gestor revisen y validen todas estas decisiones de diseño junto a su equipo de diseño formal. Este portal proporciona reglas para dotar de estabilidad y coherencia a las publicaciones, siendo la Reserva quien finalmente adapte y aplique su criterio definitivo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Logo Institucional -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                        <span>🖼️</span> Logotipo Oficial
+                    </h3>
+                    <div class="bg-stone-50 border border-stone-200 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-8">
+                        <!-- Logo on white bg — version natural (PNG oficial) -->
+                        <div class="flex flex-col gap-3 items-center">
+                            <div class="bg-white border border-stone-200 rounded-xl p-8 shadow-sm flex items-center justify-center" style="min-width:300px;">
+                                <img src="recursos/img/logo_rbsr_oficial.png" alt="Logo oficial Sierra del Rincón - Reserva de la Biosfera" class="w-64 h-auto" style="max-height:120px; object-fit:contain;">
+                            </div>
+                            <span class="text-xs text-stone-500">Versión original sobre fondo blanco (uso estándar)</span>
+                        </div>
+                        <!-- Logo on dark corporate bg -->
+                        <div class="flex flex-col gap-3 items-center">
+                            <div class="rounded-xl p-8 shadow-md flex items-center justify-center" style="min-width:300px; background:#737a00;">
+                                <img src="recursos/img/logo_rbsr_oficial.png" alt="Logo oficial Sierra del Rincón sobre fondo corporativo" class="w-64 h-auto" style="max-height:120px; object-fit:contain; filter: brightness(0) invert(1);">
+                            </div>
+                            <span class="text-xs text-stone-500">Versión negativo (blanco) sobre fondo corporativo verde</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paleta Oficial de Marca -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                        <span>🎨</span> Paleta Cromática Oficial (Cartelería Institucional)
+                    </h3>
+                    <div class="bg-stone-50 border border-stone-200/80 p-6 rounded-2xl">
+                        <p class="text-xs text-stone-500 mb-4">Identidad cromática oficial para cartelería física, papelería corporativa, señalética y comunicaciones institucionales impresas. Haz clic en cada color para copiar su código HEX.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <!-- Verde Raíz -->
+                            <div onclick="copyToClipboard('#737a00', 'HEX Verde Raíz')" title="Verde Raíz (#737a00) - Pantone 583C. Color principal del logotipo y fondos institucionales." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#737a00;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Verde Raíz</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Color principal del logotipo</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#737a00 · Pantone 583C</span>
+                                </div>
+                            </div>
+                            <!-- Verde Brote -->
+                            <div onclick="copyToClipboard('#b8be3f', 'HEX Verde Brote')" title="Verde Brote (#b8be3f) - Pantone 583C variación. Acentos, iconos y llamadas a la acción." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#b8be3f;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Verde Brote</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Acentos e iconografía</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#b8be3f · Pantone 583C</span>
+                                </div>
+                            </div>
+                            <!-- Olivo Oscuro -->
+                            <div onclick="copyToClipboard('#585615', 'HEX Olivo Oscuro')" title="Olivo Oscuro (#585615) - Pantone 581C. Textos secundarios y contornos." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#585615;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Olivo Oscuro</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Textos y contornos</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#585615 · Pantone 581C</span>
+                                </div>
+                            </div>
+                            <!-- Verde Bosque RERB -->
+                            <div onclick="copyToClipboard('#4d7c67', 'HEX Verde Bosque RERB')" title="Verde Bosque RERB (#4d7c67) - Pantone 624C. Red Española de Reservas de la Biosfera." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#4d7c67;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Verde Bosque RERB</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Red Española Reservas Biosfera</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#4d7c67 · Pantone 624C</span>
+                                </div>
+                            </div>
+                            <!-- Blanco institucional -->
+                            <div onclick="copyToClipboard('#ffffff', 'HEX Blanco Institucional')" title="Blanco (#ffffff) - Para logotipo en negativo y textos sobre fondos oscuros." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0 border border-stone-300" style="background:#ffffff;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Blanco Institucional</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Logotipo en negativo</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#ffffff · White</span>
+                                </div>
+                            </div>
+                            <!-- Negro tipográfico -->
+                            <div onclick="copyToClipboard('#1a1a18', 'HEX Negro Tipográfico')" title="Negro tipográfico (#1a1a18) - Para textos sobre fondos claros en documentos impresos." class="group cursor-pointer flex items-center gap-3 bg-white p-4 rounded-xl border border-stone-200 hover:border-emerald-600 shadow-sm transition-all hover:-translate-y-0.5">
+                                <div class="w-14 h-14 rounded-xl shadow-inner flex-shrink-0" style="background:#1a1a18;"></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-bold text-stone-800 leading-none">Negro Tipográfico</p>
+                                    <span class="text-xs text-stone-500 block mt-1">Textos en impresos</span>
+                                    <span class="text-[11px] font-mono text-stone-400 block mt-1">#1a1a18</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenido del archivo 7_manual_uso_marca.md -->
+                {contents["manual"]}
+
+                <!-- Normas clave de aplicación -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-emerald-800 border-b border-stone-100 pb-2 flex items-center gap-2">
+                        <span>📐</span> Normas Clave de Aplicación del Logotipo
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 border border-red-100 p-5 rounded-2xl">
+                            <p class="text-sm font-bold text-red-700 mb-3 flex items-center gap-2">🚫 Usos Prohibidos</p>
+                            <ul class="space-y-2 text-xs text-red-700">
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Aplastar, estirar o rotar el logotipo</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Cambiar los colores corporativos por otros no autorizados</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Colocar el logo sobre fondos con texturas fuertes o imágenes complejas</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Usar versión color sobre fondos oscuros (usar siempre el negativo blanco)</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Superar en tamaño visual al escudo/logo del socio colaborador principal</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✗</span> Añadir efectos de sombra, bisel o degradados al logotipo</li>
+                            </ul>
+                        </div>
+                        <div class="bg-emerald-50 border border-emerald-100 p-5 rounded-2xl">
+                            <p class="text-sm font-bold text-emerald-700 mb-3 flex items-center gap-2">✅ Buenas Prácticas</p>
+                            <ul class="space-y-2 text-xs text-emerald-700">
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Mantener siempre un margen mínimo de <strong>1 cm</strong> en impresión / <strong>20px</strong> en digital</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Sobre fondos claros → versión color corporativo</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Sobre fondos oscuros → versión negativo en blanco puro</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Alinear al mismo nivel horizontal que escudos municipales colaboradores</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Bloquear proporción de aspecto al redimensionar</li>
+                                <li class="flex items-start gap-2"><span class="mt-0.5">✓</span> Usar solo sobre fondos lisos o texturas muy tenues</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
