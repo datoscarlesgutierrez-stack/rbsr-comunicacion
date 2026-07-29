@@ -257,6 +257,9 @@ def parse_markdown_to_html(md_text):
     # Checklist checkboxes (optional)
     md_text = re.sub(r'- \[ \]\s+(.*?)$', r'<label class="flex items-start gap-3 my-3 p-3 bg-stone-50 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-100/50 transition-colors"><input type="checkbox" class="w-4 h-4 mt-1 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500"><span class="text-sm text-stone-700 leading-relaxed">\1</span></label>', md_text, flags=re.M)
 
+    # Strip markdown horizontal rules (--- lines) — no se muestran como guiones
+    md_text = re.sub(r'^\s*[-]{3,}\s*$', '', md_text, flags=re.M)
+
     # Paragraphs (excluding tags already created)
     blocks = md_text.split('\n\n')
     processed_blocks = []
@@ -475,36 +478,53 @@ def compile_portal():
         }}
         html.accessibility-mode body {{
             background-color: #f4f2e6 !important;
-            color: #000000 !important;
+            color: #111111 !important;
         }}
         html.accessibility-mode *, 
         html.accessibility-mode *::before, 
         html.accessibility-mode *::after {{
             font-weight: 500 !important;
         }}
-        html.accessibility-mode p, 
-        html.accessibility-mode span, 
-        html.accessibility-mode li, 
-        html.accessibility-mode td, 
-        html.accessibility-mode label,
-        html.accessibility-mode blockquote {{
-            color: #000000 !important;
+        html.accessibility-mode p:not(.text-white):not(.text-stone-200):not(.text-stone-300), 
+        html.accessibility-mode span:not(.text-white):not(.text-stone-200):not(.text-stone-300), 
+        html.accessibility-mode li:not(.text-white), 
+        html.accessibility-mode td:not(.text-white), 
+        html.accessibility-mode label:not(.text-white) {{
+            color: #111111 !important;
+        }}
+        /* Mantener legibilidad blanca dentro de contenedores y botones oscuros */
+        html.accessibility-mode .bg-reserve-forest *,
+        html.accessibility-mode .bg-stone-800 *,
+        html.accessibility-mode .bg-\[\#737a00\] *,
+        html.accessibility-mode .bg-emerald-800 *,
+        html.accessibility-mode .bg-amber-600 *,
+        html.accessibility-mode .active-tab,
+        html.accessibility-mode .text-white {{
+            color: #ffffff !important;
         }}
         html.accessibility-mode .text-stone-500,
         html.accessibility-mode .text-stone-600,
         html.accessibility-mode .text-stone-400,
         html.accessibility-mode .text-stone-700 {{
-            color: #111111 !important;
+            color: #1a1a1a !important;
             font-weight: 600 !important;
         }}
         html.accessibility-mode .glass,
-        html.accessibility-mode div,
-        html.accessibility-mode section {{
-            border-color: #333333 !important;
+        html.accessibility-mode section,
+        html.accessibility-mode .rounded-2xl:not(button):not(#btn-accessibility),
+        html.accessibility-mode .rounded-3xl {{
+            border-color: #555555 !important;
+        }}
+        /* El logo del header nunca recibe borde en ningún modo */
+        html.accessibility-mode header button img,
+        html.accessibility-mode header button {{
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
         }}
         html.accessibility-mode button,
         html.accessibility-mode .tab-btn {{
-            border: 2px solid #000000 !important;
+            border: 2px solid #222222 !important;
         }}
         /* ─────────────────────────────────────────────────────────────────────── */
         .custom-scrollbar::-webkit-scrollbar {{
@@ -537,60 +557,50 @@ def compile_portal():
         }}
     </style>
 </head>
-<body class="bg-reserve-light text-reserve-slate min-h-screen flex flex-col font-sans selection:bg-reserve-olive/30 selection:text-reserve-olivedark">
+<body class="bg-reserve-light text-reserve-slate min-h-screen flex flex-col font-sans selection:bg-reserve-olive/30 selection:text-reserve-olivedark relative">
 
     <!-- Top Premium Brand Header -->
-    <header class="glass sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col lg:flex-row justify-between items-center gap-4">
-        <button onclick="switchTab('esencia'); window.scrollTo({{top: 0, behavior: 'smooth'}});" class="flex items-center text-left gap-4 hover:opacity-90 active:scale-[0.99] transition-all focus:outline-none group">
-            <!-- Logo oficial RBSR -->
-            <img src="recursos/img/logo_solo.png" alt="Logo Reserva de la Biosfera Sierra del Rincón" class="w-12 h-12 object-contain select-none group-hover:scale-105 transition-all">
-            <div>
-                <h1 class="font-title font-black text-xl md:text-2xl tracking-tight text-reserve-forest flex items-center gap-2 group-hover:text-reserve-olive transition-colors">
-                    Reserva de la Biosfera <span class="text-reserve-olivedark font-medium">Sierra del Rincón</span>
+    <header class="glass sticky top-0 z-40 px-4 md:px-6 py-2.5 shadow-sm flex flex-col xl:flex-row items-center justify-between gap-2 xl:gap-3">
+        <button onclick="switchTab('esencia'); window.scrollTo({{top: 0, behavior: 'smooth'}});" class="flex items-center text-left gap-2.5 hover:opacity-90 active:scale-[0.99] transition-all focus:outline-none group shrink-0">
+            <!-- Isotipo logo oficial RBSR (sin borde en ningún modo) -->
+            <img src="recursos/img/logo_solo.png" alt="Logo Sierra del Rincón" class="w-9 h-9 md:w-10 md:h-10 object-contain select-none group-hover:scale-105 transition-all" style="border:none !important; box-shadow:none !important;">
+            <div class="leading-tight">
+                <h1 class="font-title font-black text-base md:text-lg tracking-tight text-reserve-forest group-hover:text-reserve-olive transition-colors">
+                    <span class="hidden xl:inline">Reserva de la Biosfera </span>Sierra del Rincón
                 </h1>
-                <p class="text-xs md:text-sm text-stone-700 uppercase tracking-widest font-bold flex items-center gap-1.5 mt-0.5">
-                    🌿 Programa de Comunicación · Reserva de la Biosfera (UNESCO)
-                </p>
             </div>
         </button>
         
-        <div class="flex flex-wrap items-center justify-center lg:justify-end gap-3">
-            <!-- Navigation Menu -->
-            <nav class="flex flex-wrap gap-1.5 bg-stone-100/90 p-1 rounded-full border border-stone-300">
-                <button onclick="switchTab('esencia')" id="btn-esencia" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all active-tab bg-reserve-forest text-white shadow-sm">
-                    🌸 Esencia
-                </button>
-                <button onclick="switchTab('visual')" id="btn-visual" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    🎨 Manual Visual
-                </button>
-                <button onclick="switchTab('plantillas')" id="btn-plantillas" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    📝 Plantillas
-                </button>
-                <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    📊 Estrategia
-                </button>
-                <button onclick="switchTab('manual')" id="btn-manual" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    🏛️ Manual Anterior
-                </button>
-                <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    🎥 Tutoriales
-                </button>
-                <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    ⚙️ Generador de Post
-                </button>
-                <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    📋 Instrucciones IA
-                </button>
-                <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    ❓ Q&amp;A
-                </button>
-            </nav>
-
-            <!-- Accessibility / High Contrast Toggle Button -->
-            <button onclick="toggleAccessibility()" id="btn-accessibility" title="Activar / Desactivar Modo de Alto Contraste y Texto Grande" class="px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border border-stone-400 bg-white hover:bg-stone-100 text-stone-900 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95">
-                <span id="accessibility-icon">👁️</span> <span id="accessibility-text">Alto Contraste</span>
+        <!-- Navigation Menu -->
+        <nav class="flex flex-wrap items-center gap-1 bg-stone-100/90 p-1.5 rounded-2xl border border-stone-300/80 shadow-inner">
+            <button onclick="switchTab('esencia')" id="btn-esencia" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all active-tab bg-reserve-forest text-white shadow-sm">
+                🌸 Esencia
             </button>
-        </div>
+            <button onclick="switchTab('visual')" id="btn-visual" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                🎨 Manual Visual
+            </button>
+            <button onclick="switchTab('plantillas')" id="btn-plantillas" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                📝 Plantillas
+            </button>
+            <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                📊 Estrategia
+            </button>
+            <button onclick="switchTab('manual')" id="btn-manual" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                🏛️ Manual Anterior
+            </button>
+            <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                🎥 Tutoriales
+            </button>
+            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                ⚙️ Generador de Post
+            </button>
+            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                📋 Instrucciones IA
+            </button>
+            <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                ❓ Q&amp;A
+            </button>
+        </nav>
     </header>
 
     <!-- Main Container -->
@@ -1371,8 +1381,13 @@ def compile_portal():
     </div>
 
     <!-- 🤖 Robot trigger button (bottom-right, hidden until hover) -->
-    <button id="robot-trigger" onclick="openAdvanced()" title="Modo Avanzado — SKILL Antigravity" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-stone-900/80 backdrop-blur-sm border border-stone-700 text-xl flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 hover:opacity-100 focus:opacity-100 hover:scale-110 hover:bg-stone-800">
+    <button id="robot-trigger" onclick="openAdvanced()" title="Modo Avanzado — SKILL Antigravity" class="fixed bottom-20 right-6 z-40 w-12 h-12 rounded-full bg-stone-900/80 backdrop-blur-sm border border-stone-700 text-xl flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 hover:opacity-100 focus:opacity-100 hover:scale-110 hover:bg-stone-800 cursor-pointer">
         🤖
+    </button>
+
+    <!-- 👁️ Accessibility / High Contrast Floating Button (bottom-right) -->
+    <button id="btn-accessibility" onclick="toggleAccessibility()" title="Modo Legibilidad y Alto Contraste" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-white text-stone-900 border-2 border-stone-400 shadow-xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all cursor-pointer select-none">
+        <span id="accessibility-icon">👁️</span>
     </button>
 
     </main>
@@ -1553,21 +1568,18 @@ def compile_portal():
             const targetTab = document.getElementById(`tab-${{tabId}}`);
             targetTab.classList.add('active');
             
-            // Update active button state
+            // Reset all buttons to default state
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(btn => {{
-                btn.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all";
+                btn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all";
             }});
             
+            // Set active button
             const activeBtn = document.getElementById(`btn-${{tabId}}`);
-            if (['generador', 'instrucciones', 'qna', 'tutoriales'].includes(tabId)) {{
-                activeBtn.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full bg-reserve-forest text-white shadow-sm flex items-center gap-1";
-            }} else {{
-                activeBtn.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full bg-reserve-forest text-white shadow-sm";
-            }}
+            activeBtn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl bg-reserve-forest text-white shadow-sm transition-all";
 
             // Smooth scroll to tabs
-            window.scrollTo({{ top: 320, behavior: 'smooth' }});
+            window.scrollTo({{ top: 280, behavior: 'smooth' }});
         }}
 
         // Accessibility & High Contrast Toggle
@@ -1579,16 +1591,19 @@ def compile_portal():
 
         function updateAccessibilityBtn(active) {{
             const icon = document.getElementById('accessibility-icon');
-            const text = document.getElementById('accessibility-text');
             const btn = document.getElementById('btn-accessibility');
             if (active) {{
                 if (icon) icon.innerText = '👁️‍🗨️';
-                if (text) text.innerText = 'Contraste: ON';
-                if (btn) btn.className = "px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border-2 border-emerald-700 bg-emerald-800 text-white shadow-md flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95";
+                if (btn) {{
+                    btn.className = "fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-emerald-800 text-white border-2 border-emerald-400 shadow-2xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all cursor-pointer ring-4 ring-emerald-300/50";
+                    btn.title = "Desactivar Alto Contraste (Modo Normal)";
+                }}
             }} else {{
                 if (icon) icon.innerText = '👁️';
-                if (text) text.innerText = 'Alto Contraste';
-                if (btn) btn.className = "px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border border-stone-400 bg-white hover:bg-stone-100 text-stone-900 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95";
+                if (btn) {{
+                    btn.className = "fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-white text-stone-900 border-2 border-stone-400 shadow-xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all cursor-pointer";
+                    btn.title = "Activar Modo Legibilidad y Alto Contraste";
+                }}
             }}
         }}
 

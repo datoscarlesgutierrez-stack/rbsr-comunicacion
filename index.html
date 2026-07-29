@@ -52,36 +52,53 @@
         }
         html.accessibility-mode body {
             background-color: #f4f2e6 !important;
-            color: #000000 !important;
+            color: #111111 !important;
         }
         html.accessibility-mode *, 
         html.accessibility-mode *::before, 
         html.accessibility-mode *::after {
             font-weight: 500 !important;
         }
-        html.accessibility-mode p, 
-        html.accessibility-mode span, 
-        html.accessibility-mode li, 
-        html.accessibility-mode td, 
-        html.accessibility-mode label,
-        html.accessibility-mode blockquote {
-            color: #000000 !important;
+        html.accessibility-mode p:not(.text-white):not(.text-stone-200):not(.text-stone-300), 
+        html.accessibility-mode span:not(.text-white):not(.text-stone-200):not(.text-stone-300), 
+        html.accessibility-mode li:not(.text-white), 
+        html.accessibility-mode td:not(.text-white), 
+        html.accessibility-mode label:not(.text-white) {
+            color: #111111 !important;
+        }
+        /* Mantener legibilidad blanca dentro de contenedores y botones oscuros */
+        html.accessibility-mode .bg-reserve-forest *,
+        html.accessibility-mode .bg-stone-800 *,
+        html.accessibility-mode .bg-\[\#737a00\] *,
+        html.accessibility-mode .bg-emerald-800 *,
+        html.accessibility-mode .bg-amber-600 *,
+        html.accessibility-mode .active-tab,
+        html.accessibility-mode .text-white {
+            color: #ffffff !important;
         }
         html.accessibility-mode .text-stone-500,
         html.accessibility-mode .text-stone-600,
         html.accessibility-mode .text-stone-400,
         html.accessibility-mode .text-stone-700 {
-            color: #111111 !important;
+            color: #1a1a1a !important;
             font-weight: 600 !important;
         }
         html.accessibility-mode .glass,
-        html.accessibility-mode div,
-        html.accessibility-mode section {
-            border-color: #333333 !important;
+        html.accessibility-mode section,
+        html.accessibility-mode .rounded-2xl:not(button):not(#btn-accessibility),
+        html.accessibility-mode .rounded-3xl {
+            border-color: #555555 !important;
+        }
+        /* El logo del header nunca recibe borde en ningún modo */
+        html.accessibility-mode header button img,
+        html.accessibility-mode header button {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
         }
         html.accessibility-mode button,
         html.accessibility-mode .tab-btn {
-            border: 2px solid #000000 !important;
+            border: 2px solid #222222 !important;
         }
         /* ─────────────────────────────────────────────────────────────────────── */
         .custom-scrollbar::-webkit-scrollbar {
@@ -114,60 +131,50 @@
         }
     </style>
 </head>
-<body class="bg-reserve-light text-reserve-slate min-h-screen flex flex-col font-sans selection:bg-reserve-olive/30 selection:text-reserve-olivedark">
+<body class="bg-reserve-light text-reserve-slate min-h-screen flex flex-col font-sans selection:bg-reserve-olive/30 selection:text-reserve-olivedark relative">
 
     <!-- Top Premium Brand Header -->
-    <header class="glass sticky top-0 z-50 px-6 py-4 shadow-sm flex flex-col lg:flex-row justify-between items-center gap-4">
-        <button onclick="switchTab('esencia'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center text-left gap-4 hover:opacity-90 active:scale-[0.99] transition-all focus:outline-none group">
-            <!-- Logo oficial RBSR -->
-            <img src="recursos/img/logo_solo.png" alt="Logo Reserva de la Biosfera Sierra del Rincón" class="w-12 h-12 object-contain select-none group-hover:scale-105 transition-all">
-            <div>
-                <h1 class="font-title font-black text-xl md:text-2xl tracking-tight text-reserve-forest flex items-center gap-2 group-hover:text-reserve-olive transition-colors">
-                    Reserva de la Biosfera <span class="text-reserve-olivedark font-medium">Sierra del Rincón</span>
+    <header class="glass sticky top-0 z-40 px-4 md:px-6 py-2.5 shadow-sm flex flex-col xl:flex-row items-center justify-between gap-2 xl:gap-3">
+        <button onclick="switchTab('esencia'); window.scrollTo({top: 0, behavior: 'smooth'});" class="flex items-center text-left gap-2.5 hover:opacity-90 active:scale-[0.99] transition-all focus:outline-none group shrink-0">
+            <!-- Isotipo logo oficial RBSR (sin borde en ningún modo) -->
+            <img src="recursos/img/logo_solo.png" alt="Logo Sierra del Rincón" class="w-9 h-9 md:w-10 md:h-10 object-contain select-none group-hover:scale-105 transition-all" style="border:none !important; box-shadow:none !important;">
+            <div class="leading-tight">
+                <h1 class="font-title font-black text-base md:text-lg tracking-tight text-reserve-forest group-hover:text-reserve-olive transition-colors">
+                    <span class="hidden xl:inline">Reserva de la Biosfera </span>Sierra del Rincón
                 </h1>
-                <p class="text-xs md:text-sm text-stone-700 uppercase tracking-widest font-bold flex items-center gap-1.5 mt-0.5">
-                    🌿 Programa de Comunicación · Reserva de la Biosfera (UNESCO)
-                </p>
             </div>
         </button>
         
-        <div class="flex flex-wrap items-center justify-center lg:justify-end gap-3">
-            <!-- Navigation Menu -->
-            <nav class="flex flex-wrap gap-1.5 bg-stone-100/90 p-1 rounded-full border border-stone-300">
-                <button onclick="switchTab('esencia')" id="btn-esencia" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all active-tab bg-reserve-forest text-white shadow-sm">
-                    🌸 Esencia
-                </button>
-                <button onclick="switchTab('visual')" id="btn-visual" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    🎨 Manual Visual
-                </button>
-                <button onclick="switchTab('plantillas')" id="btn-plantillas" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    📝 Plantillas
-                </button>
-                <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    📊 Estrategia
-                </button>
-                <button onclick="switchTab('manual')" id="btn-manual" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    🏛️ Manual Anterior
-                </button>
-                <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    🎥 Tutoriales
-                </button>
-                <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    ⚙️ Generador de Post
-                </button>
-                <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    📋 Instrucciones IA
-                </button>
-                <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-4 py-2 text-xs md:text-sm font-bold rounded-full text-reserve-slate hover:bg-stone-200/60 transition-all">
-                    ❓ Q&amp;A
-                </button>
-            </nav>
-
-            <!-- Accessibility / High Contrast Toggle Button -->
-            <button onclick="toggleAccessibility()" id="btn-accessibility" title="Activar / Desactivar Modo de Alto Contraste y Texto Grande" class="px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border border-stone-400 bg-white hover:bg-stone-100 text-stone-900 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95">
-                <span id="accessibility-icon">👁️</span> <span id="accessibility-text">Alto Contraste</span>
+        <!-- Navigation Menu -->
+        <nav class="flex flex-wrap items-center gap-1 bg-stone-100/90 p-1.5 rounded-2xl border border-stone-300/80 shadow-inner">
+            <button onclick="switchTab('esencia')" id="btn-esencia" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all active-tab bg-reserve-forest text-white shadow-sm">
+                🌸 Esencia
             </button>
-        </div>
+            <button onclick="switchTab('visual')" id="btn-visual" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                🎨 Manual Visual
+            </button>
+            <button onclick="switchTab('plantillas')" id="btn-plantillas" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                📝 Plantillas
+            </button>
+            <button onclick="switchTab('estrategia')" id="btn-estrategia" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                📊 Estrategia
+            </button>
+            <button onclick="switchTab('manual')" id="btn-manual" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                🏛️ Manual Anterior
+            </button>
+            <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                🎥 Tutoriales
+            </button>
+            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                ⚙️ Generador de Post
+            </button>
+            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                📋 Instrucciones IA
+            </button>
+            <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+                ❓ Q&amp;A
+            </button>
+        </nav>
     </header>
 
     <!-- Main Container -->
@@ -199,18 +206,14 @@
             <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
                 <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Esencia de Marca, Valores y Tono de Voz: Reserva de la Biosfera Sierra del Rincón (RBSR)</h1>
 <p class="text-stone-800 leading-loose my-5 text-base">Este documento define la base conceptual y el alma de la comunicación de la <strong class="font-bold text-stone-900">Reserva de la Biosfera Sierra del Rincón (RBSR)</strong>. Es la brújula para los técnicos y el agente inteligente a la hora de redactar contenidos, garantizando que cada mensaje refleje la identidad profunda del territorio.</p>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Propósito de la Marca (El porqué de nuestro camino)</h2>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed">Acompañamos a la Sierra del Rincón en su propio camino de sostenibilidad, haciendo que cada proyecto sea una semilla de futuro compartido: preservar sus ecosistemas y especies, apoyar el aprendizaje, la educación y la investigación, y promover un desarrollo humano y económico sostenible que cuide la vida y el territorio.</blockquote>
----
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. Visión (El horizonte que compartimos)</h2>
 Avanzamos hacia un modelo de territorio donde la conservación de la biodiversidad, la participación activa de la comunidad y el desarrollo rural sostenible se apoyan mutuamente.
 Generamos un territorio ejemplo de armonía entre vida rural, naturaleza y conocimiento compartido, donde <strong class="font-bold text-stone-900">la innovación brota de la tradición</strong> y el bienestar se mide en equilibrio y cuidado mutuo, no en crecimiento ilimitado.
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">3. Valores (Las raíces que nos sostienen)</h2>
 Estos valores no son exclusivos de un área o departamento. Atraviesan de forma transversal todo el territorio, las personas y los proyectos.
 <div class="overflow-x-auto my-6 rounded-lg border border-stone-200 shadow-sm"><table class="min-w-full divide-y divide-stone-200 text-left"><thead class="bg-stone-50 text-emerald-900 font-semibold"><tr><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Valor</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Ámbito Clave / Eje Temático</th><th class="px-6 py-4 font-bold text-sm border-b border-stone-200">Cómo se expresa en la comunicación</th></tr></thead><tbody class="bg-white divide-y divide-stone-100 text-stone-800"><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Raíz y pertenencia</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Cultura serrana, comunidad local, paisaje vivido, agroalimentación y oficios tradicionales.</td><td class="px-6 py-4 text-base border-b border-stone-100">Respetando la historia del territorio, usando nombres locales y destacando la herencia cultural.</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Custodia del territorio</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Conservación de la biodiversidad, gestión forestal sostenible, ecoturismo y biodiversidad.</td><td class="px-6 py-4 text-base border-b border-stone-100">Poniendo en valor los procesos naturales y concienciando sobre la fragilidad y belleza del entorno.</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Cooperación viva</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Gobernanza compartida, alianzas institucionales, participación comunitaria y apoyo a iniciativas locales.</td><td class="px-6 py-4 text-base border-b border-stone-100">Hablando en plural ("nosotros", "juntos") y reconociendo el mérito de todas las partes involucradas.</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Aprendizaje constante</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Educación ambiental, divulgación científica, investigación, turismo interpretativo.</td><td class="px-6 py-4 text-base border-b border-stone-100">Traduciendo conceptos científicos complejos en relatos sencillos, accesibles y curiosos.</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Innovación desde lo pequeño</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Economía rural, emprendimiento sostenible, artesanía y agroalimentación local.</td><td class="px-6 py-4 text-base border-b border-stone-100">Celebrando las pequeñas iniciativas, los productores artesanales y los proyectos locales de economía circular.</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Inclusión y cuidados</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Accesibilidad universal, equidad de género, convivencia sana entre residentes y visitantes.</td><td class="px-6 py-4 text-base border-b border-stone-100">Diseñando comunicaciones claras, accesibles y fomentando el respeto hacia el habitante de la Sierra.</td></tr><tr class="hover:bg-stone-50/50 transition-colors"><td class="px-6 py-4 text-base border-b border-stone-100"><strong>Comunicación con alma</strong></td><td class="px-6 py-4 text-base border-b border-stone-100">Lenguaje claro, cercano, relatos auténticos del territorio y comunicación honesta.</td><td class="px-6 py-4 text-base border-b border-stone-100">Evitando la jerga burocrática rígida, prefiriendo la cercanía y la veracidad sin adornos artificiales.</td></tr></tbody></table></div>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">4. Tono de Voz (Nuestra forma de hablar)</h2>
 El tono de voz de la Reserva no es el de una corporación lejana ni el de una oficina de turismo comercial. Nace de un <strong class="font-bold text-stone-900">territorio vivo, cambiante y sensible</strong>, y debe cambiar con las estaciones de la Sierra.
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Cálido y Humano</strong>: Hablamos a la altura de los ojos. Te invitamos a caminar y descubrir con respeto, curiosidad y sosiego.</li><li class="text-base"><em class="italic text-stone-700">Ejemplo</em>: "Te invitamos a caminar la Sierra con tiempo, con respeto y con curiosidad."</li><li class="text-base"><strong class="font-bold text-stone-900">Poético pero Claro</strong>: Encontramos belleza en lo cotidiano de la sierra, pero manteniendo el mensaje directo y comprensible.</li><li class="text-base"><em class="italic text-stone-700">Ejemplo</em>: "El hayedo se transforma en cada estación, y con él, nuestra forma de habitarlo y cuidarlo."</li><li class="text-base"><strong class="font-bold text-stone-900">Positivo y Constructivo</strong>: Enfocamos los problemas ambientales o de desarrollo desde la acción positiva y la esperanza.</li><li class="text-base"><em class="italic text-stone-700">Ejemplo</em>: "Cada pequeño proyecto rural cuida hoy lo que las próximas generaciones disfrutarán mañana."</li><li class="text-base"><strong class="font-bold text-stone-900">Colectivo</strong>: Construimos comunidad. Los logros son siempre del territorio y de sus manos tejedoras.</li><li class="text-base"><em class="italic text-stone-700">Ejemplo</em>: "La Reserva de la Biosfera la construimos entre muchas manos, saberes y voluntades colectivas."</li><li class="text-base"><strong class="font-bold text-stone-900">Sensorial y Visual</strong>: Evocamos los sentidos. Hablamos de texturas, sonidos, olores y la luz de cada estación.</li><li class="text-base"><em class="italic text-stone-700">Ejemplo</em>: "Sentir el crujir de las hojas secas en otoño, el olor a tierra húmeda en primavera o el silencio del invierno serrano."</li><li class="text-base"><strong class="font-bold text-stone-900">Institucional Accesible</strong>: Cuando hay que comunicar normas, subvenciones o actas oficiales, lo hacemos con rigor absoluto pero con un lenguaje limpio, directo y libre de tecnicismos estériles.</li></ul>
@@ -326,11 +329,9 @@ El tono de voz de la Reserva no es el de una corporación lejana ni el de una of
 
                 <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Consultoría de Redes Sociales: Sistema Visual e Identidad Gráfica (RBSR)</h1>
 <p class="text-stone-800 leading-loose my-5 text-base">Este documento detalla las directrices estrictas para la creación de imágenes coherentes, auténticas y de estética premium en las Redes Sociales de la Reserva de la Biosfera Sierra del Rincón (RBSR).</p>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Tipografía Recomendada para Canva (Redes Sociales y Plantillas)</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">Para todas las plantillas de redes sociales y diseños en Canva, se utilizará la siguiente tipografía para mantener la coherencia y simplicidad:</p>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">News Cycle Regular</strong>: Se utilizará para todos los niveles de texto (titulares, subtítulos y cuerpo de texto). Aporta una estética editorial y cercana a la tradición impresa del territorio, siendo legible y orgánica.</li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. Guía de Estética de Imagen</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">La autenticidad es nuestra mayor herramienta de conservación. <strong class="font-bold text-stone-900">Nunca se deben utilizar imágenes de stock genéricas</strong> con modelos de estudio o paisajes artificiales ajenos a la Sierra de Madrid.</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Reglas Estéticas para Fotografías e Ilustraciones</h3>
@@ -420,52 +421,42 @@ El tono de voz de la Reserva no es el de una corporación lejana ni el de una of
                 <div class="prose max-w-none text-stone-700">
                     <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Directrices de Redacción y Plantillas de Texto: Canales RBSR</h1>
 <p class="text-stone-800 leading-loose my-5 text-base">Este documento establece las estructuras, longitudes recomendadas y plantillas de redacción adaptadas para cada uno de los canales de comunicación de la <strong class="font-bold text-stone-900">Reserva de la Biosfera Sierra del Rincón (RBSR)</strong>.</p>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">📁 Guía del Excel de Plantillas y Protocolo Estacional</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">Disponemos de una <strong class="font-bold text-stone-900">Matriz de Mensajes en Excel</strong> que sirve como guía unificada de acceso a las plantillas de redes y Canva, y como protocolo para redactar textos adaptados al ritmo y tono de la Sierra.</p>
 <div class="border-l-4 p-4 my-6 rounded-r-lg bg-emerald-50 border-emerald-600 text-emerald-800"><p class="font-bold flex items-center gap-2 mb-1"><span>🌿</span> IMPORTANT</p><p class="text-sm leading-relaxed">🔗 <strong class="font-bold text-stone-900"><a href="https://docs.google.com/spreadsheets/d/1ZWrurZqTga1lSKKCR7BXOUxXwOrvge-eUrd5y-vPkBw/edit?gid=81569507#gid=81569507" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">ACCEDER AL EXCEL DE PLANTILLAS Y PROTOCOLO DE LA RESERVA</a></strong>
 <em class="italic text-stone-700">(Nota: El documento se encuentra en modo Comentador. Si necesitas permisos de edición directa para tu área, solicita el acceso a través del propio enlace de Google Drive).</em></p></div>
----
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">🎨 Enlaces a las Plantillas de Diseño en Canva (Resoluciones)</h3>
 <em class="italic text-stone-700">Puedes editar estos enlaces directamente en esta documentación si cambian de ubicación. El generador de post los leerá automáticamente.</em>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Plantilla 1:1 (Meta)</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm"><a href="https://canva.link/metarsrb" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all"><a href="https://canva.link/metarsrb" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">https://canva.link/metarsrb</a></a></code></li><li class="text-base"><strong class="font-bold text-stone-900">Plantilla 4:5</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm"><a href="https://canva.link/933xncglzshcqxy" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all"><a href="https://canva.link/933xncglzshcqxy" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">https://canva.link/933xncglzshcqxy</a></a></code></li><li class="text-base"><strong class="font-bold text-stone-900">Plantilla 16:9</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm"><a href="https://canva.link/fgesdrt0q2oji1v" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all"><a href="https://canva.link/fgesdrt0q2oji1v" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">https://canva.link/fgesdrt0q2oji1v</a></a></code></li><li class="text-base"><strong class="font-bold text-stone-900">Plantilla 9:16 (Story)</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm"><a href="https://canva.link/ql314ijqwb1k2qe" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all"><a href="https://canva.link/ql314ijqwb1k2qe" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">https://canva.link/ql314ijqwb1k2qe</a></a></code></li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">🗺️ Paso a Paso para Crear Nuevos Contenidos</h3>
 Cuando necesites comunicar una actividad, un evento o una noticia, <strong class="font-bold text-stone-900">no empieces desde cero</strong>. Sigue este sencillo protocolo de 5 pasos para garantizar la coherencia visual y el espíritu de la Reserva:
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Seleccionar la pestaña adecuada</strong>: Entra en el Excel y elige la pestaña correspondiente a la estación actual (🌸 Primavera, ☀️ Verano, 🍁 Otoño, ❄️ Invierno) o la pestaña <strong class="font-bold text-stone-900">Genérico</strong> si el mensaje no depende del clima.</li><li class="text-base"><strong class="font-bold text-stone-900">Duplicar una sección base</strong>: Busca el bloque temático que más se parezca a tu objetivo (ej. dar la bienvenida, proponer una ruta o invitar a un taller) y cópialo.</li><li class="text-base"><strong class="font-bold text-stone-900">Adaptar el Titular</strong>: Modifica el titular de forma sugerente para capturar la atención, manteniendo la brevedad.</li><li class="text-base"><strong class="font-bold text-stone-900">Redactar la Descripción y el Texto Largo</strong>: Ajusta los campos al contenido concreto de tu actividad. <strong class="font-bold text-stone-900">Respeta los límites de caracteres</strong> indicados en el Excel para evitar que se corten en el feed.</li><li class="text-base"><strong class="font-bold text-stone-900">Aplicar la Estética Visual</strong>: Accede al <strong class="font-bold text-stone-900">enlace de Canva</strong> asociado a ese bloque de mensaje (en las columnas derechas del Excel) para maquetar la pieza visual con la paleta de colores de esa estación.</li></ol>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">🗂️ ¿Cómo está Organizado el Excel?</h3>
 <p class="text-stone-800 leading-loose my-5 text-base">El documento se divide en pestañas estacionales y una pestaña transversal:
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Primavera / Verano / Otoño / Invierno</strong>: Mensajes que respiran el cambio de la naturaleza, adaptados a la temperatura, los colores del bosque y los sentimientos de cada época.</li><li class="text-base"><strong class="font-bold text-stone-900">Pestaña "Genérico"</strong>: Mensajes institucionales, recordatorios permanentes de buenas prácticas en el medio natural, invitaciones generales y comunicaciones sobre los valores, el cuidado y el respeto por el territorio.</li></ul></p>
 <h4 class="text-base font-bold text-stone-900 mt-5 mb-2">Estructura de Cada Sección</h4>
 Dentro de cada pestaña, cada bloque de comunicación se compone estrictamente de tres partes:
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Titular</strong>: Frase corta que resume y define el propósito del mensaje de forma directa.</li><li class="text-base"><strong class="font-bold text-stone-900">Descripción</strong>: Breve texto de 1 o 2 frases que acompaña, contextualiza y añade valor.</li><li class="text-base"><strong class="font-bold text-stone-900">Texto Largo (Caption)</strong>: El mensaje principal del post, pensado para comunicar con calma, claridad y profundidad.</li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">🌿 El Tono de Voz que debemos Cuidar Siempre</h3>
 Cada mensaje es una pequeña puerta de entrada a la Sierra del Rincón. No comunicamos simplemente folletos de actividades; <strong class="font-bold text-stone-900">comunicamos una forma respetuosa de habitar el territorio</strong>. Todo texto debe ser:
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Cercano y humano</strong>: Hablar de tú a tú, conectando con las personas.</li><li class="text-base"><strong class="font-bold text-stone-900">Claro y fácil de entender</strong>: Evitar los tecnicismos burocráticos y la palabrería excesiva.</li><li class="text-base"><strong class="font-bold text-stone-900">Vinculado al territorio</strong>: Conectar el mensaje con los nombres de nuestros seis municipios, nuestros oficios y nuestros productores locales.</li><li class="text-base"><strong class="font-bold text-stone-900">Sin exageraciones</strong>: Comunicación sincera y calmada, sin usar lenguaje comercial agresivo.</li><li class="text-base"><strong class="font-bold text-stone-900">Que invite a cuidar</strong>: Antes de publicar, hazte siempre esta pregunta clave:<div class="mt-1"><p class="text-sm text-stone-600">> <em class="italic text-stone-700">¿Este texto invita a venir con respeto y a quedarse un poco más en nuestra tierra?</em></p></div></li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Instagram & Facebook: "La Sierra se siente"</h2>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Propósito</strong>: Inspirar, conectar emocionalmente y mostrar el latido diario del territorio (paisajes, productores, actividades).</li><li class="text-base"><strong class="font-bold text-stone-900">Frecuencia</strong>: 1–2 publicaciones semanales en feed + 3–5 stories (especialmente en semanas de actividad).</li><li class="text-base"><strong class="font-bold text-stone-900">Longitud</strong>: 100–180 palabras (los captions largos bien narrados funcionan mejor que las descripciones escuetas).</li><li class="text-base"><strong class="font-bold text-stone-900">Reglas</strong>:</li><li class="text-base"><strong class="font-bold text-stone-900">Gancho Emocional</strong>: Las 2 primeras líneas deben capturar el espíritu de la sierra (sensaciones, estaciones, curiosidades).</li><li class="text-base"><strong class="font-bold text-stone-900">Llamada a la Acción (CTA)</strong>: Siempre clara e inmediata (ej. <em class="italic text-stone-700">"Inscripciones abiertas en el enlace de la biografía"</em>).</li><li class="text-base"><strong class="font-bold text-stone-900">Hashtags</strong>: Entre 3 y 5 de alta relevancia, agrupados al final (ej: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#SierraDelRincon #ReservaDeLaBiosfera #TurismoSostenible #CEA</code>).</li><li class="text-base"><strong class="font-bold text-stone-900">Accesibilidad</strong>: Incluir siempre el texto alternativo (<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">ALT TEXT</code>) detallado de la imagen para lectores de pantalla.</li></ul>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Plantilla de Post de Actividad (Instagram)</h3>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">(Texto alternativo para accesibilidad: Fotografía de un grupo de familias caminando sonrientes por una senda forestal rodeada de hayas centenarias, guiados por una técnica con uniforme verde oliva.)</em></blockquote>
----
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. LinkedIn: "La Sierra que construye futuro"</h2>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Propósito</strong>: Posicionar la Reserva como referente en gobernanza, desarrollo socioeconómico sostenible, investigación aplicada y alianzas institucionales.</li><li class="text-base"><strong class="font-bold text-stone-900">Frecuencia</strong>: 2–3 publicaciones al mes (enfocadas en impacto y reputación, no en cantidad).</li><li class="text-base"><strong class="font-bold text-stone-900">Longitud</strong>: 600–1000 caracteres.</li><li class="text-base"><strong class="font-bold text-stone-900">Reglas</strong>:</li><li class="text-base"><strong class="font-bold text-stone-900">Enfoque de Impacto</strong>: Estructurado, profesional y enfocado en datos reales, alianzas con universidades, fomento del empleo local y sostenibilidad ambiental.</li><li class="text-base"><strong class="font-bold text-stone-900">Tono</strong>: Riguroso pero cercano, constructivo, mostrando el modelo de gestión local de "innovación desde lo pequeño".</li><li class="text-base"><strong class="font-bold text-stone-900">Mención Activa</strong>: Etiquetar siempre a las universidades, fundaciones, empresas locales o ayuntamientos involucrados.</li></ul>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Plantilla de Post Institucional (LinkedIn)</h3>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed">> <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#SierraDelRincon #DesarrolloRural #Sostenibilidad #EconomiaCircular #ProgramaMaB #UNESCO</code></blockquote>
----
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">3. WhatsApp & Telegram: "El tablón vivo de la Sierra"</h2>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Propósito</strong>: Canal de servicio directo, ágil y de acción inmediata para los vecinos de la comarca y visitantes recurrentes.</li><li class="text-base"><strong class="font-bold text-stone-900">Frecuencia</strong>: 1–3 mensajes por semana (evitar saturación para que no silencien el canal).</li><li class="text-base"><strong class="font-bold text-stone-900">Longitud</strong>: 3–6 líneas de lectura rápida y escaneable.</li><li class="text-base"><strong class="font-bold text-stone-900">Reglas</strong>:</li><li class="text-base"><strong class="font-bold text-stone-900">Título corto + Emoji</strong>: Identificación visual del contenido al instante.</li><li class="text-base"><strong class="font-bold text-stone-900">Estructura fija</strong>: Fecha/Hora + Lugar + Breve descripción + Enlace directo de reserva.</li><li class="text-base"><strong class="font-bold text-stone-900">No repetir</strong>: Si una actividad está llena, enviar un aviso con la lista de espera. Siempre incluir el enlace limpio.</li></ul>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Plantilla de Mensaje Directo (WhatsApp)</h3>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed">> 👉 <strong class="font-bold text-stone-900">Inscríbete gratis aquí:</strong> [enlace]</blockquote>
----
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">4. Blog & Web: "Historias del Bosque y el Viento"</h2>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Propósito</strong>: Desarrollar contenidos de fondo (artículos, entrevistas, reportajes) que queden indexados, aporten valor educativo y mejoren el posicionamiento SEO.</li><li class="text-base"><strong class="font-bold text-stone-900">Longitud</strong>: 500–800 palabras.</li><li class="text-base"><strong class="font-bold text-stone-900">Estructura Recomendada</strong>:</li></ul>
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Título Poético</strong>: Inspirado en la sierra (ej: <em class="italic text-stone-700">Donde el agua aprende a cantar</em>, <em class="italic text-stone-700">El mapa del silencio</em>).</li><li class="text-base"><strong class="font-bold text-stone-900">Entrada Estratégica</strong>: Párrafo de 3-4 líneas resumiendo el valor conceptual de lo que se va a narrar.</li><li class="text-base"><strong class="font-bold text-stone-900">Bloques Modulares</strong>: Subtítulos descriptivos con párrafos cortos (máx. 5 líneas por párrafo) combinando curiosidades de naturaleza con el impacto de la comunidad local.</li><li class="text-base"><strong class="font-bold text-stone-900">Cierre con Alma</strong>: Una reflexión vinculada al territorio, la custodia y el futuro.</li><li class="text-base"><strong class="font-bold text-stone-900">Anexo del Lector</strong>: Ficha de datos prácticos.</li></ol>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Plantilla de SEO para Entradas de Blog</h3>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Título SEO</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">[Tema del Artículo] | Reserva Biosfera Sierra del Rincón</code> (Máx. 60 caracteres).</li><li class="text-base"><strong class="font-bold text-stone-900">Meta Descripción</strong>: Un resumen cautivador de 140-155 caracteres que contenga llamada a la acción y palabras clave como "sostenibilidad", "senderismo responsable" o "Sierra del Rincón".</li><li class="text-base"><strong class="font-bold text-stone-900">Encabezados (H1, H2, H3)</strong>: Un solo H1 por página (el título del post), y secciones separadas por H2 con títulos sugerentes.</li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">🎥 Video Tutoriales y Formación</h2>
 Para asimilar el uso de las plantillas y el flujo de trabajo en la Reserva, dispones de los siguientes video tutoriales explicativos:
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Elegir y guardar una PLANTILLA para comunicación</strong>: <a href="https://www.loom.com/share/25fd2d8b8feb4dc3969bbacbe9052c7b" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Ver en Loom</a></li><li class="text-base"><strong class="font-bold text-stone-900">Matriz de Mensajes de la RBSR Comunicación</strong>: <a href="https://docs.google.com/presentation/d/1G6qysB5xTwcyReyiHJ7HnxBQECbucpSCnHlLozRybAA/edit?usp=sharing" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Ver Presentación Google Slides</a></li><li class="text-base"><strong class="font-bold text-stone-900">Como hacer publicación PARTE 1 (Canva, Edición de Textos)</strong>: <a href="https://www.loom.com/share/b118740a435a4f028474da3212ebf607" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Ver en Loom</a></li><li class="text-base"><strong class="font-bold text-stone-900">Como hacer publicación PARTE 2 (Caso Meta, Sheets, Canva)</strong>: <a href="https://www.loom.com/share/a5719f254b5a44248b286fdee2fe161c" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Ver en Loom</a></li></ul>
@@ -478,11 +469,9 @@ Para asimilar el uso de las plantillas y el flujo de trabajo en la Reserva, disp
             <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
                 <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Estrategia de Comunicación, Secciones Fijas y Planificación: RBSR</h1>
 <p class="text-stone-800 leading-loose my-5 text-base">Este documento establece la matriz de contenidos estructurada en <strong class="font-bold text-stone-900">7 ejes de trabajo estratégicos</strong>, las <strong class="font-bold text-stone-900">secciones fijas</strong> que articulan el calendario editorial y el <strong class="font-bold text-stone-900">checklist de calidad</strong> para el flujo de trabajo diario de los técnicos de la <strong class="font-bold text-stone-900">Reserva de la Biosfera Sierra del Rincón (RBSR)</strong>.</p>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Los 7 Ejes Estratégicos de Contenido</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">Para evitar centrar toda la comunicación únicamente en el turismo masivo del Hayedo, el calendario mensual debe equilibrarse entre los siguientes siete ejes temáticos definidos en el Plan Estratégico:</p>
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Agroalimentaria (Sector Primario y Tradición)</strong>:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li><em class="italic text-stone-700">Foco</em>: Apoyo a productores locales, huertas tradicionales de judías, ganadería extensiva local, miel artesana, pan y queserías de la comarca.</li><li><em class="italic text-stone-700">Concepto</em>: Promover el producto de cercanía y las técnicas que cuidan el territorio.</li></ul></li><li class="text-base"><strong class="font-bold text-stone-900">Forestal y Conservación de la Naturaleza (Custodia del Territorio)</strong>:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li><em class="italic text-stone-700">Foco</em>: Gestión forestal sostenible, reforestaciones, conservación de especies (flora y fauna protegida), geología singular de la Sierra.</li><li><em class="italic text-stone-700">Concepto</em>: Dar a conocer el valor ecológico del entorno para fomentar su protección activa.</li></ul></li><li class="text-base"><strong class="font-bold text-stone-900">Turismo Sostenible y Patrimonio (Ecoturismo Responsable)</strong>:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li><em class="italic text-stone-700">Foco</em>: Senderismo interpretativo, visitas de bajo impacto, patrimonio histórico, arquitectura tradicional de piedra y pizarra, hostelería local responsable.</li><li><em class="italic text-stone-700">Concepto</em>: Atraer a un visitante respetuoso, consciente y que aporte valor económico local.</li></ul></li><li class="text-base"><strong class="font-bold text-stone-900">Emprendimiento Rural y Educación Ambiental (Aprendizaje y Futuro)</strong>:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li><em class="italic text-stone-700">Foco</em>: Actividades del Centro de Educación Ambiental (CEA), cursos técnicos, talleres escolares, asesoramiento al emprendimiento sostenible.</li><li><em class="italic text-stone-700">Concepto</em>: Posicionar la sierra como un aula abierta al aprendizaje constante.</li></ul></li><li class="text-base"><strong class="font-bold text-stone-900">Trabajo y Empleo Local (Inclusión y Cuidados)</strong>:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li><em class="italic text-stone-700">Foco</em>: Ofertas de empleo en la comarca, cooperativas locales, priorización de contratación de residentes de los seis municipios de la Reserva.</li><li><em class="italic text-stone-700">Concepto</em>: Visibilizar el impacto social y el arraigo poblacional en el medio rural.</li></ul></li><li class="text-base"><strong class="font-bold text-stone-900">Alianzas Institucionales y Gobernanza (Cooperación Viva)</strong>:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li><em class="italic text-stone-700">Foco</em>: Colaboración con universidades, Comunidad de Madrid, ayuntamientos de la mancomunidad, Red de Reservas de la Biosfera (UNESCO MaB).</li><li><em class="italic text-stone-700">Concepto</em>: Mostrar el éxito del modelo de gestión compartida y la reputación científica.</li></ul></li><li class="text-base"><strong class="font-bold text-stone-900">Otros y Efemérides Ambientales (Concienciación Global)</strong>:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li><em class="italic text-stone-700">Foco</em>: Día Internacional de las Montañas, Día Mundial del Agua, del Suelo, de la Biodiversidad, etc.</li><li><em class="italic text-stone-700">Concepto</em>: Conectar la Sierra del Rincón con las grandes metas de conservación planetarias.</li></ul></li></ol>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. Secciones Fijas del Calendario Editorial</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">El calendario mensual sugerido se articula a través de tres secciones fijas que dan coherencia, ritmo y reconocimiento a las publicaciones de la Reserva en redes sociales:</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">A. <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#AgendaRBSR</code> (Talleres, Sendas y Activaciones)</h3>
@@ -491,7 +480,6 @@ Para asimilar el uso de las plantillas y el flujo de trabajo en la Reserva, disp
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Frecuencia</strong>: Quincenal (martes o miércoles).</li><li class="text-base"><strong class="font-bold text-stone-900">Canales</strong>: Instagram, Facebook, Web.</li><li class="text-base"><strong class="font-bold text-stone-900">Contenido</strong>: Divulgación de datos curiosos e ilustrados. Ej: <em class="italic text-stone-700">"¿Sabías que el Hayedo de Montejo alberga carbajos centenarios que conviven con hayas en un microclima único?"</em> o explicaciones sencillas sobre la arquitectura de pizarra.</li></ul>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">C. <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#GenteDelBosque</code> (Rostros, Oficios y Comunidad Local)</h3>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Frecuencia</strong>: Mensual.</li><li class="text-base"><strong class="font-bold text-stone-900">Canales</strong>: Instagram, LinkedIn, Web (Reportaje extendido).</li><li class="text-base"><strong class="font-bold text-stone-900">Contenido</strong>: Entrevistas breves y retratos de productores locales, apicultores, ganaderos, artesanos y técnicos de la Reserva. Pone en valor el "factor humano" que custodia el territorio.</li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">3. Matriz de Distribución de Contenidos</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">Para mantener un canal dinámico y equilibrado, se sugiere la siguiente proporción de publicaciones mensuales en redes generales (feed de Instagram/Facebook):</p>
 <p class="text-stone-800 leading-loose my-5 text-base"><code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm"></code>`mermaid
@@ -501,7 +489,6 @@ pie title Distribución Mensual de Contenidos (Feed)
     "Divulgación y Conservación (#SabíasQue)" : 20
     "Institucional e Impacto (LinkedIn/Web)" : 10
 <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm"></code>`</p>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">4. Flujo de Trabajo y Checklist de Calidad (Antes de Publicar)</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">Antes de que un post, WhatsApp o entrada de blog salga a la luz, el técnico o redactor debe verificar obligatoriamente este checklist para garantizar el cumplimiento de los estándares de marca RBSR:</p>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">[ ] <strong class="font-bold text-stone-900">Alineamiento de Tono</strong>: ¿El lenguaje suena cálido, humano y sensorial acorde con la estación de la sierra, o es frío y burocrático?</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Coherencia Visual</strong>: ¿La imagen es real del territorio o de sus gentes? (Queda terminantemente prohibido usar fotos de banco de stock artificiales).</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Norma del Logotipo</strong>: Si la imagen lleva el logo de la RBSR, ¿mantiene la proporción de aspecto, está situado sobre fondo liso y tiene el margen de seguridad de 1 cm libre de elementos?</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Jerarquía de Logotipos</strong>: Si es una colaboración institucional, ¿está el logo de la RBSR al mismo nivel horizontal e igual o menor tamaño visual que el escudo del ayuntamiento colaborador?</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Datos Críticos</strong>: ¿Están claros y visibles los datos de logística? (Fecha, Hora de encuentro, Municipio de la actividad, Duración, Destinatarios).</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Llamada a la Acción (CTA)</strong>: ¿Contiene un botón o enlace directo y limpio para realizar la reserva o inscripción?</li><li class="text-base">[ ] <strong class="font-bold text-stone-900">Accesibilidad (ALT)</strong>: ¿Se ha redactado y adjuntado el texto alternativo detallado que describe la imagen para personas con discapacidad visual?</li></ul>
@@ -634,12 +621,10 @@ pie title Distribución Mensual de Contenidos (Feed)
                 <!-- Contenido del archivo 7_manual_uso_marca.md -->
                 <h1 class="text-3xl font-black text-emerald-950 mb-6 hidden">Manual de Uso de la Marca: Reserva de la Biosfera Sierra del Rincón (RBSR)</h1>
 <p class="text-stone-800 leading-loose my-5 text-base">Este documento detalla las normas de uso de la identidad visual oficial de la <strong class="font-bold text-stone-900">Reserva de la Biosfera Sierra del Rincón (RBSR)</strong>.</p>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">1. Pautas y Protocolo de Uso del Logotipo</h2>
 <p class="text-stone-800 leading-loose my-5 text-base">El logotipo de la Reserva destaca el patrimonio natural y el desarrollo rural sostenible. Debe usarse siempre respetando la armonía visual y las directrices institucionales de la Comunidad de Madrid y el programa MaB de la UNESCO.</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Reglas de Aplicación</h3>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Margen de Seguridad (Anexo 3)</strong>: El logotipo debe disponer siempre de un margen libre a su alrededor de <strong class="font-bold text-stone-900">mínimo 1 cm</strong> en impresos o 20px en digital, libre de textos, otras imágenes o bordes. Solo debe situarse sobre fondos lisos o texturas muy tenues que no afecten la lectura.</li><li class="text-base"><strong class="font-bold text-stone-900">Alineación Institucional (Anexo 1)</strong>: Cuando se publique junto a escudos municipales (ayuntamientos de la comarca) o logos colaboradores, se debe colocar <strong class="font-bold text-stone-900">al mismo nivel horizontal</strong> y sus dimensiones nunca superarán el tamaño visual del escudo o logotipo principal del colaborador local.</li><li class="text-base"><strong class="font-bold text-stone-900">Proporción Intacta (Anexo 4)</strong>: Bajo ningún concepto se puede achatar, estirar, rotar o deformar el logotipo. Al redimensionarlo, se debe bloquear la proporción de aspecto original.</li><li class="text-base"><strong class="font-bold text-stone-900">Variantes de Fondo (Anexo 2)</strong>:</li><li class="text-base"><strong class="font-bold text-stone-900">Fondo Claro</strong>: Logotipo en versión color normal o verde oscuro.</li><li class="text-base"><strong class="font-bold text-stone-900">Fondo Oscuro</strong>: Logotipo en versión negativo (blanco puro o silueta transparente).</li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
 <h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">2. Tipografías Corporativas</h2>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Estándar Oficial de Marca (Cartelería, Papelería, Notas de Prensa)</h3>
 <p class="text-stone-800 leading-loose my-5 text-base">Para asegurar la legibilidad y mantener una estética limpia y atemporal:</p>
@@ -941,7 +926,6 @@ pie title Distribución Mensual de Contenidos (Feed)
 <p class="text-stone-800 leading-loose my-5 text-base">El técnico ha indicado que el portal debe ser <strong class="font-bold text-stone-900">más ligero de leer</strong> para facilitar su uso cotidiano. Los requisitos de legibilidad para el portal son:</p>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Texto de cuerpo más grande</strong>: mínimo <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-base</code> (16px) para párrafos, nunca <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-sm</code> (14px) como tamaño principal de lectura.</li><li class="text-base"><strong class="font-bold text-stone-900">Contraste alto</strong>: los textos de cuerpo deben usar <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-stone-800</code> (casi negro pizarra cálido) en lugar de <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-stone-600</code> (gris medio). Los textos de apoyo usan <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-stone-600</code>.</li><li class="text-base"><strong class="font-bold text-stone-900">Interlineado generoso</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">leading-relaxed</code> o <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">leading-loose</code> para párrafos. Nunca compactar el interlineado.</li><li class="text-base"><strong class="font-bold text-stone-900">Headings prominentes</strong>: H2 en <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-2xl</code>, H3 en <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-xl</code>, H4 en <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-base</code> con peso bold.</li><li class="text-base"><strong class="font-bold text-stone-900">Listas escaneables</strong>: ítems de lista en <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-base text-stone-800</code> con espaciado vertical <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">space-y-2</code>.</li></ul>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">Este requisito debe tenerse en cuenta siempre que se modifique el parser de Markdown o el diseño del portal.</em></blockquote>
----
     </div>
 </div>
 <div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿qué tipografía se utiliza en canva para las publicaciones de redes sociales?">
@@ -960,7 +944,6 @@ pie title Distribución Mensual de Contenidos (Feed)
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Razón y Beneficios</h3>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Unificación y Simplicidad</strong>: Facilita el trabajo diario de los técnicos sin necesidad de combinar múltiples fuentes.</li><li class="text-base"><strong class="font-bold text-stone-900">Estética Editorial y Tradición</strong>: Aporta un tono periodístico, sobrio y orgánico muy cercano a la tradición impresa y al espíritu natural del territorio.</li><li class="text-base"><strong class="font-bold text-stone-900">100% Nativa en Canva</strong>: No requiere instalar ni subir licencias de fuentes externas.</li></ul>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed">⚠️ <strong class="font-bold text-stone-900">Nota de Gobernanza de Diseño</strong>: Esta decisión es la norma operativa actual acordada para dar agilidad al equipo. No obstante, <strong class="font-bold text-stone-900">puede sufrir modificaciones o refinamientos a futuro</strong> según los criterios y decisiones finales que determine el equipo formal de diseño de la Reserva.</blockquote>
----
     </div>
 </div>
 <div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿cuándo usar el logo en negativo (blanco) vs. el logo en color?">
@@ -975,7 +958,6 @@ pie title Distribución Mensual de Contenidos (Feed)
         <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Fecha:</strong> Junio 2026</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Respuesta</h3>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Logo en color (verde oliva sobre fondo claro)</strong>: úsalo sobre fondos crema (<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#f4f3ed</code>), blancos o fotográficos muy luminosos con zonas claras.</li><li class="text-base"><strong class="font-bold text-stone-900">Logo en negativo (blanco puro)</strong>: úsalo sobre fondos oscuros (verde bosque <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#2e4d3e</code>, pizarra <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#262923</code>) o sobre fotografías de tonos medios-oscuros del territorio.</li><li class="text-base"><strong class="font-bold text-stone-900">Regla de oro</strong>: si hay duda sobre la legibilidad del logo, coloca siempre una banda semitransparente de color sólido detrás del logo para garantizar el contraste mínimo de lectura.</li></ul>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
     </div>
 </div>
 <div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿cuántos hashtags usar en instagram y cuáles son los fijos de la marca?">
@@ -996,7 +978,6 @@ pie title Distribución Mensual de Contenidos (Feed)
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#AgendaRBSR</code> — actividades del CEA y OT</li><li class="text-base"><code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#SabíasQue</code> — píldoras de divulgación</li><li class="text-base"><code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#GenteDelBosque</code> — historias de productores y vecinos</li></ul></p>
 <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Hashtags estacionales sugeridos:</strong>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">Primavera: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#PrimaveraSerrana</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#HayedoMontejo</code></li><li class="text-base">Verano: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#VeranoSerrano</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#NaturalezaMadrid</code></li><li class="text-base">Otoño: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#OtoñoSerrano</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#BosquesMadrid</code></li><li class="text-base">Invierno: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#InviernoSerrano</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#SierraDeMadrid</code></li></ul></p>
-<p class="text-stone-800 leading-loose my-5 text-base">---</p>
     </div>
 </div>
 <div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿el generador de post usa inteligencia artificial para escribir los textos?">
@@ -1022,7 +1003,6 @@ pie title Distribución Mensual de Contenidos (Feed)
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Se pueden publicar directamente</strong> si el contenido encaja bien con los datos introducidos.</li><li class="text-base"><strong class="font-bold text-stone-900">Se pueden copiar y pegar en GEM, ChatGPT o similar</strong> como base para que la IA los refine, personalice o amplíe con más detalle.</li></ol></p>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Flujo recomendado</strong>: Genera → Revisa el resultado → Si quieres más profundidad, cópialo en tu GEM de la Reserva y pídele que lo mejore manteniendo el tono y la identidad de la Sierra.</blockquote>
 <div class="border-l-4 p-4 my-6 rounded-r-lg bg-emerald-50 border-emerald-600 text-emerald-800"><p class="font-bold flex items-center gap-2 mb-1"><span>🌿</span> IMPORTANT</p><p class="text-sm leading-relaxed">📋 Instrucciones para Copiando el texto en el QnA: El generador NO accede a Internet, NO usa ningún modelo de IA externo y NO envía ningún dato a ningún servidor. Todo el procesamiento ocurre localmente en tu propio navegador.</p></div>
----
     </div>
 </div>
 <div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿dónde está alojada esta web y cómo se realiza su mantenimiento o migración?">
@@ -1042,7 +1022,6 @@ pie title Distribución Mensual de Contenidos (Feed)
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Migración a otro Servidor o Repositorio</strong>: Si la Reserva o la entidad gestora decide en el futuro migrar esta web a sus propios servidores o a una cuenta de GitHub institucional, se puede solicitar la asistencia técnica a Carles Gutiérrez.</li></ol>
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Código Abierto y Repositorio Público</strong>: Todo el código fuente del portal, las plantillas y el generador están disponibles de forma <strong class="font-bold text-stone-900">libre y abierta</strong> en el repositorio público de GitHub:<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm"><li>📁 <strong class="font-bold text-stone-900">Repositorio oficial</strong>: <a href="https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium"><a href="https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all"><a href="https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">https://github.com/datoscarlesgutierrez-stack/rbsr-comunicacion</a></a></a></li></ul></li></ol>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">Cualquier persona o técnico del equipo puede clonar, descargar o desplegar libremente este proyecto en otra cuenta de GitHub o servidor corporativo en cualquier momento.</em></blockquote>
----
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">¿Tienes una nueva pregunta? Añádela en este archivo con el formato <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">## Q&A_XXX: Pregunta</code> y ejecuta <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">python3 generar_portal.py</code> para que aparezca automáticamente en el portal.</em></blockquote>
     </div>
 </div>
@@ -1184,8 +1163,13 @@ pie title Distribución Mensual de Contenidos (Feed)
     </div>
 
     <!-- 🤖 Robot trigger button (bottom-right, hidden until hover) -->
-    <button id="robot-trigger" onclick="openAdvanced()" title="Modo Avanzado — SKILL Antigravity" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-stone-900/80 backdrop-blur-sm border border-stone-700 text-xl flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 hover:opacity-100 focus:opacity-100 hover:scale-110 hover:bg-stone-800">
+    <button id="robot-trigger" onclick="openAdvanced()" title="Modo Avanzado — SKILL Antigravity" class="fixed bottom-20 right-6 z-40 w-12 h-12 rounded-full bg-stone-900/80 backdrop-blur-sm border border-stone-700 text-xl flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 hover:opacity-100 focus:opacity-100 hover:scale-110 hover:bg-stone-800 cursor-pointer">
         🤖
+    </button>
+
+    <!-- 👁️ Accessibility / High Contrast Floating Button (bottom-right) -->
+    <button id="btn-accessibility" onclick="toggleAccessibility()" title="Modo Legibilidad y Alto Contraste" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-white text-stone-900 border-2 border-stone-400 shadow-xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all cursor-pointer select-none">
+        <span id="accessibility-icon">👁️</span>
     </button>
 
     </main>
@@ -1705,21 +1689,18 @@ Cuando el usuario te pida redactar un contenido o planificar un post, estructura
             const targetTab = document.getElementById(`tab-${tabId}`);
             targetTab.classList.add('active');
             
-            // Update active button state
+            // Reset all buttons to default state
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(btn => {
-                btn.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full text-reserve-slate hover:bg-stone-200/50 transition-all";
+                btn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all";
             });
             
+            // Set active button
             const activeBtn = document.getElementById(`btn-${tabId}`);
-            if (['generador', 'instrucciones', 'qna', 'tutoriales'].includes(tabId)) {
-                activeBtn.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full bg-reserve-forest text-white shadow-sm flex items-center gap-1";
-            } else {
-                activeBtn.className = "tab-btn px-4 py-2 text-xs md:text-sm font-semibold rounded-full bg-reserve-forest text-white shadow-sm";
-            }
+            activeBtn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl bg-reserve-forest text-white shadow-sm transition-all";
 
             // Smooth scroll to tabs
-            window.scrollTo({ top: 320, behavior: 'smooth' });
+            window.scrollTo({ top: 280, behavior: 'smooth' });
         }
 
         // Accessibility & High Contrast Toggle
@@ -1731,16 +1712,19 @@ Cuando el usuario te pida redactar un contenido o planificar un post, estructura
 
         function updateAccessibilityBtn(active) {
             const icon = document.getElementById('accessibility-icon');
-            const text = document.getElementById('accessibility-text');
             const btn = document.getElementById('btn-accessibility');
             if (active) {
                 if (icon) icon.innerText = '👁️‍🗨️';
-                if (text) text.innerText = 'Contraste: ON';
-                if (btn) btn.className = "px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border-2 border-emerald-700 bg-emerald-800 text-white shadow-md flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95";
+                if (btn) {
+                    btn.className = "fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-emerald-800 text-white border-2 border-emerald-400 shadow-2xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all cursor-pointer ring-4 ring-emerald-300/50";
+                    btn.title = "Desactivar Alto Contraste (Modo Normal)";
+                }
             } else {
                 if (icon) icon.innerText = '👁️';
-                if (text) text.innerText = 'Alto Contraste';
-                if (btn) btn.className = "px-3.5 py-2 text-xs md:text-sm font-bold rounded-full border border-stone-400 bg-white hover:bg-stone-100 text-stone-900 shadow-sm flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap active:scale-95";
+                if (btn) {
+                    btn.className = "fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-white text-stone-900 border-2 border-stone-400 shadow-xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all cursor-pointer";
+                    btn.title = "Activar Modo Legibilidad y Alto Contraste";
+                }
             }
         }
 
