@@ -138,4 +138,42 @@ El generador produce un **borrador estructurado y alineado con la identidad de l
 
 ---
 
+## Q&A_007: ¿Cómo funciona la arquitectura de este sitio web y cómo se modifican o actualizan sus contenidos?
+
+**Preguntado por:** Equipo de Comunicación RBSR  
+**Fecha:** Julio 2026
+
+### Respuesta
+
+Este portal web no utiliza un CMS complejo ni bases de datos externas; está construido con una arquitectura ligera basada en archivos **Markdown (`.md`)** compilados mediante un script automatizado en Python (`generar_portal.py`).
+
+#### 1. ¿Cómo editar o modificar los contenidos de cada sección?
+Cada pestaña del portal corresponde directamente a un archivo de texto en formato Markdown ubicado dentro de la carpeta `recursos/`:
+
+| Pestaña del Portal | Archivo Fuente a Modificar |
+| :--- | :--- |
+| **🌸 Esencia** | `recursos/1_esencia_y_valores.md` |
+| **🎨 Manual Visual** | `recursos/2_sistema_visual.md` |
+| **📝 Plantillas** | `recursos/3_canales_y_plantillas.md` |
+| **📊 Estrategia** | `recursos/4_estrategia_y_planificacion.md` |
+| **🏛️ Manual Anterior** | `recursos/7_manual_uso_marca.md` |
+| **❓ Q&A** | `recursos/6_qna.md` |
+
+#### 2. Sintaxis Markdown
+Los archivos se editan utilizando formato Markdown simple (encabezados `#`, negritas `**`, listas `-`, enlaces `[texto](url)` y tablas). Puedes aprender la sintaxis rápidamente con estas guías recomendadas:
+- 📖 [Guía Básica de Sintaxis Markdown (Markdown Guide)](https://www.markdownguide.org/basic-syntax/)
+- 📖 [Tutorial y Sintaxis de Markdown en Español (Markdown.es)](https://markdown.es/sintaxis-markdown/)
+
+#### 3. Flujo de Trabajo para Actualizar la Web (Local)
+Para aplicar cualquier cambio o añadir nuevos contenidos al portal:
+1. **Descargar / Clonar la Web**: Descargar el proyecto o clonar el repositorio de GitHub a tu equipo local.
+2. **Editar los Archivos**: Modificar los textos deseados en la carpeta `recursos/` utilizando cualquier editor de texto o código.
+3. **Recompilar el Portal**: Ejecutar la instrucción `python3 generar_portal.py` en la terminal local. Esto generará y actualizará automáticamente el archivo `index.html`.
+4. **Publicar los Cambios**: Subir los cambios (*git push*) al repositorio de GitHub para que la web se despliegue actualizada en Internet.
+
+> **Nota sobre el mantenimiento actual y formación futura**:  
+> Por el momento, este trabajo de modificación técnica y recompilación en local es realizado por el desarrollador ([Carles Gutiérrez](https://carlesgutierrez.github.io/consultoria-digital/)). No obstante, si el equipo de la Reserva necesita gestionar estas actualizaciones de forma autónoma en el futuro, se puede impartir **capacitación, formación práctica e instrucciones detalladas al equipo** en una próxima sesión de consultoría.
+
+---
+
 > *¿Tienes una nueva pregunta? Añádela en este archivo con el formato `## Q&A_XXX: Pregunta` y ejecuta `python3 generar_portal.py` para que aparezca automáticamente en el portal.*
