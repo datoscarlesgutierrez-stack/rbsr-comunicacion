@@ -71,7 +71,7 @@ Cada mensaje es una pequeña puerta de entrada a la Sierra del Rincón. No comun
     *   **Gancho Emocional**: Las 2 primeras líneas deben capturar el espíritu de la sierra (sensaciones, estaciones, curiosidades).
     *   **Llamada a la Acción (CTA)**: Siempre clara e inmediata (ej. *"Inscripciones abiertas en el enlace de la biografía"*).
     *   **Hashtags**: Entre 3 y 5 de alta relevancia, agrupados al final (ej: `#SierraDelRincon #ReservaDeLaBiosfera #TurismoSostenible #CEA`).
-    *   **Accesibilidad**: Incluir siempre el texto alternativo (`ALT TEXT`) detallado de la imagen para lectores de pantalla.
+    *   **Imagen**: Priorizar fotografía real del territorio. Si se usa IA, generar un fondo botánico/naturaleza en vertical 9:16 con los detalles estacionales del municipio (hojas, flores, textura de pizarra, etc.).
 
 ### Plantilla de Post de Actividad (Instagram)
 > 🌿 **[Gancho Emocional - Sentir la Sierra]**

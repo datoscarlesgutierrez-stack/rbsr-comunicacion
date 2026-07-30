@@ -102,7 +102,7 @@ A cada tipo se le añaden automáticamente los **metadatos estacionales** elegid
 | `Instagram / FB` | Texto largo evocador con emoji, logística, CTA y hashtags de marca |
 | `WhatsApp` | Versión corta y escaneable con los datos esenciales |
 | `LinkedIn` | Versión institucional y extensa con lenguaje de impacto social |
-| `Prompt de IA` | Descripción visual en inglés lista para usar en Midjourney, DALL·E o Gemini |
+| `Prompt de IA` | Descripción visual en inglés (formato vertical de fondo/naturaleza) lista para usar en Gemini, Imagen 3 o cualquier IA |
 | `ALT TEXT` | Texto alternativo de accesibilidad para la imagen |
 
 ### ¿Para qué sirve entonces?

@@ -1152,21 +1152,15 @@ def compile_portal():
                         <div id="out-text-prompt" class="text-xs text-stone-700 bg-white p-4 rounded-xl border border-stone-200/60 leading-relaxed select-all max-h-96 overflow-y-auto custom-scrollbar whitespace-pre-wrap"></div>
                     </div>
 
-                    <!-- Visual Prompt & Alt Result Card -->
+                    <!-- Visual Prompt Result Card -->
                     <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4">
                         <div class="flex justify-between items-center border-b border-stone-100 pb-2">
-                            <h4 class="font-title font-bold text-reserve-forest text-sm flex items-center gap-1.5">🎨 Prompt de Imagen Sugerido & Accesibilidad</h4>
+                            <h4 class="font-title font-bold text-reserve-forest text-sm flex items-center gap-1.5">🎨 Prompt de Imagen Sugerido</h4>
                             <button onclick="copyToClipboard(document.getElementById('out-prompt').innerText, 'Prompt de IA')" class="text-xs font-bold text-reserve-forest hover:text-reserve-olive flex items-center gap-1">📋 Copiar Prompt</button>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <p class="text-xs font-bold text-stone-500 uppercase tracking-widest mb-1">Prompt de Generación con IA (Midjourney/Gemini)</p>
-                                <div id="out-prompt" class="text-xs font-mono text-stone-600 bg-stone-50 p-3 rounded-lg border border-stone-100 leading-relaxed select-all"></div>
-                            </div>
-                            <div>
-                                <p class="text-xs font-bold text-stone-500 uppercase tracking-widest mb-1">Texto Alternativo (Accesibilidad ALT)</p>
-                                <div id="out-alt" class="text-xs text-stone-700 bg-stone-50 p-3 rounded-lg border border-stone-100 leading-relaxed select-all"></div>
-                            </div>
+                        <div>
+                            <p class="text-xs font-bold text-stone-500 uppercase tracking-widest mb-1">Prompt de Generación de Fondo / Naturaleza (Gemini / Imagen 3)</p>
+                            <div id="out-prompt" class="text-xs font-mono text-stone-600 bg-stone-50 p-3 rounded-lg border border-stone-100 leading-relaxed select-all"></div>
                         </div>
                     </div>
                 </div>
@@ -1674,31 +1668,35 @@ def compile_portal():
             const presetMap = {{ 'gen-type': type, 'gen-title': title, 'gen-datetime': datetime, 'gen-location': location, 'gen-description': description, 'gen-link': link }};
             Object.keys(presetMap).forEach(k => localStorage.setItem('rbsr_preset_' + k, presetMap[k]));
 
-            // Seasonal sensory details
+            // Seasonal sensory details & natural botanical elements
             const seasonData = {{
                 'primavera': {{
                     metaphor: 'Donde la floración despierta los prados y los arroyos cantan con la luz que regresa.',
                     adjective: 'fresco y primaveral',
                     hashtags: '#PrimaveraSerrana #ReservaRincon',
-                    promptStyle: 'spring forest morning light, vibrant green colors, fresh blossoms, authentic spanish mountain rural vibe, cinematic high fidelity.'
+                    natureDetails: 'hojas verdes vibrantes de roble melojo (Quercus pyrenaica), flores de jara pringosa blanca (Cistus ladanifer), cantueso silvestre y gotas de agua fresca de arroyo de montaña',
+                    promptStyle: 'luz matutina primaveral, detalles de floración fresca, ambiente limpio de montaña serrana, fotografía documental y texturas orgánicas'
                 }},
                 'verano': {{
                     metaphor: 'Sentir el frescor del refugio de las dehesas sombrías bajo los robles centenarios.',
                     adjective: 'cálido y luminoso',
                     hashtags: '#VeranoSerrano #ReservaRincon',
-                    promptStyle: 'summer golden hour sunlight filtering through tall oak trees, slate stone houses background, mountain fresh breeze atmosphere.'
+                    natureDetails: 'sombra de la copa de robles melojos, textura de hierba seca dorada de montaña, zarzamoras silvestres maduras y calidez sobre piedra de pizarra',
+                    promptStyle: 'luz de atardecer filtrada entre las ramas del roble, brisa fresca serrana, ambiente rústico con texturas naturales ricas'
                 }},
                 'otono': {{
                     metaphor: 'Caminar sobre el estallido dorado y ocre de las hojas que anuncian la cosecha del año.',
                     adjective: 'dorado y otoñal',
                     hashtags: '#OtoñoSerrano #Montejo #Ocre',
-                    promptStyle: 'autumn warm colors, orange and yellow beech tree canopy, misty mountain morning, cinematic soft focus portrait of spanish villager.'
+                    natureDetails: 'hojas de haya doradas y cobrizas (Fagus sylvatica) del Hayedo de Montejo, bellotas caídas, musgo húmedo sobre pizarra y niebla matutina de montaña',
+                    promptStyle: 'luz cálida otoñal, tonos ámbar y ocre, suavidad y profundidad de bruma matutina, atmósfera rústica cinematográfica'
                 }},
                 'invierno': {{
                     metaphor: 'Disfrutar de la quietud reconfortante del bosque helado y la calidez tradicional de los hogares.',
                     adjective: 'quieto y acogedor',
                     hashtags: '#InviernoSerrano #SilencioRBSR',
-                    promptStyle: 'quiet winter snowy mountain backdrop, rustic stone architecture slate roof, warm orange window lights glowing, foggy woods.'
+                    natureDetails: 'piñas con escarcha, bayas rojas de acebo (Ilex aquifolium), ramas desnudas de roble cubiertas de leve nieve y liquen húmedo sobre piedra de pizarra',
+                    promptStyle: 'fondo de quietud helada invernal, texturas de arquitectura tradicional de pizarra, luz cálida de montaña'
                 }}
             }}[season];
 
@@ -1732,18 +1730,18 @@ def compile_portal():
                 
                 liCopy = `👥 **Fomento de la Educación Ambiental: ${{title}} en la Sierra del Rincón**\\n\\nLa educación y la concienciación sobre el terreno son las herramientas más poderosas de conservación. Dentro de nuestro compromiso bajo el marco del programa Hombre y Biosfera (MaB) de la UNESCO, nos alegra anunciar el taller "${{title}}".\\n\\nEsta sesión interpretativa está diseñada para acercar de forma rigurosa y directa el modelo de sostenibilidad rural a todos los ciudadanos, fomentando dinámicas circulares y el respeto activo hacia nuestro patrimonio natural.\\n\\n📍 Ubicación: ${{location}}\\n📅 Calendario: ${{datetime}}\\n\\nIniciativas locales que tejen futuro y cohesión social en los seis municipios de la Mancomunidad. Descubre los resultados del programa en el siguiente enlace: ${{link}}\\n\\n#SierraDelRincon #DesarrolloSostenible #ProgramaMaB #UNESCO #ComunidadMadrid`;
                 
-                promptText = `A candid, high-resolution lifestyle photograph showing participants engaged in a "${{title}}" workshop inside a rustic stone hall with slate walls in ${{location}}, Madrid. Natural ${{seasonData.promptStyle}} Shot on 35mm lens, atmospheric depth, documentary photography style, cinematic grading, natural colors. No generic actors.`;
+                promptText = `Fotografía macro en formato vertical 9:16 capturando detalles naturales auténticos de ${{location}}, Sierra del Rincón, Madrid. Enfoque en ${{seasonData.natureDetails}}. Estilo: ${{seasonData.promptStyle}}. Composición orgánica con espacio limpio superior para superponer texto de redes sociales, alta resolución, texturas ricas de la naturaleza y luz suave sin personas ni elementos artificiales.`;
                 
-                altText = `Fotografía documental de un grupo de personas de distintas edades participando activamente en el taller "${{title}}" en el municipio de ${{location}}, rodeados de elementos naturales y guiados por un formador local en una dehesa de la Sierra.`;
+                altText = `Fotografía vertical en plano detalle de elementos naturales de la Sierra del Rincón en ${{location}} (${{seasonData.natureDetails.substring(0, 70)}}...), mostrando texturas orgánicas y ambiente propio de la estación para usar de fondo.`;
 
                 // Stories Copy Dynamic Construction
                 storyCopy = `📌 GUION DE STORY (${{numSlides}} Diapositivas)\\n[Usa la plantilla Story de Canva para ${{season.toUpperCase()}}]\\n\\n`;
                 if (numSlides === 2) {{
-                    storyCopy += `• Página 1 (Portada)\\n  Visual: Foto del taller con fondo natural de la Sierra.\\n  Texto principal: ¿Te apetece conectar con la Sierra? 🌿\\n  Detalles: Taller "${{title}}" en ${{location}}.\\n\\n• Página 2 (Detalle & Registro)\\n  Visual: Cuadro de texto limpio e iconos estacionales.\\n  Texto principal: 📅 ${{datetime}}\\n  Detalles: ${{description.substring(0, 120)}}...\\n  👉 ¡Reserva tu plaza gratuita! Enlace en la bio.`;
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Fondo vertical con elementos de naturaleza autóctona de ${{location}}.\\n  Texto principal: ¿Te apetece conectar con la Sierra? 🌿\\n  Detalles: Taller "${{title}}" en ${{location}}.\\n\\n• Página 2 (Detalle & Registro)\\n  Visual: Cuadro de texto limpio e iconos estacionales.\\n  Texto principal: 📅 ${{datetime}}\\n  Detalles: ${{description.substring(0, 120)}}...\\n  👉 ¡Reserva tu plaza gratuita! Enlace en la bio.`;
                 }} else if (numSlides === 3) {{
-                    storyCopy += `• Página 1 (Portada)\\n  Visual: Imagen sugerente de la flora/paisaje con logo RBSR.\\n  Texto principal: NUEVA ACTIVIDAD 🌿\\n  Detalles: ${{title}} | En ${{location}}.\\n\\n• Página 2 (Qué Viviremos)\\n  Visual: Listado limpio con la paleta de color de la estación.\\n  Texto principal: Experiencia guiada:\\n  Detalles: ${{description.substring(0, 160)}}...\\n  📅 ${{datetime}}\\n\\n• Página 3 (Llamada a la Acción)\\n  Visual: Botón y enlace destacado.\\n  Texto principal: Plazas gratuitas y limitadas. 🎒\\n  Detalles: Regístrate ya en el enlace directo de nuestra biografía.`;
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Fondo de naturaleza serrana en vertical con logo RBSR.\\n  Texto principal: NUEVA ACTIVIDAD 🌿\\n  Detalles: ${{title}} | En ${{location}}.\\n\\n• Página 2 (Qué Viviremos)\\n  Visual: Listado limpio con la paleta de color de la estación.\\n  Texto principal: Experiencia guiada:\\n  Detalles: ${{description.substring(0, 160)}}...\\n  📅 ${{datetime}}\\n\\n• Página 3 (Llamada a la Acción)\\n  Visual: Botón y enlace destacado.\\n  Texto principal: Plazas gratuitas y limitadas. 🎒\\n  Detalles: Regístrate ya en el enlace directo de nuestra biografía.`;
                 }} else {{
-                    storyCopy += `• Página 1 (Portada)\\n  Visual: Tipografía Montserrat grande sobre fondo rústico.\\n  Texto principal: ${{title}} 🌲\\n  Detalles: Siente el latido y la calma de la Sierra del Rincón.\\n\\n• Página 2 (Inspiración y Tono)\\n  Visual: Foto evocativa del bosque serrano.\\n  Texto principal: "${{seasonData.metaphor}}"\\n\\n• Página 3 (Detalles de la Cita)\\n  Visual: Bloques informativos ordenados.\\n  Texto principal: 📅 ${{datetime}}\\n  Detalles: ${{location}}\\n  Info: ${{description.substring(0, 165)}}...\\n\\n• Página 4 (CTA Final)\\n  Visual: Sticker de enlace o botón en Canva.\\n  Texto principal: Plazas limitadas. 📢\\n  Detalles: No te quedes sin tu plaza. Haz clic en el enlace de la bio para reservar.`;
+                    storyCopy += `• Página 1 (Portada)\\n  Visual: Tipografía Montserrat grande sobre fondo de naturaleza vertical.\\n  Texto principal: ${{title}} 🌲\\n  Detalles: Siente el latido y la calma de la Sierra del Rincón.\\n\\n• Página 2 (Inspiración y Tono)\\n  Visual: Fotografía evocativa del suelo/bosque serrano.\\n  Texto principal: "${{seasonData.metaphor}}"\\n\\n• Página 3 (Detalles de la Cita)\\n  Visual: Bloques informativos ordenados.\\n  Texto principal: 📅 ${{datetime}}\\n  Detalles: ${{location}}\\n  Info: ${{description.substring(0, 165)}}...\\n\\n• Página 4 (CTA Final)\\n  Visual: Sticker de enlace o botón en Canva.\\n  Texto principal: Plazas limitadas. 📢\\n  Detalles: No te quedes sin tu plaza. Haz clic en el enlace de la bio para reservar.`;
                 }}
 
             }} else {{
@@ -1754,9 +1752,9 @@ def compile_portal():
                 
                 liCopy = `📢 **Desarrollo Local y Gobernanza Rural: ${{title}}**\\n\\nEn la Reserva de la Biosfera Sierra del Rincón (RBSR), entendemos la sostenibilidad como un equilibrio tripartito entre conservación ecológica, cohesión social y viabilidad económica rural. El proyecto "${{title}}", desarrollado en el municipio de ${{location}}, es un magnífico ejemplo de este modelo.\\n\\nAl dar soporte y visibilizar estas iniciativas, impulsamos la economía de proximidad, fortalecemos el tejido comunitario local y demostramos que la innovación aplicada a los oficios de raíz es el motor de desarrollo para frenar la despoblación en el norte de Madrid.\\n\\nUn caso de estudio inspirador sobre el impacto de la declaración MaB de la UNESCO.\\n\\nMás información y análisis de impacto en la red: ${{link}}\\n\\n#SierraDelRincon #DesarrolloRural #EconomiaRural #EmpoderamientoComunitario #PymeRural`;
                 
-                promptText = `A warm, authentic close-up portrait of a local producer representing "${{title}}" in ${{location}}, Madrid. Natural ${{seasonData.promptStyle}} Focus on authentic expressions, rich details, 85mm portrait, highly detailed skin textures, rustic organic grading.`;
+                promptText = `Fotografía de fondo en formato vertical 9:16 mostrando texturas en primer plano de elementos naturales en ${{location}}, Sierra del Rincón, Madrid. Enfoque en ${{seasonData.natureDetails}}. Estilo: ${{seasonData.promptStyle}}. Luz suave, detalles orgánicos ricos de madera, piedra de pizarra y hojas, encuadre vertical óptimo como fondo de publicaciones y stories de redes sociales. Sin personas.`;
                 
-                altText = `Retrato cercano y sumamente expresivo de un habitante artesano o productor local sonriendo en ${{location}}, que simboliza el esfuerzo comunitario detrás de la iniciativa "${{title}}".`;
+                altText = `Fotografía de fondo en formato vertical con texturas y detalles de la naturaleza en ${{location}} (${{seasonData.natureDetails.substring(0, 70)}}...), perfecta para acompañar la publicación de la iniciativa "${{title}}".`;
 
                 // Stories Copy Dynamic Construction
                 storyCopy = `📌 GUION DE STORY (${{numSlides}} Diapositivas)\\n[Usa la plantilla Story de Canva para ${{season.toUpperCase()}}]\\n\\n`;
@@ -1804,7 +1802,6 @@ Para afinar aún más este texto, sugiéreme 2 preguntas exploratorias al final 
             document.getElementById('out-wa').innerText = waCopy;
             document.getElementById('out-li').innerText = liCopy;
             document.getElementById('out-prompt').innerText = promptText;
-            document.getElementById('out-alt').innerText = altText;
             document.getElementById('out-text-prompt').innerText = textPrompt;
 
             // Show results container
@@ -1823,7 +1820,7 @@ Para afinar aún más este texto, sugiéreme 2 preguntas exploratorias al final 
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(html_template)
         
-    print(f"✔️ Portal web compilado con éxito en: '{output_file}'!")
+    print(f"[OK] Portal web compilado con exito en: '{output_file}'!")
 
 if __name__ == "__main__":
     compile_portal()

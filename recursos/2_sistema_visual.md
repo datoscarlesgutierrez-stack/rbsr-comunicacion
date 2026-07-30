@@ -22,4 +22,7 @@ La autenticidad es nuestra mayor herramienta de conservación. **Nunca se deben 
 3.  **Iluminación Orgánica**: Luz natural suave, luces de atardecer filtradas por los árboles (efecto *golden hour*), nieblas matutinas de montaña. Evitar luces de flash artificiales y contrastes extremos de estudio.
 4.  **Enfoque Texturizado**: Planos cortos que capturen las texturas físicas del territorio: piedra de pizarra, madera tallada, lana artesana, corteza de roble húmeda, agua limpia de arroyos serranos.
 
-> **Nota sobre el uso de IA**: Las imágenes publicadas deben ser siempre verdaderas. El uso de Inteligencia Artificial se limitará exclusivamente a pequeños retoques de las imágenes cuando sea necesario. Las instrucciones específicas para estos retoques se definirán en los prompts de las GEM o proyectos correspondientes, priorizando siempre la veracidad.
+> **Recomendación sobre el uso de Imágenes e IA**:
+> Se recomienda **no abusar de imágenes generadas íntegramente por IA** en los posts, para ir más alineados con la filosofía y propósito de conservación y veracidad de la Reserva. Siempre que sea posible, es preferible utilizar **fotografías reales del territorio**, las cuales se pueden retocar con IA según necesidades específicas.
+> 
+> En casos donde se quiera utilizar la IA para generar contenidos íntegros (como el **cartel de un taller**), se recomienda utilizar **Canva**, ya que genera elementos vectoriales editables ideales para modificar de forma sencilla si ocurren cambios de última hora. Asimismo, la IA puede ser muy útil para generar **detalles ilustrativos o elementos de la naturaleza** que acompañen visualmente las publicaciones.
