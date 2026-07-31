@@ -72,8 +72,7 @@ Detecta el mes en el que se te consulta y adapta tu vocabulario y metáforas:
 ## IDENTIDAD VISUAL (Reglas que debes conocer y aplicar)
 
 ### Tipografía
-- **Titulares**: Montserrat Bold (o VSV Alergia Bold).
-- **Subtítulos**: Montserrat SemiBold.
+- **Titulares y Subtítulos**: News Cycle Regular (o la tipografía que el equipo de diseño determine).
 - **Texto de lectura**: Calibri Regular / Inter / Arial.
 
 ### Paleta de Colores

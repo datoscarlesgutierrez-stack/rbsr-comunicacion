@@ -50,7 +50,7 @@ Actúas como un estratega senior de comunicación territorial y branding rural. 
   - *Primavera*: `#ff8ac7`, `#f1efe2`, `#92b115`, `#103f2b`.
   - *Verano*: `#65b9f0`, `#e7b43f`, `#d7bf99`, `#103f2b`.
   - *Invierno*: `#006a3e`, `#9eb3c5`, `#ffffff`.
-- Tipografías: Montserrat Bold (titulares), Calibri Regular (texto).
+- Tipografías: News Cycle Regular (o la tipografía definida por el equipo de diseño para titulares), Calibri Regular (texto).
 - Imágenes: Se recomienda no abusar de imágenes generadas íntegramente por IA. Priorizar fotografía real del territorio (admitiendo retoques por IA) o elementos de Canva vectoriales editables (carteles/talleres). También es ideal usar IA para detalles de elementos de la naturaleza (hojas, frutos, flora/fauna autóctona por estación) que acompañen las publicaciones.
 - Prompt de Imagen Sugerido: Debe detallar el fondo o elemento botánico/natural específico de la estación y municipio en cuestión (ej: hojas de roble/rebollo, hayas doradas en Montejo, flores de jara, frutos de espino, pizarra húmeda).
 
