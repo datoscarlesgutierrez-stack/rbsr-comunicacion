@@ -13,12 +13,12 @@ Este repositorio contiene el código fuente, los recursos editoriales y las herr
 El archivo `generar_portal.py` es el **compilador/generador estático del portal**. Se encarga de procesar los archivos de contenido en formato Markdown y empaquetarlos en la web final. Sus funciones específicas son:
 
 1.  **Conversión de Contenidos (Markdown ➔ HTML)**:
-    *   Lee los archivos origen (`.md`) dentro de la carpeta `recursos/` (esencia, sistema visual, plantillas, estrategia, Q&A).
+    *   Lee los archivos origen (`.md`) dentro de la carpeta `recursos/` (esencia, sistema visual, plantillas, estrategia, Q&A y manual de marca).
     *   Analiza y convierte elementos markdown (títulos, tablas, citas, listas, enlaces, alertas especiales) en código HTML estilizado con Tailwind CSS mediante expresiones regulares optimizadas.
 2.  **Extracción Dinámica de Enlaces Canva**:
     *   Escanea `recursos/3_canales_y_plantillas.md` buscando los enlaces a plantillas Canva y genera un objeto JSON que inyecta en el portal.
-3.  **Generación de Tarjetas Q&A**:
-    *   Parsea el documento de preguntas frecuentes (`6_qna.md`) y crea tarjetas dinámicas interactivas listas para el buscador del portal.
+3.  **Generación de Tarjetas Q&A e Identificadores Únicos**:
+    *   Parsea el documento de preguntas frecuentes (`6_qna.md`) ordenándolas secuencialmente, creando tarjetas dinámicas interactivas con identificadores únicos (`#qna-X`) y botón para copiar enlaces directos 🔗.
 4.  **Ensamblaje del Portal (`index.html`)**:
     *   Carga todo el contenido procesado, los prompts de IA y la estructura web, y los empaqueta en un único archivo HTML autocontenido (`index.html`) en la raíz del proyecto.
 
@@ -30,9 +30,12 @@ El portal está diseñado bajo la filosofía de **Single Page Application (SPA)*
 
 *   **Sin Servidor (Client-side)**: No requiere bases de datos ni backends. Todo el portal se ejecuta localmente en el navegador del usuario a partir del archivo `index.html`.
 *   **Diseño Premium con Tailwind CSS**: Carga Tailwind CSS desde un CDN para ofrecer una interfaz moderna y adaptativa (responsive) para móviles, tablets y ordenadores con paletas cromáticas naturales adaptadas a la Reserva.
-*   **Navegación Dinámica (Tabs)**: Utiliza Vanilla JavaScript para conmutar las pestañas instantáneamente sin recargar la página. Al pulsar los menús o el logo `SBSR`, el sitio cambia de sección de forma suave y limpia.
-*   **Generador de Post Seguro y Privado**: El formulario de generación de posts procesa la información localmente en tu ordenador. Construye copys optimizados para WhatsApp, Instagram y LinkedIn, y redacta prompts de imágenes y textos alternativos (ALT text) sin enviar ningún dato a APIs externas.
-*   **Persistencia de Enlaces**: Permite a los técnicos modificar los enlaces de Canva en caliente; estos cambios se guardan localmente en el `localStorage` del navegador para futuras sesiones.
+*   **Navegación Dinámica por Hash (URL Directa)**: Permite acceder directamente a cualquier sección a través de la URL (ej: `index.html#generador`, `index.html#visual`, `index.html#qna`).
+*   **Enlaces Profundos a Preguntas (Q&A Deep Linking)**: Permite compartir un enlace directo a preguntas individuales (ej: `index.html#qna-5`). Al abrirlo, el portal activa la pestaña Q&A, despliega automáticamente el acordeón, realiza scroll suave y resalta la tarjeta de la pregunta.
+*   **Generador de Post Seguro y Privado**: El formulario de generación de posts procesa la información localmente en tu ordenador. Construye copys optimizados para WhatsApp, Instagram, LinkedIn y Stories, redactando prompts de imágenes y textos alternativos (ALT text) sin enviar datos a APIs externas.
+*   **Personalización de Enlaces Canva**: Ubicada justo a continuación del listado de plantillas base en la pestaña Plantillas, permite a los técnicos modificar los enlaces de Canva en caliente; los cambios se guardan localmente en el `localStorage` del navegador para futuras sesiones.
+*   **Modo Legibilidad y Alto Contraste**: Botón flotante en la esquina inferior derecha para alternar un modo accesible con texto ampliado a `text-base` (mínimo 16px) y contraste optimizado.
+*   **Documentación de Análisis Colectivo**: Referencia a la [Presentación en Google Slides del Análisis Colectivo](https://docs.google.com/presentation/d/1G6qysB5xTwcyReyiHJ7HnxBQECbucpSCnHlLozRybAA/edit?usp=sharing) visible tanto en la cabecera de bienvenida como en el pie de página.
 
 ---
 
@@ -52,7 +55,8 @@ El portal está diseñado bajo la filosofía de **Single Page Application (SPA)*
 │   ├── 3_canales_y_plantillas.md         # Directrices de canales de red social y enlaces Canva
 │   ├── 4_estrategia_y_planificacion.md   # Los 7 ejes estratégicos, secciones fijas y checklist
 │   ├── 5_instrucciones_plataformas.md    # Prompts de sistema para GEM, ChatGPT y Canva
-│   └── 6_qna.md                          # Base de conocimiento (Preguntas y Respuestas)
+│   ├── 6_qna.md                          # Base de conocimiento Q&A (Preguntas y Respuestas)
+│   └── 7_manual_uso_marca.md             # Manual de uso de la marca oficial de la Reserva
 │
 └── Fuentes/                              # Documentación original e histórica del proyecto
     ├── Plan Estrategico Biosfera de la Sierra del Rincon (BSR) - Feb 2- 2026-1.pdf
