@@ -22,6 +22,73 @@ Disponemos de una **Matriz de Mensajes en Excel** que sirve como guía unificada
 *   **Plantilla 16:9**: `https://canva.link/fgesdrt0q2oji1v`
 *   **Plantilla 9:16 (Story)**: `https://canva.link/ql314ijqwb1k2qe`
 
+<details class="bg-stone-50 border border-stone-200 rounded-2xl p-6 my-6 group">
+    <summary class="font-title font-bold text-sm text-reserve-forest cursor-pointer hover:text-reserve-olive transition-colors flex items-center justify-between">
+        <span class="flex items-center gap-2">🔧 PERSONALIZACIÓN: Configuración de Enlaces Canva (Guardado en Navegador)</span>
+        <span class="text-xs text-stone-400 group-open:rotate-180 transition-transform">▼</span>
+    </summary>
+    <div class="mt-4 pt-4 border-t border-stone-200/60 space-y-4">
+        <p class="text-base text-stone-500">Puedes personalizar y modificar los enlaces de Canva aquí abajo. Se guardarán en el almacenamiento local de tu navegador para futuras sesiones sin alterar los archivos de origen.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Generica -->
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-stone-500 uppercase tracking-wider">Plantilla Genérica Post</label>
+                <input type="text" id="canva-edit-generica_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-stone-500 uppercase tracking-wider">Plantilla Genérica Story</label>
+                <input type="text" id="canva-edit-generica_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <!-- Primavera -->
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-pink-600 uppercase tracking-wider">🌸 Primavera Post</label>
+                <input type="text" id="canva-edit-primavera_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-pink-600 uppercase tracking-wider">🌸 Primavera Story</label>
+                <input type="text" id="canva-edit-primavera_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <!-- Verano -->
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-amber-600 uppercase tracking-wider">☀️ Verano Post</label>
+                <input type="text" id="canva-edit-verano_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-amber-600 uppercase tracking-wider">☀️ Verano Story</label>
+                <input type="text" id="canva-edit-verano_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <!-- Otoño -->
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-orange-600 uppercase tracking-wider">🍁 Otoño Post</label>
+                <input type="text" id="canva-edit-otono_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-orange-600 uppercase tracking-wider">🍁 Otoño Story</label>
+                <input type="text" id="canva-edit-otono_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <!-- Invierno -->
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-sky-600 uppercase tracking-wider">❄️ Invierno Post</label>
+                <input type="text" id="canva-edit-invierno_post" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+            <div class="space-y-1">
+                <label class="block text-3xs font-bold text-sky-600 uppercase tracking-wider">❄️ Invierno Story</label>
+                <input type="text" id="canva-edit-invierno_story" class="w-full px-3 py-2 rounded-lg border border-stone-200 text-xs focus:ring-1 focus:ring-reserve-forest">
+            </div>
+        </div>
+
+        <div class="flex justify-end gap-3 pt-2">
+            <button onclick="resetCanvaTemplates()" class="px-4 py-2 rounded-xl border border-stone-300 text-xs font-bold text-stone-600 hover:bg-stone-100 transition-colors">
+                🔄 Restaurar Originales
+            </button>
+            <button onclick="saveCanvaTemplates()" class="px-5 py-2 rounded-xl bg-reserve-forest text-white text-xs font-bold hover:bg-stone-800 transition-all">
+                💾 Guardar Enlaces
+            </button>
+        </div>
+    </div>
+</details>
+
 ---
 
 ### 🗺️ Paso a Paso para Crear Nuevos Contenidos
