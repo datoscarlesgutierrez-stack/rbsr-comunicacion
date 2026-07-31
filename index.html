@@ -928,14 +928,19 @@ pie title Distribución Mensual de Contenidos (Feed)
                 <!-- Q&A Cards -->
                 <div id="qna-list" class="space-y-4">
                     
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿qué requisitos de legibilidad debe cumplir el portal web de comunicación?">
-    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
-        <div class="flex items-center gap-3">
-            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#004</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Qué requisitos de legibilidad debe cumplir el portal web de comunicación?</h3>
-        </div>
-        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
-    </button>
+<div id="qna-4" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿qué requisitos de legibilidad debe cumplir el portal web de comunicación?" data-qnum="4">
+    <div class="flex items-start justify-between gap-3">
+        <button onclick="toggleQnA(this)" class="flex-grow text-left flex items-start justify-between gap-4 group">
+            <div class="flex items-center gap-3">
+                <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#004</span>
+                <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Qué requisitos de legibilidad debe cumplir el portal web de comunicación?</h3>
+            </div>
+            <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+        </button>
+        <button onclick="copyQnALink('4')" title="Copiar enlace directo a esta pregunta (#004)" class="p-1.5 rounded-lg text-stone-400 hover:text-reserve-forest hover:bg-stone-100 transition-colors shrink-0 text-sm">
+            🔗
+        </button>
+    </div>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
         <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Fecha:</strong> Junio 2026</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Respuesta</h3>
@@ -944,14 +949,19 @@ pie title Distribución Mensual de Contenidos (Feed)
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">Este requisito debe tenerse en cuenta siempre que se modifique el parser de Markdown o el diseño del portal.</em></blockquote>
     </div>
 </div>
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿qué tipografía se utiliza en canva para las publicaciones de redes sociales?">
-    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
-        <div class="flex items-center gap-3">
-            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#001</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Qué tipografía se utiliza en Canva para las publicaciones de redes sociales?</h3>
-        </div>
-        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
-    </button>
+<div id="qna-1" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿qué tipografía se utiliza en canva para las publicaciones de redes sociales?" data-qnum="1">
+    <div class="flex items-start justify-between gap-3">
+        <button onclick="toggleQnA(this)" class="flex-grow text-left flex items-start justify-between gap-4 group">
+            <div class="flex items-center gap-3">
+                <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#001</span>
+                <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Qué tipografía se utiliza en Canva para las publicaciones de redes sociales?</h3>
+            </div>
+            <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+        </button>
+        <button onclick="copyQnALink('1')" title="Copiar enlace directo a esta pregunta (#001)" class="p-1.5 rounded-lg text-stone-400 hover:text-reserve-forest hover:bg-stone-100 transition-colors shrink-0 text-sm">
+            🔗
+        </button>
+    </div>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
         <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Preguntado por:</strong> Carles (técnico de comunicación)  
 <strong class="font-bold text-stone-900">Fecha:</strong> Junio 2026 / Actualizado Julio 2026</p>
@@ -962,28 +972,38 @@ pie title Distribución Mensual de Contenidos (Feed)
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed">⚠️ <strong class="font-bold text-stone-900">Nota de Gobernanza de Diseño</strong>: Esta decisión es la norma operativa actual acordada para dar agilidad al equipo. No obstante, <strong class="font-bold text-stone-900">puede sufrir modificaciones o refinamientos a futuro</strong> según los criterios y decisiones finales que determine el equipo formal de diseño de la Reserva.</blockquote>
     </div>
 </div>
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿cuándo usar el logo en negativo (blanco) vs. el logo en color?">
-    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
-        <div class="flex items-center gap-3">
-            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#002</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Cuándo usar el logo en negativo (blanco) vs. el logo en color?</h3>
-        </div>
-        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
-    </button>
+<div id="qna-2" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿cuándo usar el logo en negativo (blanco) vs. el logo en color?" data-qnum="2">
+    <div class="flex items-start justify-between gap-3">
+        <button onclick="toggleQnA(this)" class="flex-grow text-left flex items-start justify-between gap-4 group">
+            <div class="flex items-center gap-3">
+                <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#002</span>
+                <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Cuándo usar el logo en negativo (blanco) vs. el logo en color?</h3>
+            </div>
+            <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+        </button>
+        <button onclick="copyQnALink('2')" title="Copiar enlace directo a esta pregunta (#002)" class="p-1.5 rounded-lg text-stone-400 hover:text-reserve-forest hover:bg-stone-100 transition-colors shrink-0 text-sm">
+            🔗
+        </button>
+    </div>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
         <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Fecha:</strong> Junio 2026</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Respuesta</h3>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Logo en color (verde oliva sobre fondo claro)</strong>: úsalo sobre fondos crema (<code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#f4f3ed</code>), blancos o fotográficos muy luminosos con zonas claras.</li><li class="text-base"><strong class="font-bold text-stone-900">Logo en negativo (blanco puro)</strong>: úsalo sobre fondos oscuros (verde bosque <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#2e4d3e</code>, pizarra <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#262923</code>) o sobre fotografías de tonos medios-oscuros del territorio.</li><li class="text-base"><strong class="font-bold text-stone-900">Regla de oro</strong>: si hay duda sobre la legibilidad del logo, coloca siempre una banda semitransparente de color sólido detrás del logo para garantizar el contraste mínimo de lectura.</li></ul>
     </div>
 </div>
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿cuántos hashtags usar en instagram y cuáles son los fijos de la marca?">
-    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
-        <div class="flex items-center gap-3">
-            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#003</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Cuántos hashtags usar en Instagram y cuáles son los fijos de la marca?</h3>
-        </div>
-        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
-    </button>
+<div id="qna-3" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿cuántos hashtags usar en instagram y cuáles son los fijos de la marca?" data-qnum="3">
+    <div class="flex items-start justify-between gap-3">
+        <button onclick="toggleQnA(this)" class="flex-grow text-left flex items-start justify-between gap-4 group">
+            <div class="flex items-center gap-3">
+                <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#003</span>
+                <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Cuántos hashtags usar en Instagram y cuáles son los fijos de la marca?</h3>
+            </div>
+            <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+        </button>
+        <button onclick="copyQnALink('3')" title="Copiar enlace directo a esta pregunta (#003)" class="p-1.5 rounded-lg text-stone-400 hover:text-reserve-forest hover:bg-stone-100 transition-colors shrink-0 text-sm">
+            🔗
+        </button>
+    </div>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
         <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Fecha:</strong> Junio 2026</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Respuesta</h3>
@@ -996,14 +1016,19 @@ pie title Distribución Mensual de Contenidos (Feed)
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base">Primavera: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#PrimaveraSerrana</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#HayedoMontejo</code></li><li class="text-base">Verano: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#VeranoSerrano</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#NaturalezaMadrid</code></li><li class="text-base">Otoño: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#OtoñoSerrano</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#BosquesMadrid</code></li><li class="text-base">Invierno: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#InviernoSerrano</code>, <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">#SierraDeMadrid</code></li></ul></p>
     </div>
 </div>
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿el generador de post usa inteligencia artificial para escribir los textos?">
-    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
-        <div class="flex items-center gap-3">
-            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#005</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿El Generador de Post usa inteligencia artificial para escribir los textos?</h3>
-        </div>
-        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
-    </button>
+<div id="qna-5" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿el generador de post usa inteligencia artificial para escribir los textos?" data-qnum="5">
+    <div class="flex items-start justify-between gap-3">
+        <button onclick="toggleQnA(this)" class="flex-grow text-left flex items-start justify-between gap-4 group">
+            <div class="flex items-center gap-3">
+                <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#005</span>
+                <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿El Generador de Post usa inteligencia artificial para escribir los textos?</h3>
+            </div>
+            <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+        </button>
+        <button onclick="copyQnALink('5')" title="Copiar enlace directo a esta pregunta (#005)" class="p-1.5 rounded-lg text-stone-400 hover:text-reserve-forest hover:bg-stone-100 transition-colors shrink-0 text-sm">
+            🔗
+        </button>
+    </div>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
         <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Fecha:</strong> Junio 2026</p>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Respuesta</h3>
@@ -1021,14 +1046,19 @@ pie title Distribución Mensual de Contenidos (Feed)
 <div class="border-l-4 p-4 my-6 rounded-r-lg bg-emerald-50 border-emerald-600 text-emerald-800"><p class="font-bold flex items-center gap-2 mb-1"><span>🌿</span> IMPORTANT</p><p class="text-sm leading-relaxed">📋 Instrucciones para Copiando el texto en el QnA: El generador NO accede a Internet, NO usa ningún modelo de IA externo y NO envía ningún dato a ningún servidor. Todo el procesamiento ocurre localmente en tu propio navegador.</p></div>
     </div>
 </div>
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿dónde está alojada esta web y cómo se realiza su mantenimiento o migración?">
-    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
-        <div class="flex items-center gap-3">
-            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#006</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Dónde está alojada esta web y cómo se realiza su mantenimiento o migración?</h3>
-        </div>
-        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
-    </button>
+<div id="qna-6" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿dónde está alojada esta web y cómo se realiza su mantenimiento o migración?" data-qnum="6">
+    <div class="flex items-start justify-between gap-3">
+        <button onclick="toggleQnA(this)" class="flex-grow text-left flex items-start justify-between gap-4 group">
+            <div class="flex items-center gap-3">
+                <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#006</span>
+                <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Dónde está alojada esta web y cómo se realiza su mantenimiento o migración?</h3>
+            </div>
+            <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+        </button>
+        <button onclick="copyQnALink('6')" title="Copiar enlace directo a esta pregunta (#006)" class="p-1.5 rounded-lg text-stone-400 hover:text-reserve-forest hover:bg-stone-100 transition-colors shrink-0 text-sm">
+            🔗
+        </button>
+    </div>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
         <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Preguntado por:</strong> Equipo de Comunicación RBSR  
 <strong class="font-bold text-stone-900">Fecha:</strong> Julio 2026</p>
@@ -1040,14 +1070,19 @@ pie title Distribución Mensual de Contenidos (Feed)
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">Cualquier persona o técnico del equipo puede clonar, descargar o desplegar libremente este proyecto en otra cuenta de GitHub o servidor corporativo en cualquier momento.</em></blockquote>
     </div>
 </div>
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="¿cómo funciona la arquitectura de este sitio web y cómo se modifican o actualizan sus contenidos?">
-    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
-        <div class="flex items-center gap-3">
-            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#007</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Cómo funciona la arquitectura de este sitio web y cómo se modifican o actualizan sus contenidos?</h3>
-        </div>
-        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
-    </button>
+<div id="qna-7" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿cómo funciona la arquitectura de este sitio web y cómo se modifican o actualizan sus contenidos?" data-qnum="7">
+    <div class="flex items-start justify-between gap-3">
+        <button onclick="toggleQnA(this)" class="flex-grow text-left flex items-start justify-between gap-4 group">
+            <div class="flex items-center gap-3">
+                <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#007</span>
+                <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">¿Cómo funciona la arquitectura de este sitio web y cómo se modifican o actualizan sus contenidos?</h3>
+            </div>
+            <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+        </button>
+        <button onclick="copyQnALink('7')" title="Copiar enlace directo a esta pregunta (#007)" class="p-1.5 rounded-lg text-stone-400 hover:text-reserve-forest hover:bg-stone-100 transition-colors shrink-0 text-sm">
+            🔗
+        </button>
+    </div>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
         <p class="text-stone-800 leading-loose my-5 text-base"><strong class="font-bold text-stone-900">Preguntado por:</strong> Equipo de Comunicación RBSR  
 <strong class="font-bold text-stone-900">Fecha:</strong> Julio 2026</p>
@@ -1715,8 +1750,8 @@ Cuando el usuario te pida redactar un contenido o planificar un post, estructura
         badgeElem.innerText = `${seasonInfo.emoji} ${seasonInfo.text}`;
         badgeElem.className = `font-title font-black text-sm uppercase px-3 py-1.5 rounded-full bg-white/10 text-white border border-white/20`;
 
-        // Navigation Tabs switching
-        function switchTab(tabId) {
+        // Navigation Tabs switching & Hash Routing
+        function switchTab(tabId, updateHash = true) {
             // Hide all tabs
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => {
@@ -1725,6 +1760,7 @@ Cuando el usuario te pida redactar un contenido o planificar un post, estructura
             
             // Show selected tab
             const targetTab = document.getElementById(`tab-${tabId}`);
+            if (!targetTab) return;
             targetTab.classList.add('active');
             
             // Reset all buttons to default state
@@ -1735,11 +1771,62 @@ Cuando el usuario te pida redactar un contenido o planificar un post, estructura
             
             // Set active button
             const activeBtn = document.getElementById(`btn-${tabId}`);
-            activeBtn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl bg-reserve-forest text-white shadow-sm transition-all";
+            if (activeBtn) {
+                activeBtn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl bg-reserve-forest text-white shadow-sm transition-all";
+            }
 
-            // Smooth scroll to tabs
-            window.scrollTo({ top: 280, behavior: 'smooth' });
+            if (updateHash) {
+                history.replaceState(null, null, `#${tabId}`);
+                window.scrollTo({ top: 280, behavior: 'smooth' });
+            }
         }
+
+        // Copy Q&A direct link
+        function copyQnALink(qNum) {
+            const url = window.location.origin + window.location.pathname + '#qna-' + parseInt(qNum);
+            copyToClipboard(url, 'Enlace directo a la pregunta #' + qNum + ' copiado');
+        }
+
+        // Deep linking hash handler for tabs and Q&A questions
+        function handleHashChange() {
+            const hash = window.location.hash.replace('#', '').trim();
+            if (!hash) return;
+
+            // Direct link to Q&A question (e.g. #qna-5, #qna-005, #qna_5)
+            if (hash.startsWith('qna-') || hash.startsWith('qna_')) {
+                switchTab('qna', false);
+                const numPart = hash.replace(/qna[-_]/, '');
+                const numInt = parseInt(numPart);
+                const targetCard = document.getElementById(`qna-${numInt}`) || document.getElementById(`qna-${numPart}`);
+                
+                if (targetCard) {
+                    const body = targetCard.querySelector('.qna-body');
+                    const arrow = targetCard.querySelector('.qna-arrow');
+                    if (body && body.classList.contains('hidden')) {
+                        body.classList.remove('hidden');
+                        if (arrow) arrow.style.transform = 'rotate(180deg)';
+                    }
+                    setTimeout(() => {
+                        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        targetCard.classList.add('ring-2', 'ring-reserve-forest', 'shadow-md');
+                        setTimeout(() => targetCard.classList.remove('ring-2', 'ring-reserve-forest', 'shadow-md'), 3000);
+                    }, 150);
+                }
+                return;
+            }
+
+            // Direct link to main tabs (e.g. #visual, #generador, #qna)
+            const tabElem = document.getElementById(`tab-${hash}`);
+            if (tabElem) {
+                switchTab(hash, false);
+                setTimeout(() => {
+                    window.scrollTo({ top: 280, behavior: 'smooth' });
+                }, 100);
+            }
+        }
+
+        window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('DOMContentLoaded', handleHashChange);
 
         // Accessibility & High Contrast Toggle
         function toggleAccessibility() {

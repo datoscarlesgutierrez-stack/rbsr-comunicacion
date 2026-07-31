@@ -401,19 +401,25 @@ def compile_portal():
             if not title_match:
                 continue
             q_num = title_match.group(1)
+            q_num_int = int(q_num)
             q_text = title_match.group(2).strip()
             # Render body (strip the heading line, parse rest as markdown)
             body_md = block[title_match.end():].strip()
             body_html = parse_markdown_to_html(body_md)
             qna_cards_html += f"""
-<div class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4" data-q="{q_text.lower()}">
-    <button onclick="toggleQnA(this)" class="w-full text-left flex items-start justify-between gap-4 group">
-        <div class="flex items-center gap-3">
-            <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#{q_num}</span>
-            <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">{q_text}</h3>
-        </div>
-        <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
-    </button>
+<div id="qna-{q_num_int}" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="{q_text.lower()}" data-qnum="{q_num_int}">
+    <div class="flex items-start justify-between gap-3">
+        <button onclick="toggleQnA(this)" class="flex-grow text-left flex items-start justify-between gap-4 group">
+            <div class="flex items-center gap-3">
+                <span class="bg-reserve-olive/20 text-reserve-olivedark font-title font-black text-sm px-3 py-1.5 rounded-lg shrink-0">#{q_num}</span>
+                <h3 class="text-base font-bold text-reserve-forest group-hover:text-reserve-olive transition-colors leading-snug">{q_text}</h3>
+            </div>
+            <span class="qna-arrow text-reserve-forest text-lg transition-transform shrink-0 mt-0.5">▼</span>
+        </button>
+        <button onclick="copyQnALink('{q_num_int}')" title="Copiar enlace directo a esta pregunta (#{q_num})" class="p-1.5 rounded-lg text-stone-400 hover:text-reserve-forest hover:bg-stone-100 transition-colors shrink-0 text-sm">
+            🔗
+        </button>
+    </div>
     <div class="qna-body hidden pt-2 border-t border-stone-100 space-y-4">
         {body_html}
     </div>
@@ -1566,8 +1572,8 @@ def compile_portal():
         badgeElem.innerText = `${{seasonInfo.emoji}} ${{seasonInfo.text}}`;
         badgeElem.className = `font-title font-black text-sm uppercase px-3 py-1.5 rounded-full bg-white/10 text-white border border-white/20`;
 
-        // Navigation Tabs switching
-        function switchTab(tabId) {{
+        // Navigation Tabs switching & Hash Routing
+        function switchTab(tabId, updateHash = true) {{
             // Hide all tabs
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => {{
@@ -1576,6 +1582,7 @@ def compile_portal():
             
             // Show selected tab
             const targetTab = document.getElementById(`tab-${{tabId}}`);
+            if (!targetTab) return;
             targetTab.classList.add('active');
             
             // Reset all buttons to default state
@@ -1586,11 +1593,62 @@ def compile_portal():
             
             // Set active button
             const activeBtn = document.getElementById(`btn-${{tabId}}`);
-            activeBtn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl bg-reserve-forest text-white shadow-sm transition-all";
+            if (activeBtn) {{
+                activeBtn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl bg-reserve-forest text-white shadow-sm transition-all";
+            }}
 
-            // Smooth scroll to tabs
-            window.scrollTo({{ top: 280, behavior: 'smooth' }});
+            if (updateHash) {{
+                history.replaceState(null, null, `#${{tabId}}`);
+                window.scrollTo({{ top: 280, behavior: 'smooth' }});
+            }}
         }}
+
+        // Copy Q&A direct link
+        function copyQnALink(qNum) {{
+            const url = window.location.origin + window.location.pathname + '#qna-' + parseInt(qNum);
+            copyToClipboard(url, 'Enlace directo a la pregunta #' + qNum + ' copiado');
+        }}
+
+        // Deep linking hash handler for tabs and Q&A questions
+        function handleHashChange() {{
+            const hash = window.location.hash.replace('#', '').trim();
+            if (!hash) return;
+
+            // Direct link to Q&A question (e.g. #qna-5, #qna-005, #qna_5)
+            if (hash.startsWith('qna-') || hash.startsWith('qna_')) {{
+                switchTab('qna', false);
+                const numPart = hash.replace(/qna[-_]/, '');
+                const numInt = parseInt(numPart);
+                const targetCard = document.getElementById(`qna-${{numInt}}`) || document.getElementById(`qna-${{numPart}}`);
+                
+                if (targetCard) {{
+                    const body = targetCard.querySelector('.qna-body');
+                    const arrow = targetCard.querySelector('.qna-arrow');
+                    if (body && body.classList.contains('hidden')) {{
+                        body.classList.remove('hidden');
+                        if (arrow) arrow.style.transform = 'rotate(180deg)';
+                    }}
+                    setTimeout(() => {{
+                        targetCard.scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+                        targetCard.classList.add('ring-2', 'ring-reserve-forest', 'shadow-md');
+                        setTimeout(() => targetCard.classList.remove('ring-2', 'ring-reserve-forest', 'shadow-md'), 3000);
+                    }}, 150);
+                }}
+                return;
+            }}
+
+            // Direct link to main tabs (e.g. #visual, #generador, #qna)
+            const tabElem = document.getElementById(`tab-${{hash}}`);
+            if (tabElem) {{
+                switchTab(hash, false);
+                setTimeout(() => {{
+                    window.scrollTo({{ top: 280, behavior: 'smooth' }});
+                }}, 100);
+            }}
+        }}
+
+        window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('DOMContentLoaded', handleHashChange);
 
         // Accessibility & High Contrast Toggle
         function toggleAccessibility() {{
