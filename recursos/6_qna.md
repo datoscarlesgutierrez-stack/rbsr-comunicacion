@@ -4,24 +4,6 @@ Este documento acumula preguntas frecuentes y sus respuestas validadas para el a
 
 ---
 
-## Q&A_004: ¿Qué requisitos de legibilidad debe cumplir el portal web de comunicación?
-
-**Fecha:** Junio 2026
-
-### Respuesta
-
-El técnico ha indicado que el portal debe ser **más ligero de leer** para facilitar su uso cotidiano. Los requisitos de legibilidad para el portal son:
-
-- **Texto de cuerpo más grande**: mínimo `text-base` (16px) para párrafos, nunca `text-sm` (14px) como tamaño principal de lectura.
-- **Contraste alto**: los textos de cuerpo deben usar `text-stone-800` (casi negro pizarra cálido) en lugar de `text-stone-600` (gris medio). Los textos de apoyo usan `text-stone-600`.
-- **Interlineado generoso**: `leading-relaxed` o `leading-loose` para párrafos. Nunca compactar el interlineado.
-- **Headings prominentes**: H2 en `text-2xl`, H3 en `text-xl`, H4 en `text-base` con peso bold.
-- **Listas escaneables**: ítems de lista en `text-base text-stone-800` con espaciado vertical `space-y-2`.
-
-> *Este requisito debe tenerse en cuenta siempre que se modifique el parser de Markdown o el diseño del portal.*
-
----
-
 ## Q&A_001: ¿Qué tipografía se utiliza en Canva para las publicaciones de redes sociales?
 
 **Preguntado por:** Carles (técnico de comunicación)  
@@ -59,7 +41,7 @@ Para todas las plantillas de Redes Sociales en Canva, se ha decidido utilizar la
 
 ### Respuesta
 
-El manual de la Reserva establece entre **3 y 5 hashtags** por publicación (máximo 8 en casos excepcionales de alta difusión). El uso excesivo de hashtags penaliza el alcance orgánico en el algoritmo actual de Instagram (2024–2026).
+El uso de hashtags debe ser **prudente, prudencial y estrictamente coherente** con la temática de la publicación. En Instagram se recomienda no sobrepasar nunca los **3 a 5 hashtags** por publicación. El uso masivo o indiscriminado de etiquetas (spam de hashtags) es penalizado activamente por el algoritmo de la plataforma, reduciendo el alcance orgánico y la difusión del post.
 
 **Hashtags fijos de marca (siempre presentes):**
 - `#SierraDelRincon`
@@ -75,6 +57,24 @@ El manual de la Reserva establece entre **3 y 5 hashtags** por publicación (má
 - Verano: `#VeranoSerrano`, `#NaturalezaMadrid`
 - Otoño: `#OtoñoSerrano`, `#BosquesMadrid`
 - Invierno: `#InviernoSerrano`, `#SierraDeMadrid`
+
+---
+
+## Q&A_004: ¿Qué requisitos de legibilidad debe cumplir el portal web de comunicación?
+
+**Fecha:** Junio 2026
+
+### Respuesta
+
+El técnico ha indicado que el portal debe ser **más ligero de leer** para facilitar su uso cotidiano. Los requisitos de legibilidad para el portal son:
+
+- **Texto de cuerpo más grande**: mínimo `text-base` (16px) para párrafos, nunca `text-sm` (14px) como tamaño principal de lectura.
+- **Contraste alto**: los textos de cuerpo deben usar `text-stone-800` (casi negro pizarra cálido) en lugar de `text-stone-600` (gris medio). Los textos de apoyo usan `text-stone-600`.
+- **Interlineado generoso**: `leading-relaxed` o `leading-loose` para párrafos. Nunca compactar el interlineado.
+- **Headings prominentes**: H2 en `text-2xl`, H3 en `text-xl`, H4 en `text-base` con peso bold.
+- **Listas escaneables**: ítems de lista en `text-base text-stone-800` con espaciado vertical `space-y-2`.
+
+> *Este requisito debe tenerse en cuenta siempre que se modifique el parser de Markdown o el diseño del portal.*
 
 ---
 

@@ -16,7 +16,6 @@ Disponemos de una **Matriz de Mensajes en Excel** que sirve como guía unificada
 ---
 
 ### 🎨 Enlaces a las Plantillas de Diseño en Canva (Resoluciones)
-*Puedes editar estos enlaces directamente en esta documentación si cambian de ubicación. El generador de post los leerá automáticamente.*
 
 *   **Plantilla 1:1 (Meta)**: `https://canva.link/metarsrb`
 *   **Plantilla 4:5**: `https://canva.link/933xncglzshcqxy`
@@ -70,7 +69,7 @@ Cada mensaje es una pequeña puerta de entrada a la Sierra del Rincón. No comun
 *   **Reglas**:
     *   **Gancho Emocional**: Las 2 primeras líneas deben capturar el espíritu de la sierra (sensaciones, estaciones, curiosidades).
     *   **Llamada a la Acción (CTA)**: Siempre clara e inmediata (ej. *"Inscripciones abiertas en el enlace de la biografía"*).
-    *   **Hashtags**: Entre 3 y 5 de alta relevancia, agrupados al final (ej: `#SierraDelRincon #ReservaDeLaBiosfera #TurismoSostenible #CEA`).
+    *   **Hashtags**: Uso **prudente y coherente**. Se recomienda no utilizar más de **3 a 5 hashtags** por publicación. El uso masivo o indiscriminado de etiquetas resulta contraproducente y es penalizado por el algoritmo actual de Instagram, reduciendo la visibilidad de las publicaciones. Agruparlos siempre limpios al final (ej: `#SierraDelRincon #ReservaDeLaBiosfera #TurismoSostenible #CEA`).
     *   **Imagen**: Priorizar fotografía real del territorio. Si se usa IA, generar un fondo botánico/naturaleza en vertical 9:16 con los detalles estacionales del municipio (hojas, flores, textura de pizarra, etc.).
 
 ### Plantilla de Post de Actividad (Instagram)

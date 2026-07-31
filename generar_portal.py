@@ -23,7 +23,7 @@ def parse_markdown_to_html(md_text):
         else:
             classes += "bg-stone-50 border-stone-400 text-stone-800"
             icon = "ℹ️"
-        return f'<div class="{classes}"><p class="font-bold flex items-center gap-2 mb-1"><span>{icon}</span> {alert_type}</p><p class="text-sm leading-relaxed">{content}</p></div>'
+        return f'<div class="{classes}"><p class="text-base leading-relaxed">{content}</p></div>'
 
     md_text = re.sub(r'>\s*\[!(IMPORTANT|WARNING|NOTE)\]\n((?:>\s*.*\n?)+)', 
                      render_alert, 
@@ -31,7 +31,7 @@ def parse_markdown_to_html(md_text):
     
     # Inline alerts simpler match
     md_text = re.sub(r'>\s*\[!(IMPORTANT|WARNING|NOTE)\]\s*(.*)', 
-                     lambda m: f'<div class="border-l-4 border-emerald-600 bg-emerald-50/50 p-4 my-4 rounded-r-lg text-emerald-800"><p class="font-bold text-sm">🌿 {m.group(1)}</p><p class="text-sm mt-1">{m.group(2)}</p></div>', 
+                     lambda m: f'<div class="border-l-4 border-emerald-600 bg-emerald-50/50 p-4 my-4 rounded-r-lg text-emerald-800"><p class="text-base mt-1">{m.group(2)}</p></div>', 
                      md_text)
 
     # Standard blockquotes
@@ -133,13 +133,13 @@ def parse_markdown_to_html(md_text):
                 # Check if sub-lines are bullet points
                 is_bullet_sub = all(re.match(r'^[\*\-]\s', l) or l.startswith(('*', '-')) for l in sub_lines)
                 if is_bullet_sub:
-                    sub_html = '<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600 text-sm">'
+                    sub_html = '<ul class="list-disc pl-5 mt-2 space-y-1.5 text-stone-600">'
                     for sl in sub_lines:
                         sc = re.sub(r'^[\*\-]\s*', '', sl).strip()
-                        sub_html += '<li>' + inline_format(sc) + '</li>'
+                        sub_html += '<li class="text-base">' + inline_format(sc) + '</li>'
                     sub_html += '</ul>'
                 else:
-                    sub_html = ''.join('<p class="mt-1 text-sm text-stone-600">' + inline_format(sl) + '</p>' for sl in sub_lines)
+                    sub_html = ''.join('<p class="mt-1 text-base text-stone-600">' + inline_format(sl) + '</p>' for sl in sub_lines)
                 inner = first_html + sub_html
             else:
                 inner = first_html
@@ -199,7 +199,7 @@ def parse_markdown_to_html(md_text):
             first_html = inline_format(first)
             sub_lines = item_lines[1:]
             if sub_lines:
-                sub_paras = ''.join('<p class="text-sm text-stone-600">' + inline_format(l.strip().lstrip('*').lstrip('-').strip()) + '</p>' for l in sub_lines if l.strip())
+                sub_paras = ''.join('<p class="text-base text-stone-600">' + inline_format(l.strip().lstrip('*').lstrip('-').strip()) + '</p>' for l in sub_lines if l.strip())
                 inner = first_html + ('<div class="mt-1">' + sub_paras + '</div>' if sub_paras else '')
             else:
                 inner = first_html
@@ -255,7 +255,7 @@ def parse_markdown_to_html(md_text):
     md_text = re.sub(r'(?<!href=")(?<!src=")(https?://[^\s<>"]+)', lambda m: f'<a href="{m.group(1)}" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium break-all">{m.group(1)}</a>', md_text)
 
     # Checklist checkboxes (optional)
-    md_text = re.sub(r'- \[ \]\s+(.*?)$', r'<label class="flex items-start gap-3 my-3 p-3 bg-stone-50 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-100/50 transition-colors"><input type="checkbox" class="w-4 h-4 mt-1 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500"><span class="text-sm text-stone-700 leading-relaxed">\1</span></label>', md_text, flags=re.M)
+    md_text = re.sub(r'- \[ \]\s+(.*?)$', r'<label class="flex items-start gap-3 my-3 p-3 bg-stone-50 border border-stone-200 rounded-lg cursor-pointer hover:bg-stone-100/50 transition-colors"><input type="checkbox" class="w-4 h-4 mt-1 rounded border-stone-300 text-emerald-600 focus:ring-emerald-500"><span class="text-base text-stone-700 leading-relaxed">\1</span></label>', md_text, flags=re.M)
 
     # Strip markdown horizontal rules (--- lines) — no se muestran como guiones
     md_text = re.sub(r'^\s*[-]{3,}\s*$', '', md_text, flags=re.M)
@@ -645,6 +645,11 @@ def compile_portal():
                 <p class="text-stone-200 text-sm md:text-base max-w-2xl leading-relaxed">
                     Portal de consulta activa para los técnicos de comunicación. Encuentra la guía visual, mensajes clave por municipio, plantillas directas y el generador multicanal.
                 </p>
+                <div class="pt-2">
+                    <a href="https://docs.google.com/presentation/d/1G6qysB5xTwcyReyiHJ7HnxBQECbucpSCnHlLozRybAA/edit?usp=sharing" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/20 shadow-sm group">
+                        <span>📊</span> Ver Presentación Análisis Colectivo (Esencia, Sistema Visual y Estrategia) <span class="group-hover:translate-x-0.5 transition-transform">↗</span>
+                    </a>
+                </div>
             </div>
             
             <div class="relative z-10 flex flex-col items-center md:items-end gap-2 shrink-0">
@@ -778,18 +783,23 @@ def compile_portal():
             <div class="glass p-6 md:p-10 rounded-3xl shadow-sm space-y-8">
                 <!-- Instructions alert -->
                 <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-800 p-4 rounded-r-lg">
-                    <p class="font-bold text-sm">💡 Consejo para Técnicos</p>
-                    <p class="text-xs mt-1">Haz clic en los bloques de texto o plantillas a continuación para copiarlos instantáneamente al portapapeles y editarlos directamente en tus redes o chats.</p>
+                    <p class="font-bold text-base">📋 Espacio de Trabajo y Seguimiento</p>
+                    <p class="text-base mt-1 leading-relaxed">Como ya se menciona en esta web, disponemos de un <strong>Excel de Google</strong> con todas las pautas para que podáis adaptarlo y usarlo como plantilla, guía y registro de vuestras publicaciones. Para agilizar esa tarea del Excel, se ha creado en la web el <strong>Generador Multicanal de Publicaciones</strong> (pestaña ⚙️ Generador de Post).</p>
                 </div>
 
-                <!-- Canva Templates Manager (Browser storage editable presets) -->
+                <!-- Parse plantillas but also add inline interactive widgets to copy -->
+                <div class="prose max-w-none text-stone-700">
+                    {contents["plantillas"]}
+                </div>
+
+                <!-- Canva Templates Manager (Browser storage editable presets) — placed here so it appears next to the Canva links section -->
                 <details class="bg-stone-50 border border-stone-200 rounded-2xl p-6 group">
                     <summary class="font-title font-bold text-sm text-reserve-forest cursor-pointer hover:text-reserve-olive transition-colors flex items-center justify-between">
                         <span class="flex items-center gap-2">🔧 Configuración de Enlaces Canva (Guardado en Navegador)</span>
                         <span class="text-xs text-stone-400 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <div class="mt-4 pt-4 border-t border-stone-200/60 space-y-4">
-                        <p class="text-xs text-stone-500">Puedes modificar los enlaces de Canva aquí abajo. Se guardarán en el almacenamiento local de tu navegador para futuras sesiones sin alterar los archivos de origen.</p>
+                        <p class="text-base text-stone-500">Puedes modificar los enlaces de Canva aquí abajo. Se guardarán en el almacenamiento local de tu navegador para futuras sesiones sin alterar los archivos de origen.</p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <!-- Generica -->
@@ -849,11 +859,6 @@ def compile_portal():
                         </div>
                     </div>
                 </details>
-
-                <!-- Parse plantillas but also add inline interactive widgets to copy -->
-                <div class="prose max-w-none text-stone-700">
-                    {contents["plantillas"]}
-                </div>
             </div>
         </div>
 
@@ -1424,10 +1429,15 @@ def compile_portal():
                 </p>
             </div>
             
-            <div class="flex flex-col items-center md:items-end gap-3">
-                <span class="px-3 py-1.5 rounded bg-stone-800 text-stone-300 font-mono text-xs select-none">
-                    v1.0.0 Stable | MD-to-HTML Compiled
-                </span>
+            <div class="flex flex-col items-center md:items-end gap-2.5">
+                <div class="flex flex-wrap items-center justify-center md:justify-end gap-2">
+                    <a href="https://docs.google.com/presentation/d/1G6qysB5xTwcyReyiHJ7HnxBQECbucpSCnHlLozRybAA/edit?usp=sharing" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 hover:text-white font-mono text-xs transition-colors border border-stone-700" title="Ver Presentación de Análisis Colectivo en Google Slides">
+                        <span>📊</span> Análisis Colectivo (Google Slides)
+                    </a>
+                    <span class="px-3 py-1.5 rounded bg-stone-800 text-stone-300 font-mono text-xs select-none">
+                        v1.0.0 Stable | MD-to-HTML Compiled
+                    </span>
+                </div>
                 <p class="text-xs text-stone-400 text-center md:text-right">
                     Co-desarrollado por <a href="https://carlesgutierrez.github.io/consultoria-digital/" target="_blank" rel="noopener" class="text-stone-300 hover:text-white underline underline-offset-2 transition-colors font-semibold">Carles Gutiérrez Vallès</a> con la ayuda de Nicolas Serna (Marketing Digital).
                 </p>
