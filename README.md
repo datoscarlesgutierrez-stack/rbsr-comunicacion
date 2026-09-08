@@ -59,7 +59,7 @@ El portal está diseñado bajo la filosofía de **Single Page Application (SPA)*
 │   └── 7_manual_uso_marca.md             # Manual de uso de la marca oficial de la Reserva
 │
 └── Fuentes/                              # Documentación original e histórica del proyecto
-    ├── Plan Estrategico Biosfera de la Sierra del Rincon (BSR) - Feb 2- 2026-1.pdf
+    ├── MANUAL - Plan Estrategico Biosfera de la Sierra del Rincon (BSR) - Septiembre 2026.pdf
     └── Prompt Ejemplo Rerva del Rincón.pdf
 ```
 

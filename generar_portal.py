@@ -507,7 +507,6 @@ def compile_portal():
         html.accessibility-mode .bg-\[\#737a00\] *,
         html.accessibility-mode .bg-emerald-800 *,
         html.accessibility-mode .bg-amber-600 *,
-        html.accessibility-mode .active-tab,
         html.accessibility-mode .text-white {{
             color: #ffffff !important;
         }}
@@ -545,6 +544,14 @@ def compile_portal():
         html.accessibility-mode .tab-btn {{
             border: 2px solid #222222 !important;
         }}
+        html.accessibility-mode .tab-btn:not(.bg-reserve-forest) {{
+            color: #111111 !important;
+            background-color: transparent !important;
+        }}
+        html.accessibility-mode .tab-btn.bg-reserve-forest {{
+            color: #ffffff !important;
+            background-color: #1e3b2e !important;
+        }}
         /* ─── Estilos de Selección de Texto (Mouse Highlight) ───────────────── */
         ::selection {{
             background-color: #1e3b2e !important; /* Fondo verde oscuro de alto contraste */
@@ -576,7 +583,11 @@ def compile_portal():
         }}
         .tab-content.active {{
             display: block;
-            opacity: 1;
+        }}
+        /* Evitar que la pestaña activa se vuelva gris en hover perdiendo contraste con el texto blanco */
+        .tab-btn.bg-reserve-forest:hover {{
+            background-color: #233b30 !important;
+            color: #ffffff !important;
         }}
         .glass {{
             background: rgba(255, 255, 255, 0.85);
@@ -601,7 +612,7 @@ def compile_portal():
         
         <!-- Navigation Menu -->
         <nav class="flex flex-wrap items-center gap-1 bg-stone-100/90 p-1.5 rounded-2xl border border-stone-300/80 shadow-inner">
-            <button onclick="switchTab('esencia')" id="btn-esencia" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all active-tab bg-reserve-forest text-white shadow-sm">
+            <button onclick="switchTab('esencia')" id="btn-esencia" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl hover:bg-stone-200/70 transition-all bg-reserve-forest text-white shadow-sm">
                 🌸 Esencia
             </button>
             <button onclick="switchTab('visual')" id="btn-visual" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
@@ -1530,7 +1541,7 @@ def compile_portal():
             // Reset all buttons to default inactive state
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(btn => {{
-                btn.classList.remove('bg-reserve-forest', 'text-white', 'shadow-sm');
+                btn.classList.remove('bg-reserve-forest', 'text-white', 'shadow-sm', 'active-tab');
                 btn.classList.add('text-reserve-slate');
             }});
             
