@@ -372,7 +372,7 @@ def compile_portal():
 
     # Fallbacks in case formatting is broken or lines are missing
     defaults = {
-        "template_1_1": "https://canva.link/metarsrb",
+        "template_1_1": "https://canva.link/8n6z544oygk8jzt",
         "template_4_5": "https://canva.link/933xncglzshcqxy",
         "template_16_9": "https://canva.link/fgesdrt0q2oji1v",
         "template_9_16": "https://canva.link/ql314ijqwb1k2qe"
