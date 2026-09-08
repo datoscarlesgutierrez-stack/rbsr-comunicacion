@@ -583,6 +583,7 @@ def compile_portal():
         }}
         .tab-content.active {{
             display: block;
+            opacity: 1;
         }}
         /* Evitar que la pestaña activa se vuelva gris en hover perdiendo contraste con el texto blanco */
         .tab-btn.bg-reserve-forest:hover {{
