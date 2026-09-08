@@ -17,7 +17,7 @@ Disponemos de una **Matriz de Mensajes en Excel** que sirve como guía unificada
 
 ### 🎨 Enlaces a las Plantillas de Diseño en Canva (Resoluciones)
 
-*   **Plantilla 1:1 (Meta)**: `https://canva.link/metarsrb`
+*   **Plantilla 1:1 (Meta)**: `https://canva.link/8n6z544oygk8jzt`
 *   **Plantilla 4:5**: `https://canva.link/933xncglzshcqxy`
 *   **Plantilla 16:9**: `https://canva.link/fgesdrt0q2oji1v`
 *   **Plantilla 9:16 (Story)**: `https://canva.link/ql314ijqwb1k2qe`
