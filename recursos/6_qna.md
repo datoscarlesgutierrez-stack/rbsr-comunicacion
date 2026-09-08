@@ -78,6 +78,7 @@ El técnico ha indicado que el portal debe ser **más ligero de leer** para faci
 
 ---
 
+<!--
 ## Q&A_005: ¿El Generador de Post usa inteligencia artificial para escribir los textos?
 
 **Fecha:** Junio 2026
@@ -115,6 +116,7 @@ El generador produce un **borrador estructurado y alineado con la identidad de l
 
 > [!IMPORTANT]
 > 📋 Instrucciones para Copiando el texto en el QnA: El generador NO accede a Internet, NO usa ningún modelo de IA externo y NO envía ningún dato a ningún servidor. Todo el procesamiento ocurre localmente en tu propio navegador.
+-->
 
 ---
 

@@ -619,10 +619,10 @@ def compile_portal():
             <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
                 🎥 Tutoriales
             </button>
-            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn hidden px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
                 ⚙️ Generador de Post
             </button>
-            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn hidden px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
                 📋 Instrucciones IA
             </button>
             <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
@@ -1527,16 +1527,18 @@ def compile_portal():
             if (!targetTab) return;
             targetTab.classList.add('active');
             
-            // Reset all buttons to default state
+            // Reset all buttons to default inactive state
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(btn => {{
-                btn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all";
+                btn.classList.remove('bg-reserve-forest', 'text-white', 'shadow-sm');
+                btn.classList.add('text-reserve-slate');
             }});
             
             // Set active button
             const activeBtn = document.getElementById(`btn-${{tabId}}`);
             if (activeBtn) {{
-                activeBtn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl bg-reserve-forest text-white shadow-sm transition-all";
+                activeBtn.classList.remove('text-reserve-slate');
+                activeBtn.classList.add('bg-reserve-forest', 'text-white', 'shadow-sm');
             }}
 
             if (updateHash) {{

@@ -221,14 +221,3 @@ Cada mensaje es una pequeña puerta de entrada a la Sierra del Rincón. No comun
 *   **Título SEO**: `[Tema del Artículo] | Reserva Biosfera Sierra del Rincón` (Máx. 60 caracteres).
 *   **Meta Descripción**: Un resumen cautivador de 140-155 caracteres que contenga llamada a la acción y palabras clave como "sostenibilidad", "senderismo responsable" o "Sierra del Rincón".
 *   **Encabezados (H1, H2, H3)**: Un solo H1 por página (el título del post), y secciones separadas por H2 con títulos sugerentes.
-
----
-
-## 🎥 Video Tutoriales y Formación
-Para asimilar el uso de las plantillas y el flujo de trabajo en la Reserva, dispones de los siguientes video tutoriales explicativos:
-
-*   **Elegir y guardar una PLANTILLA para comunicación**: [Ver en Loom](https://www.loom.com/share/25fd2d8b8feb4dc3969bbacbe9052c7b)
-*   **Matriz de Mensajes de la RBSR Comunicación**: [Ver Presentación Google Slides](https://docs.google.com/presentation/d/1G6qysB5xTwcyReyiHJ7HnxBQECbucpSCnHlLozRybAA/edit?usp=sharing)
-*   **Como hacer publicación PARTE 1 (Canva, Edición de Textos)**: [Ver en Loom](https://www.loom.com/share/b118740a435a4f028474da3212ebf607)
-*   **Como hacer publicación PARTE 2 (Caso Meta, Sheets, Canva)**: [Ver en Loom](https://www.loom.com/share/a5719f254b5a44248b286fdee2fe161c)
-

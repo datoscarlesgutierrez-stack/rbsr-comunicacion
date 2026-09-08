@@ -187,10 +187,10 @@
             <button onclick="switchTab('tutoriales')" id="btn-tutoriales" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
                 🎥 Tutoriales
             </button>
-            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+            <button onclick="switchTab('generador')" id="btn-generador" class="tab-btn hidden px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
                 ⚙️ Generador de Post
             </button>
-            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
+            <button onclick="switchTab('instrucciones')" id="btn-instrucciones" class="tab-btn hidden px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
                 📋 Instrucciones IA
             </button>
             <button onclick="switchTab('qna')" id="btn-qna" class="tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all">
@@ -480,9 +480,6 @@ Cada mensaje es una pequeña puerta de entrada a la Sierra del Rincón. No comun
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Título Poético</strong>: Inspirado en la sierra (ej: <em class="italic text-stone-700">Donde el agua aprende a cantar</em>, <em class="italic text-stone-700">El mapa del silencio</em>).</li><li class="text-base"><strong class="font-bold text-stone-900">Entrada Estratégica</strong>: Párrafo de 3-4 líneas resumiendo el valor conceptual de lo que se va a narrar.</li><li class="text-base"><strong class="font-bold text-stone-900">Bloques Modulares</strong>: Subtítulos descriptivos con párrafos cortos (máx. 5 líneas por párrafo) combinando curiosidades de naturaleza con el impacto de la comunidad local.</li><li class="text-base"><strong class="font-bold text-stone-900">Cierre con Alma</strong>: Una reflexión vinculada al territorio, la custodia y el futuro.</li><li class="text-base"><strong class="font-bold text-stone-900">Anexo del Lector</strong>: Ficha de datos prácticos.</li></ol>
 <h3 class="text-xl font-bold text-emerald-800 mt-8 mb-3 border-b border-stone-200 pb-2">Plantilla de SEO para Entradas de Blog</h3>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Título SEO</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">[Tema del Artículo] | Reserva Biosfera Sierra del Rincón</code> (Máx. 60 caracteres).</li><li class="text-base"><strong class="font-bold text-stone-900">Meta Descripción</strong>: Un resumen cautivador de 140-155 caracteres que contenga llamada a la acción y palabras clave como "sostenibilidad", "senderismo responsable" o "Sierra del Rincón".</li><li class="text-base"><strong class="font-bold text-stone-900">Encabezados (H1, H2, H3)</strong>: Un solo H1 por página (el título del post), y secciones separadas por H2 con títulos sugerentes.</li></ul>
-<h2 class="text-2xl font-bold text-emerald-900 mt-10 mb-4 border-l-4 border-emerald-600 pl-4">🎥 Video Tutoriales y Formación</h2>
-Para asimilar el uso de las plantillas y el flujo de trabajo en la Reserva, dispones de los siguientes video tutoriales explicativos:
-<ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Elegir y guardar una PLANTILLA para comunicación</strong>: <a href="https://www.loom.com/share/25fd2d8b8feb4dc3969bbacbe9052c7b" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Ver en Loom</a></li><li class="text-base"><strong class="font-bold text-stone-900">Matriz de Mensajes de la RBSR Comunicación</strong>: <a href="https://docs.google.com/presentation/d/1G6qysB5xTwcyReyiHJ7HnxBQECbucpSCnHlLozRybAA/edit?usp=sharing" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Ver Presentación Google Slides</a></li><li class="text-base"><strong class="font-bold text-stone-900">Como hacer publicación PARTE 1 (Canva, Edición de Textos)</strong>: <a href="https://www.loom.com/share/b118740a435a4f028474da3212ebf607" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Ver en Loom</a></li><li class="text-base"><strong class="font-bold text-stone-900">Como hacer publicación PARTE 2 (Caso Meta, Sheets, Canva)</strong>: <a href="https://www.loom.com/share/a5719f254b5a44248b286fdee2fe161c" target="_blank" rel="noopener" class="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors font-medium">Ver en Loom</a></li></ul>
                 </div>
             </div>
         </div>
@@ -1015,6 +1012,7 @@ pie title Distribución Mensual de Contenidos (Feed)
 <p class="text-stone-800 leading-loose my-5 text-base">El técnico ha indicado que el portal debe ser <strong class="font-bold text-stone-900">más ligero de leer</strong> para facilitar su uso cotidiano. Los requisitos de legibilidad para el portal son:</p>
 <ul class="list-disc pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Texto de cuerpo más grande</strong>: mínimo <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-base</code> (16px) para párrafos, nunca <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-sm</code> (14px) como tamaño principal de lectura.</li><li class="text-base"><strong class="font-bold text-stone-900">Contraste alto</strong>: los textos de cuerpo deben usar <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-stone-800</code> (casi negro pizarra cálido) en lugar de <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-stone-600</code> (gris medio). Los textos de apoyo usan <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-stone-600</code>.</li><li class="text-base"><strong class="font-bold text-stone-900">Interlineado generoso</strong>: <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">leading-relaxed</code> o <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">leading-loose</code> para párrafos. Nunca compactar el interlineado.</li><li class="text-base"><strong class="font-bold text-stone-900">Headings prominentes</strong>: H2 en <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-2xl</code>, H3 en <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-xl</code>, H4 en <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-base</code> con peso bold.</li><li class="text-base"><strong class="font-bold text-stone-900">Listas escaneables</strong>: ítems de lista en <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">text-base text-stone-800</code> con espaciado vertical <code class="px-1.5 py-0.5 bg-stone-100 rounded text-emerald-800 font-mono text-sm">space-y-2</code>.</li></ul>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><em class="italic text-stone-700">Este requisito debe tenerse en cuenta siempre que se modifique el parser de Markdown o el diseño del portal.</em></blockquote>
+<p class="text-stone-800 leading-loose my-5 text-base"><!--</p>
     </div>
 </div>
 <div id="qna-5" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿el generador de post usa inteligencia artificial para escribir los textos?" data-qnum="5">
@@ -1044,7 +1042,7 @@ pie title Distribución Mensual de Contenidos (Feed)
 <p class="text-stone-800 leading-loose my-5 text-base">El generador produce un <strong class="font-bold text-stone-900">borrador estructurado y alineado con la identidad de la Reserva</strong> en cuestión de segundos. Los textos resultantes:
 <ol class="list-decimal pl-6 my-5 space-y-3 text-stone-800 leading-relaxed"><li class="text-base"><strong class="font-bold text-stone-900">Se pueden publicar directamente</strong> si el contenido encaja bien con los datos introducidos.</li><li class="text-base"><strong class="font-bold text-stone-900">Se pueden copiar y pegar en GEM, ChatGPT o similar</strong> como base para que la IA los refine, personalice o amplíe con más detalle.</li></ol></p>
 <blockquote class="border-l-4 border-emerald-600 pl-4 py-1 my-4 italic text-stone-600 bg-emerald-50/20 rounded-r p-3 leading-relaxed"><strong class="font-bold text-stone-900">Flujo recomendado</strong>: Genera → Revisa el resultado → Si quieres más profundidad, cópialo en tu GEM de la Reserva y pídele que lo mejore manteniendo el tono y la identidad de la Sierra.</blockquote>
-<div class="border-l-4 p-4 my-6 rounded-r-lg bg-emerald-50 border-emerald-600 text-emerald-800"><p class="text-base leading-relaxed">📋 Instrucciones para Copiando el texto en el QnA: El generador NO accede a Internet, NO usa ningún modelo de IA externo y NO envía ningún dato a ningún servidor. Todo el procesamiento ocurre localmente en tu propio navegador.</p></div>
+<div class="border-l-4 p-4 my-6 rounded-r-lg bg-emerald-50 border-emerald-600 text-emerald-800"><p class="text-base leading-relaxed">📋 Instrucciones para Copiando el texto en el QnA: El generador NO accede a Internet, NO usa ningún modelo de IA externo y NO envía ningún dato a ningún servidor. Todo el procesamiento ocurre localmente en tu propio navegador.</p></div>-->
     </div>
 </div>
 <div id="qna-6" class="qna-card bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4 transition-all" data-q="¿dónde está alojada esta web y cómo se realiza su mantenimiento o migración?" data-qnum="6">
@@ -1690,7 +1688,7 @@ Cuando el usuario te pida redactar un contenido o planificar un post, estructura
         }
 
         // Canva templates config parsed from documentation
-        const canvaTemplates = {"template_1_1": "https://canva.link/metarsrb", "template_4_5": "https://canva.link/933xncglzshcqxy", "template_16_9": "https://canva.link/fgesdrt0q2oji1v", "template_9_16": "https://canva.link/ql314ijqwb1k2qe"};
+        const canvaTemplates = {"template_1_1": "https://canva.link/8n6z544oygk8jzt", "template_4_5": "https://canva.link/933xncglzshcqxy", "template_16_9": "https://canva.link/fgesdrt0q2oji1v", "template_9_16": "https://canva.link/ql314ijqwb1k2qe"};
 
         // Load custom templates from localStorage or fallback to defaults
         const customTemplates = localStorage.getItem('rbsr_canva_custom_links');
@@ -1770,16 +1768,18 @@ Cuando el usuario te pida redactar un contenido o planificar un post, estructura
             if (!targetTab) return;
             targetTab.classList.add('active');
             
-            // Reset all buttons to default state
+            // Reset all buttons to default inactive state
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(btn => {
-                btn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl text-reserve-slate hover:bg-stone-200/70 transition-all";
+                btn.classList.remove('bg-reserve-forest', 'text-white', 'shadow-sm');
+                btn.classList.add('text-reserve-slate');
             });
             
             // Set active button
             const activeBtn = document.getElementById(`btn-${tabId}`);
             if (activeBtn) {
-                activeBtn.className = "tab-btn px-3 py-1.5 text-xs md:text-sm font-bold rounded-xl bg-reserve-forest text-white shadow-sm transition-all";
+                activeBtn.classList.remove('text-reserve-slate');
+                activeBtn.classList.add('bg-reserve-forest', 'text-white', 'shadow-sm');
             }
 
             if (updateHash) {

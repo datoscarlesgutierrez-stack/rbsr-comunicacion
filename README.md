@@ -85,6 +85,43 @@ Si necesitas realizar un cambio en los textos oficiales o añadir información a
 
 ---
 
+## 👁️ Reactivación de Pestañas Ocultas (Generador e Instrucciones IA)
+
+Actualmente, las pestañas **"⚙️ Generador de Post"** e **"📋 Instrucciones IA"**, así como la pregunta del Q&A sobre el Generador de Posts, se encuentran **ocultas temporalmente**. 
+
+Para volver a activar y hacer visibles estas pestañas y sus contenidos:
+
+### 1. Reactivar los botones de las pestañas en el Portal
+Abre el archivo [generar_portal.py](file:///d:/develop/RESERVA_DE_LA%20_BIOSFERA/rbsr-comunicacion/generar_portal.py#L622-L627) y busca las líneas de navegación donde están los botones:
+* **Generador de Post**: Elimina la clase `hidden` del `<button id="btn-generador">`.
+* **Instrucciones IA**: Elimina la clase `hidden` del `<button id="btn-instrucciones">`.
+
+```html
+<!-- Cambiar de: -->
+<button onclick="switchTab('generador')" id="btn-generador" class="tab-btn hidden ...">
+<!-- A: -->
+<button onclick="switchTab('generador')" id="btn-generador" class="tab-btn ...">
+```
+
+### 2. Reactivar la pregunta Q&A sobre el Generador de Post
+Abre el archivo [recursos/6_qna.md](file:///d:/develop/RESERVA_DE_LA%20_BIOSFERA/rbsr-comunicacion/recursos/6_qna.md) y busca el bloque del punto `Q&A_005`.
+Elimina las marcas de comentario HTML (`<!--` al inicio y `-->` al final) para des-comentar el texto:
+
+```markdown
+<!-- Eliminar esta línea <!-- -->
+### Q&A_005: ¿Cómo funciona el Generador de Posts interactivo?
+...
+<!-- Eliminar esta línea --> -->
+```
+
+### 3. Re-compilar el portal
+Una vez realizados los cambios, ejecuta de nuevo:
+```bash
+python3 generar_portal.py
+```
+
+---
+
 ## 👥 Desarrollo y Autoría
 
 Este portal y su sistema de automatización y compilación ha sido conceptualizado y desarrollado por:
